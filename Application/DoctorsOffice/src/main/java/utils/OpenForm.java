@@ -8,45 +8,29 @@ import javafx.stage.Stage;
 
 public class OpenForm {
 
-    public static FXMLLoader openNewForm(String fxmlFileName, String formTitle) {
-        FXMLLoader fxmlLoad = null;
+    public static FXMLLoader openNewForm(final String fxmlFileName, final String formTitle, final boolean openOnTop ) {
+        FXMLLoader fxmlLoader = null;
         try {
-            fxmlLoad = new FXMLLoader(
+            fxmlLoader = new FXMLLoader(
                     new OpenForm().getClass().getResource(fxmlFileName));
 
-            Parent root = fxmlLoad.load();
+            Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle(formTitle);
             stage.setScene(new Scene(root));
             stage.setResizable(false);
+            stage.setAlwaysOnTop( openOnTop );
             stage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Can't load new window. ");
         }
-        return fxmlLoad;
+        return fxmlLoader;
     }
 
+    public static FXMLLoader openNewForm(final String fxmlFileName, final String formTitle ) {
 
-    public static FXMLLoader openNewFormOnTop(String fxmlFileName, String formTitle) {
-        FXMLLoader fxmlLoad = null;
-        try {
-            fxmlLoad = new FXMLLoader(
-                    new OpenForm().getClass().getResource(fxmlFileName));
-
-            Parent root = fxmlLoad.load();
-            Stage stage = new Stage();
-            stage.setTitle(formTitle);
-            stage.setScene(new Scene(root));
-            stage.setResizable(false);
-            stage.setAlwaysOnTop(true);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Can't load new window. ");
-        }
-        return fxmlLoad;
+        return OpenForm.openNewForm( fxmlFileName, formTitle, false );
     }
 }

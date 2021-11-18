@@ -14,17 +14,18 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
     }
 
     @Override
-    public User authenticateUser(String username, String password) {
+    public User getUserByUsername( String username ) {
 
         User user;
         try {
-            user = (User) MyEntityManager.getEntityManager().createQuery("FROM User u WHERE  u.username=: username AND u.password=: password")
+            user = (User) MyEntityManager.getEntityManager().createQuery("FROM Users u WHERE  u.username=: username ")
                     .setParameter("username", username)
-                    .setParameter("password", password)
                     .getSingleResult();
+
         } catch (NoResultException e) {
             user = null;
         }
         return user;
     }
+
 }

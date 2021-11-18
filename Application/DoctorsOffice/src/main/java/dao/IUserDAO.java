@@ -4,5 +4,5 @@ import entities.User;
 
 public interface IUserDAO {
 
-    User authenticateUser(String username, String password);
+    User getUserByUsername(String username );
 }

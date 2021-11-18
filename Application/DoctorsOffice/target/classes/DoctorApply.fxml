@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorApplyController">
+    <left>
+        <AnchorPane prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: #d62bd1;" BorderPane.alignment="CENTER">
+            <children>
+                <Text layoutX="25.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+                    <font>
+                        <Font name="Freestyle Script" size="80.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane prefHeight="500.0" prefWidth="417.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="45.0" fitWidth="76.0" layoutX="66.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+                </ImageView>
+                <ImageView fitHeight="46.0" fitWidth="42.0" layoutX="68.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+                </ImageView>
+                <Button layoutX="106.0" layoutY="389.0" mnemonicParsing="false" onAction="#uploadFile" prefHeight="48.0" prefWidth="266.0" style="-fx-background-color: d66fd3;" text="Upload Documentary">
+                    <font>
+                        <Font name="Tw Cen MT" size="26.0" />
+                    </font>
+                </Button>
+                <Label fx:id="resultLabel" alignment="CENTER" layoutX="72.0" layoutY="360.0" prefHeight="21.0" prefWidth="333.0" style="-fx-alignment: center;" textFill="RED" />
+            <ComboBox fx:id="specializationCombo" layoutX="165.0" layoutY="72.0" prefHeight="33.0" prefWidth="173.0" />
+            <TextArea fx:id="description" layoutX="68.0" layoutY="155.0" prefHeight="200.0" prefWidth="366.0" />
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
