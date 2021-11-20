@@ -17,7 +17,6 @@ public class Main extends Application {
         DatabaseFiller databaseFiller = new DatabaseFiller();
         databaseFiller.fillDatabase();
 
-        //OpenForm.openNewForm("/Hall.fxml", "Choose seat");
         OpenForm.openNewForm("/Login.fxml", "Login page");
 
     }
