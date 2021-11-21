@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tu_varna.project.courier_system.controllers.ExpectedShipmentsFormController">
+   <children>
+      <AnchorPane prefHeight="572.0" prefWidth="554.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <TableView layoutX="24.0" layoutY="8.0" prefHeight="572.509071055011" prefWidth="578.6181617522444" style="-fx-background-color: #FFFF66;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn prefWidth="133.52727884054184" text="Date:" />
+                <TableColumn minWidth="8.7999267578125" prefWidth="146.6181640625" text="Doctor name:" />
+                  <TableColumn prefWidth="167.56365966796875" text="Patient name:" />
+                  <TableColumn prefWidth="109.09085083007812" text="Reason for visit:" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
