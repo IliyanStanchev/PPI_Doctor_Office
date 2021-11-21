@@ -8,14 +8,14 @@ public class BCryptPasswordEncoderService implements PasswordEncoder {
     PasswordEncoder delegate = new BCryptPasswordEncoder();
 
     @Override
-    public String encode( CharSequence rawPassword ) {
+    public String encode(CharSequence rawPassword) {
 
-        return delegate.encode( rawPassword );
+        return delegate.encode(rawPassword);
     }
 
     @Override
-    public boolean matches(CharSequence rawPassword, String encodedPassword ) {
+    public boolean matches(CharSequence rawPassword, String encodedPassword) {
 
-        return delegate.matches( rawPassword, encodedPassword );
+        return delegate.matches(rawPassword, encodedPassword);
     }
 }

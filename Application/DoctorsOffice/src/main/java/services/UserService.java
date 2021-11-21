@@ -14,16 +14,16 @@ public class UserService {
 
     }
 
-    public User authorizeUser( String username, String password ) {
+    public User authorizeUser(String username, String password) {
 
-        User user = userDAO.getUserByUsername( username );
+        User user = userDAO.getUserByUsername(username);
 
-        if( user == null )
+        if (user == null)
             return null;
 
         BCryptPasswordEncoderService bCryptPasswordEncoderService = new BCryptPasswordEncoderService();
 
-        if( !bCryptPasswordEncoderService.matches( password, user.getPassword() ))
+        if (!bCryptPasswordEncoderService.matches(password, user.getPassword()))
             return null;
 
         return user;

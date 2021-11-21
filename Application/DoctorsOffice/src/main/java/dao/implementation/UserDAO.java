@@ -10,11 +10,12 @@ import javax.persistence.NoResultException;
 public class UserDAO extends BaseDAO<User> implements IUserDAO {
 
     public UserDAO() {
-        setClass(User.class);
+
+        super.setClass(User.class);
     }
 
     @Override
-    public User getUserByUsername( String username ) {
+    public User getUserByUsername(String username) {
 
         User user;
         try {
@@ -22,10 +23,9 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
                     .setParameter("username", username)
                     .getSingleResult();
 
-        } catch (NoResultException e) {
+        } catch ( NoResultException e ) {
             user = null;
         }
         return user;
     }
-
 }

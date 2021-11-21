@@ -5,9 +5,10 @@ import dao.IUserDAO;
 import entities.Specialization;
 import entities.User;
 
-public class SpecializationDAO extends BaseDAO<Specialization>  {
+public class SpecializationDAO extends BaseDAO<Specialization> {
 
     public SpecializationDAO() {
-        setClass(Specialization.class);
+
+        super.setClass( Specialization.class );
     }
 }

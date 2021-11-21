@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity ( name = "Users" )
+@Entity(name = "Users")
 public class User implements Serializable {
 
     @Id
@@ -24,6 +24,9 @@ public class User implements Serializable {
 
     @Column(name = "second_name")
     private String secondName;
+
+    @Column(unique = true)
+    private String identifier;
 
     @Column(name = "phone_number", unique = true)
     private String phoneNumber;
@@ -108,16 +111,24 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(getId(), user.getId()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getSecondName(), user.getSecondName()) && Objects.equals(getPhoneNumber(), user.getPhoneNumber()) && Objects.equals(getRole(), user.getRole());
+        return id == user.id && Objects.equals(email, user.email) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(secondName, user.secondName) && Objects.equals(identifier, user.identifier) && Objects.equals(phoneNumber, user.phoneNumber) && Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getEmail(), getUsername(), getPassword(), getFirstName(), getSecondName(), getPhoneNumber(), getRole());
+        return Objects.hash(id, email, username, password, firstName, secondName, identifier, phoneNumber, role);
     }
 }

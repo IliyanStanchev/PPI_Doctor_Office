@@ -10,7 +10,7 @@ public class SpecializationService {
 
     private final SpecializationDAO specializationDAO = new SpecializationDAO();
 
-    public List< Specialization > getAllSpecializations(){
+    public List<Specialization> getAllSpecializations() {
 
         return specializationDAO.getAll();
     }

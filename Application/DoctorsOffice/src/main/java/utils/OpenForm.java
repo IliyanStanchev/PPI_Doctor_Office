@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class OpenForm {
 
-    public static FXMLLoader openNewForm(final String fxmlFileName, final String formTitle, final boolean openOnTop ) {
+    public static FXMLLoader openNewForm(final String fxmlFileName, final String formTitle, final boolean openOnTop) {
         FXMLLoader fxmlLoader = null;
         try {
             fxmlLoader = new FXMLLoader(
@@ -19,7 +19,7 @@ public class OpenForm {
             stage.setTitle(formTitle);
             stage.setScene(new Scene(root));
             stage.setResizable(false);
-            stage.setAlwaysOnTop( openOnTop );
+            stage.setAlwaysOnTop(openOnTop);
             stage.show();
 
         } catch (Exception e) {
@@ -29,8 +29,8 @@ public class OpenForm {
         return fxmlLoader;
     }
 
-    public static FXMLLoader openNewForm(final String fxmlFileName, final String formTitle ) {
+    public static FXMLLoader openNewForm(final String fxmlFileName, final String formTitle) {
 
-        return OpenForm.openNewForm( fxmlFileName, formTitle, false );
+        return OpenForm.openNewForm(fxmlFileName, formTitle, false);
     }
 }

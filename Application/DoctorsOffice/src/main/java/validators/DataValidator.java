@@ -1,6 +1,7 @@
 package validators;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class DataValidator {
@@ -65,6 +66,16 @@ public class DataValidator {
     public static boolean isFieldEmpty(TextField inputTextField, Label inputLabel) {
 
         if (inputTextField.getText().isEmpty()) {
+
+            inputLabel.setText("The field is empty");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isFieldEmpty(TextArea textArea, Label inputLabel) {
+
+        if (textArea.getText().isEmpty()) {
 
             inputLabel.setText("The field is empty");
             return false;

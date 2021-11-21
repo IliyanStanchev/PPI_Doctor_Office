@@ -5,14 +5,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity( name = "Specializations" )
+@Entity(name = "Specializations")
 public class Specialization implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column( unique = true )
+    @Column(unique = true)
     private String name;
 
     public Specialization() {
@@ -23,7 +23,7 @@ public class Specialization implements Serializable {
         this.name = name;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
@@ -50,6 +50,6 @@ public class Specialization implements Serializable {
 
     @Override
     public String toString() {
-        return  name;
+        return name;
     }
 }
