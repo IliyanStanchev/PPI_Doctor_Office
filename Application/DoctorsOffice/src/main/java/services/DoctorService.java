@@ -1,6 +1,7 @@
 package services;
 
 import dao.implementation.DoctorDAO;
+import dao.implementation.UserDAO;
 import entities.Doctor;
 import entities.Specialization;
 import entities.User;
@@ -13,6 +14,7 @@ import java.io.IOException;
 public class DoctorService {
 
     private final DoctorDAO doctorDAO = new DoctorDAO();
+    private final UserDAO   userDAO   = new UserDAO();
 
     public boolean addDoctorApply( User user, File imageFile, File documentaryFile, Specialization specialization, String description, String city, String address) {
 
@@ -26,6 +28,16 @@ public class DoctorService {
             picturePath      = FileManager.copyFileToPicturesDirectory( imageFile, pictureFileName );
             documentaryPath  = FileManager.copyFileToDocumentaryDirectory( documentaryFile, documentaryFileName );
         } catch (IOException e) {
+            return false;
+        }
+
+        User currentUser = userDAO.saveOrUpdate( user );
+
+        if( currentUser == null ){
+
+            FileManager.deleteFile( picturePath );
+            FileManager.deleteFile( documentaryPath );
+
             return false;
         }
 

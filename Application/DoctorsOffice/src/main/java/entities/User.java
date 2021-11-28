@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity(name = "Users")
@@ -31,19 +32,23 @@ public class User implements Serializable {
     @Column(name = "phone_number", unique = true)
     private String phoneNumber;
 
+    @Column( name = "birth_date")
+    private LocalDate birthDate;
+
     @ManyToOne
     private Role role;
 
     public User() {
     }
 
-    public User(String email, String username, String password, String firstName, String secondName, String phoneNumber) {
+    public User(String email, String username, String password, String firstName, String secondName, String phoneNumber, LocalDate birthDate) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
         this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
     }
 
 
@@ -117,6 +122,14 @@ public class User implements Serializable {
 
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     @Override

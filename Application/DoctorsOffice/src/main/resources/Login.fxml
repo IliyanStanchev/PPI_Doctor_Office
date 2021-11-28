@@ -18,7 +18,7 @@
             <children>
                 <ImageView fitHeight="208.0" fitWidth="252.0" layoutX="25.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@img/Doctor.png" />
+                        <Image url="@icons/Doctor.png" />
                     </image>
                 </ImageView>
                 <Text layoutX="25.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
@@ -46,12 +46,12 @@
                 </ImageView>
                 <ImageView fitHeight="46.0" fitWidth="42.0" layoutX="68.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
                 </ImageView>
-                <Button layoutX="163.0" layoutY="390.0" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="152.0" style="-fx-background-color: #58D68D;" text="Login">
+                <Button layoutX="163.0" layoutY="390.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="34.0" prefWidth="152.0" style="-fx-background-color: #58D68D;" text="Login">
                     <font>
                         <Font name="Tw Cen MT" size="26.0" />
                     </font>
                 </Button>
-                <Hyperlink layoutX="199.0" layoutY="448.0" onAction="#register" text="Sign up" textFill="#58d68d">
+                <Hyperlink layoutX="199.0" layoutY="448.0" onAction="#onRegister" text="Sign up" textFill="#58d68d">
                     <font>
                         <Font size="20.0" />
                     </font>

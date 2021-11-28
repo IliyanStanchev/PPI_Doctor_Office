@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import services.UserService;
 import utils.CloseForm;
 import utils.OpenForm;
@@ -25,8 +26,19 @@ public class LoginController implements Initializable {
     @FXML
     private Label resultLabel;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    public void sendMessage(String s) {
+
+        resultLabel.setText( s );
+        resultLabel.setTextFill( Color.GREEN );
+    }
+
     @FXML
-    private void login( ActionEvent event ) {
+    public void onLogin( ActionEvent actionEvent ) {
 
         resultLabel.setText("");
 
@@ -47,25 +59,22 @@ public class LoginController implements Initializable {
 
         User user = userService.authorizeUser( username, password );
 
-        if (user == null) {
+        if ( user == null ) {
             resultLabel.setText("Wrong username or password. Try again.");
             usernameField.requestFocus();
 
             return;
         }
 
-        OpenForm.openNewForm( "/DoctorApply.fxml", "Apply for doctor" );
 
+
+        CloseForm.closeForm( actionEvent );
     }
 
     @FXML
-    private void register(){
+    public void onRegister( ActionEvent actionEvent ) {
 
-        OpenForm.openNewForm("/Register.fxml", "Register", true );
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
+        OpenForm.openNewForm("/RegisterUserInformation.fxml", "User information", true );
+        CloseForm.closeForm( actionEvent );
     }
 }

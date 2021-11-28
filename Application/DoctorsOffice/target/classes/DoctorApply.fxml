@@ -3,23 +3,67 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorApplyController">
-    <children>
-        <Button fx:id="uploadImage" layoutX="20.0" layoutY="216.0" mnemonicParsing="false" onAction="#onUploadImage" text="Upload Image" />
-        <ImageView fx:id="imageView" fitHeight="186.0" fitWidth="163.0" layoutX="20.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
-        <Label fx:id="uploadLabel" layoutX="21.0" layoutY="244.0" prefHeight="17.0" prefWidth="180.0" textFill="RED" />
-        <Button layoutX="20.0" layoutY="306.0" mnemonicParsing="false" onAction="#onAttachRegistrationFile" prefHeight="9.0" prefWidth="134.0" text="Attach registration file" />
-        <Hyperlink fx:id="registrationFile" layoutX="20.0" layoutY="277.0" onAction="#onViewRegistrationFile" text="View attached file" />
-        <ComboBox fx:id="specializationCombo" layoutX="396.0" layoutY="53.0" prefWidth="150.0" />
-        <TextArea fx:id="description" layoutX="395.0" layoutY="107.0" prefHeight="200.0" prefWidth="371.0" />
-        <TextField fx:id="city" layoutX="396.0" layoutY="331.0" prefHeight="25.0" prefWidth="371.0" />
-        <TextField fx:id="address" layoutX="396.0" layoutY="376.0" prefHeight="25.0" prefWidth="371.0" />
-        <Button layoutX="633.0" layoutY="425.0" mnemonicParsing="false" onAction="#onApplyForDoctor" prefHeight="51.0" prefWidth="134.0" text="Apply for Doctor" />
-        <Label fx:id="attachLabel" layoutX="21.0" layoutY="335.0" prefHeight="17.0" prefWidth="134.0" />
-        <Label fx:id="specializationLabel" layoutX="396.0" layoutY="78.0" prefHeight="17.0" prefWidth="150.0" />
-        <Label fx:id="descriptionLabel" layoutX="396.0" layoutY="310.0" prefHeight="17.0" prefWidth="206.0" />
-        <Label fx:id="cityLabel" layoutX="396.0" layoutY="356.0" />
-        <Label fx:id="addressLabel" layoutX="396.0" layoutY="401.0" />
-    </children>
+<AnchorPane prefHeight="664.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorApplyController">
+   <children>
+      <AnchorPane layoutY="-6.0" prefHeight="102.0" prefWidth="525.0" style="-fx-background-color: #58D68D;">
+         <children>
+            <Text layoutX="140.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Applying for a doctor" wrappingWidth="244.54996490478516">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="106.0" prefHeight="34.0" prefWidth="200.0" text="Speciality" textAlignment="CENTER">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="specializationCombo" layoutX="291.0" layoutY="146.0" prefHeight="30.0" prefWidth="187.0" promptText="Choose a specialty" style="-fx-border-color: #58D68D;" />
+      <ImageView fx:id="imageView" fitHeight="140.0" fitWidth="187.0" layoutX="38.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="106.0" />
+      <Button layoutX="39.0" layoutY="252.0" mnemonicParsing="false" onAction="#onUploadImage" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: #58D68D;" text="Select a profile picture" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Hyperlink layoutX="291.0" layoutY="229.0" onAction="#onViewRegistrationFile" text="View attached file" />
+      <Button layoutX="291.0" layoutY="252.0" mnemonicParsing="false" onAction="#onAttachRegistrationFile" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: #58D68D;" text="Attach registration file" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="cityField" layoutX="157.0" layoutY="322.0" onKeyReleased="#onAddressReleased" prefHeight="44.0" prefWidth="212.0" promptText="City" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="addressField" layoutX="44.0" layoutY="396.0" onKeyReleased="#onCityReleased" prefHeight="44.0" prefWidth="438.0" promptText="Office address" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextArea fx:id="descriptionField" layoutX="44.0" layoutY="476.0" onKeyReleased="#onDescriptionReleased" prefHeight="88.0" prefWidth="438.0" promptText="Enter description" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
+      <Label fx:id="uploadLabel" layoutX="39.0" layoutY="282.0" textFill="RED" />
+      <Label fx:id="specializationLabel" layoutX="291.0" layoutY="176.0" textFill="RED" />
+      <Label fx:id="attachLabel" layoutX="291.0" layoutY="282.0" textFill="RED" />
+      <Label fx:id="cityLabel" layoutX="157.0" layoutY="366.0" textFill="RED" />
+      <Label fx:id="addressLabel" layoutX="44.0" layoutY="440.0" textFill="RED" />
+      <Label fx:id="descriptionLabel" layoutX="44.0" layoutY="564.0" textFill="RED" />
+      <Label fx:id="resultLabel" layoutX="246.0" layoutY="573.0" textFill="RED" />
+      <ImageView fitHeight="48.0" fitWidth="52.0" layoutX="38.0" layoutY="593.0" onMouseClicked="#onGoBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/Back.png" />
+         </image>
+      </ImageView>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="596.0" mnemonicParsing="false" onAction="#onApplyForDoctor" prefHeight="42.0" prefWidth="218.0" style="-fx-background-color: #58D68D;" text="Аpply" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>

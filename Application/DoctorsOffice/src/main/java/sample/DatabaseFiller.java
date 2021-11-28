@@ -4,6 +4,8 @@ import dao.implementation.*;
 import entities.*;
 import security.BCryptPasswordEncoderService;
 
+import java.time.LocalDate;
+
 
 public class DatabaseFiller {
 
@@ -16,7 +18,9 @@ public class DatabaseFiller {
         specializationDAO.saveOrUpdate(specialization);
         specializationDAO.saveOrUpdate(specialization1);
 
-        User user = new User("ench3r@gmail.com", "sach", "123", "Iliyan", "Stanchev", "0897875640");
+        LocalDate localDate = LocalDate.of( 1999, 2, 26);
+
+        User user = new User("ench3r@gmail.com", "sach", "123", "Iliyan", "Stanchev", "0897875640", localDate );
         BCryptPasswordEncoderService bCryptPasswordEncoderService = new BCryptPasswordEncoderService();
 
         user.setPassword(bCryptPasswordEncoderService.encode(user.getPassword()));

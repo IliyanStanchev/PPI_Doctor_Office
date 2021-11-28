@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import services.DoctorService;
 import services.SpecializationService;
@@ -21,9 +23,7 @@ import utils.FileManager;
 import utils.OpenForm;
 import validators.DataValidator;
 import validators.FieldValidator;
-
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,16 +49,19 @@ public class DoctorApplyController implements Initializable {
     private Label addressLabel;
 
     @FXML
-    private TextArea description;
+    private Label resultLabel;
+
+    @FXML
+    private TextArea descriptionField;
 
     @FXML
     private ComboBox<Specialization> specializationCombo;
 
     @FXML
-    private TextField city;
+    private TextField cityField;
 
     @FXML
-    private TextField address;
+    private TextField addressField;
 
     @FXML
     private ImageView imageView;
@@ -72,7 +75,7 @@ public class DoctorApplyController implements Initializable {
     private User currentUser;
 
     @FXML
-    private void onUploadImage(ActionEvent event) throws MalformedURLException {
+    private void onUploadImage( ActionEvent event ) throws MalformedURLException {
 
         File tempFile = FileManager.choosePictureFile(uploadLabel);
 
@@ -85,6 +88,8 @@ public class DoctorApplyController implements Initializable {
 
         Image image = new Image(filePath);
         imageView.setImage(image);
+        imageView.setFitHeight(320);
+        imageView.setFitWidth(120);
     }
 
     @FXML
@@ -128,14 +133,14 @@ public class DoctorApplyController implements Initializable {
 
         DoctorService doctorService = new DoctorService();
 
-        if (!doctorService.addDoctorApply( currentUser
-                , imageFile
-                , documentaryFile
-                , specialization
-                , description.getText()
-                , city.getText()
-                , address.getText())) {
-            addressLabel.setText( "Error processing doctor's apply. Please try again. ");
+        if ( !doctorService.addDoctorApply( currentUser
+                                            , imageFile
+                                            , documentaryFile
+                                            , specialization
+                                            , descriptionField.getText()
+                                            , cityField.getText()
+                                            , addressField.getText())) {
+            resultLabel.setText( "Error processing doctor's apply. Please try again. ");
             return;
         }
 
@@ -147,6 +152,8 @@ public class DoctorApplyController implements Initializable {
     }
 
     private boolean validateFields() {
+
+        clearLabels();
 
         if( documentaryFile == null ){
 
@@ -166,16 +173,26 @@ public class DoctorApplyController implements Initializable {
             return false;
         }
 
-        if( !DataValidator.isFieldEmpty( description, descriptionLabel ) )
+        if( !DataValidator.isFieldEmpty( descriptionField, descriptionLabel ) )
             return false;
 
-        if( !DataValidator.isFieldEmpty( city, cityLabel ) )
+        if( !DataValidator.isFieldEmpty( cityField, cityLabel ) )
             return false;
 
-        if( !DataValidator.isFieldEmpty( address, addressLabel ) )
+        if( !DataValidator.isFieldEmpty( addressField, addressLabel ) )
             return false;
 
         return true;
+    }
+
+    private void clearLabels() {
+
+        attachLabel.setText("");
+        uploadLabel.setText("");
+        specializationLabel.setText("");
+        descriptionLabel.setText("");
+        cityLabel.setText("");
+        addressLabel.setText("");
     }
 
     @Override
@@ -194,5 +211,32 @@ public class DoctorApplyController implements Initializable {
     public void setCurrentUser(User user) {
 
         this.currentUser = user;
+    }
+
+    public void onCityReleased(KeyEvent keyEvent) {
+
+        if( FieldValidator.validateAlphabetical( cityField, cityLabel ) )
+            cityLabel.setText("");
+    }
+
+    public void onAddressReleased(KeyEvent keyEvent) {
+
+        if( DataValidator.isFieldEmpty( addressField, addressLabel ) )
+            addressLabel.setText("");
+    }
+
+    public void onDescriptionReleased(KeyEvent keyEvent) {
+
+        if( DataValidator.isFieldEmpty( descriptionField, descriptionLabel ) )
+            descriptionLabel.setText("");
+    }
+
+    public void onGoBack(MouseEvent mouseEvent) {
+
+        CloseForm.closeForm( mouseEvent );
+
+        FXMLLoader fxmlLoader = OpenForm.openNewForm("/RegisterPersonalInformation.fxml", "User information", true );
+        RegisterPersonalInformationController controller = fxmlLoader.getController();
+        controller.setCurrentUser( currentUser );
     }
 }

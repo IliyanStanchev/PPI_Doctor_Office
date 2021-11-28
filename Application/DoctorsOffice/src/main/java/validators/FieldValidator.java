@@ -7,30 +7,32 @@ public class FieldValidator {
 
     public static boolean validateAlphabetical(TextField field, Label validationLabel) {
 
-        if (DataValidator.isFieldEmpty(field, validationLabel)) {
+        if ( !DataValidator.isFieldEmpty(field, validationLabel) )
+            return false;
 
-            return DataValidator.isTextAlphabetical(field, validationLabel);
-        }
+        if( !DataValidator.isTextAlphabetical(field, validationLabel) )
+            return false;
 
         return true;
     }
 
     public static boolean validateEmail(TextField field, Label validationLabel) {
 
-        if (DataValidator.isFieldEmpty(field, validationLabel)) {
+        if ( !DataValidator.isFieldEmpty(field, validationLabel) )
+            return false;
 
-            return DataValidator.checkEmailFormat(field, validationLabel);
-        }
+        if( !DataValidator.checkEmailFormat(field, validationLabel) )
+            return false;
+
         return true;
-
     }
 
-    public static boolean isPasswordSame(TextField password, TextField confirmPassword, Label validationLabel) {
+    public static boolean comparePassword(TextField password, TextField confirmPassword, Label validationLabel) {
 
         final String passwordValue = password.getText();
         final String confirmPasswordValue = confirmPassword.getText();
 
-        if (!passwordValue.equals(confirmPasswordValue)) {
+        if ( !passwordValue.equals(confirmPasswordValue) ) {
 
             validationLabel.setText("Passwords are not the same");
             return false;
@@ -40,47 +42,56 @@ public class FieldValidator {
     }
 
     public static boolean validateNumericField(TextField field, Label validationLabel) {
-        if (DataValidator.isFieldEmpty(field, validationLabel)) {
 
-            return DataValidator.isTextNumeric(field, validationLabel);
-        }
+        if( !DataValidator.isFieldEmpty(field, validationLabel) )
+            return false;
+
+        if( !DataValidator.isTextNumeric(field, validationLabel ) )
+            return false;
+
         return true;
     }
 
-    public static boolean validateFieldLength(TextField field, Label validationLabel, int lenght) {
-        if (DataValidator.isFieldEmpty(field, validationLabel)) {
+    public static boolean validateFieldLength( TextField field, Label validationLabel, int length ) {
 
-            return DataValidator.checkDataLength(field, validationLabel, lenght);
-        }
+        if( !DataValidator.isFieldEmpty(field, validationLabel) )
+            return false;
+
+        if( !DataValidator.checkDataLength(field, validationLabel, length ) )
+            return false;
 
         return true;
     }
 
     public static boolean validatePrice(TextField field, Label validationLabel) {
 
-        if (DataValidator.isFieldEmpty(field, validationLabel)) {
+        if( !DataValidator.isFieldEmpty( field, validationLabel ) )
+            return false;
 
-            return DataValidator.checkPriceFormat(field, validationLabel);
-        }
+        if( !DataValidator.checkPriceFormat( field, validationLabel ) )
+            return false;
 
         return true;
-
     }
 
     public static boolean validateUsername(TextField field, Label validationLabel) {
-        if (DataValidator.isFieldEmpty(field, validationLabel)) {
 
-            return DataValidator.checkUsernameFormat(field, validationLabel);
-        }
+        if ( !DataValidator.isFieldEmpty(field, validationLabel) )
+            return false;
+
+        if( !DataValidator.checkUsernameFormat(field, validationLabel) )
+            return false;
 
         return true;
     }
 
     public static boolean validatePersonName(TextField field, Label validationLabel) {
-        if (DataValidator.isFieldEmpty(field, validationLabel)) {
 
-            return DataValidator.checkPersonNameFormat(field, validationLabel);
-        }
+        if( !DataValidator.isFieldEmpty( field, validationLabel ) )
+            return false;
+
+        if( !DataValidator.checkPersonNameFormat( field, validationLabel ) )
+            return false;
 
         return true;
     }
