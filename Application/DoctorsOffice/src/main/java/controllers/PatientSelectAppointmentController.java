@@ -79,6 +79,7 @@ public class PatientSelectAppointmentController {
         controller.setCurrentDoctor( currentDoctor );
         controller.setCurrentUser( currentUser );
 
+        CloseForm.closeForm( actionEvent );
     }
 
     public void onGoBack(MouseEvent mouseEvent) {
