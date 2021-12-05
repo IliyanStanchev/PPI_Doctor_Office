@@ -41,6 +41,9 @@ public class RegisterPersonalInformationController implements Initializable{
     private Label       personalIdentifierLabel;
 
     @FXML
+    private Label       resultLabel;
+
+    @FXML
     private TextField   firstNameField;
 
     @FXML
@@ -83,6 +86,14 @@ public class RegisterPersonalInformationController implements Initializable{
             return;
         
         fillCurrentUser();
+
+        UserService userService = new UserService();
+
+        if( !userService.registerUser( currentUser ) ){
+
+            resultLabel.setText( "Something went wrong while registering patient. Please try again." );
+            return;
+        }
 
         FXMLLoader loader = OpenForm.openNewForm("/Login.fxml", "Login page");
         LoginController loginController = loader.getController();

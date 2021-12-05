@@ -1,5 +1,7 @@
 package entities;
 
+import enums.RoleEnum;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,14 +13,18 @@ public class Role implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "role_name", unique = true)
+    @Column( name = "role_name", unique = true )
     private String roleName;
+
+    @Column( name = "role_uid", unique = true )
+    private RoleEnum roleUid;
 
     public Role() {
     }
 
-    public Role(String roleName) {
+    public Role(String roleName, RoleEnum roleUid) {
         this.roleName = roleName;
+        this.roleUid = roleUid;
     }
 
     public int getId() {
@@ -35,6 +41,10 @@ public class Role implements Serializable {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public RoleEnum getRoleUid() {
+        return roleUid;
     }
 
     @Override

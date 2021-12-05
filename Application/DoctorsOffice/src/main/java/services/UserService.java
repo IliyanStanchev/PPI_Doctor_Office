@@ -1,12 +1,16 @@
 package services;
 
+import dao.implementation.RoleDAO;
 import dao.implementation.UserDAO;
+import entities.Role;
 import entities.User;
+import enums.RoleEnum;
 import security.BCryptPasswordEncoderService;
 
 public class UserService {
 
     private final UserDAO userDAO = new UserDAO();
+    private final RoleDAO roleDAO = new RoleDAO();
 
     public User findById(int userId) {
 
@@ -31,8 +35,17 @@ public class UserService {
 
     public boolean registerUser(User user) {
 
+        Role role = roleDAO.getRoleByUID( RoleEnum.Patient );
+        user.setRole( role );
+
+        BCryptPasswordEncoderService bCryptPasswordEncoderService = new BCryptPasswordEncoderService();
+        user.setPassword(bCryptPasswordEncoderService.encode(user.getPassword()));
+
         User registeredUser = userDAO.saveOrUpdate(user);
 
-        return registeredUser != null;
+        if( registeredUser == null)
+            return false;
+
+        return true;
     }
 }

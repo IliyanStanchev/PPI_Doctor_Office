@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import services.RoleService;
 import services.UserService;
 import utils.CloseForm;
 import utils.OpenForm;
@@ -66,9 +67,9 @@ public class LoginController implements Initializable {
             return;
         }
 
-
-
         CloseForm.closeForm( actionEvent );
+
+        OpenForm.openCurrentUserForm( user );
     }
 
     @FXML

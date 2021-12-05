@@ -144,4 +144,9 @@ public class User implements Serializable {
     public int hashCode() {
         return Objects.hash(id, email, username, password, firstName, secondName, identifier, phoneNumber, role);
     }
+
+    public String getFullName() {
+
+        return firstName + " " + secondName;
+    }
 }

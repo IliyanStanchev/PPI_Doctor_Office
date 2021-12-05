@@ -52,9 +52,6 @@ public class DoctorApplyController implements Initializable {
     private Label resultLabel;
 
     @FXML
-    private TextArea descriptionField;
-
-    @FXML
     private ComboBox<Specialization> specializationCombo;
 
     @FXML
@@ -65,6 +62,9 @@ public class DoctorApplyController implements Initializable {
 
     @FXML
     private ImageView imageView;
+
+    @FXML
+    private TextArea descriptionField;
 
     private ObservableList<Specialization> specializationList = FXCollections.observableArrayList();
 
@@ -200,9 +200,9 @@ public class DoctorApplyController implements Initializable {
 
         SpecializationService specializationService = new SpecializationService();
 
-        for (Specialization company : specializationService.getAllSpecializations()) {
+        for (Specialization specialization : specializationService.getAllSpecializations()) {
 
-            specializationList.add(company);
+            specializationList.add(specialization);
         }
 
         specializationCombo.setItems(specializationList);

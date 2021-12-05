@@ -1,20 +1,26 @@
 package services;
 
 import dao.implementation.DoctorDAO;
+import dao.implementation.RoleDAO;
 import dao.implementation.UserDAO;
 import entities.Doctor;
+import entities.Role;
 import entities.Specialization;
 import entities.User;
+import enums.RoleEnum;
+import security.BCryptPasswordEncoderService;
 import utils.FileManager;
 import utils.FileNameGenerator;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class DoctorService {
 
     private final DoctorDAO doctorDAO = new DoctorDAO();
     private final UserDAO   userDAO   = new UserDAO();
+    private final RoleDAO   roleDAO   = new RoleDAO();
 
     public boolean addDoctorApply( User user, File imageFile, File documentaryFile, Specialization specialization, String description, String city, String address) {
 
@@ -30,6 +36,13 @@ public class DoctorService {
         } catch (IOException e) {
             return false;
         }
+
+        Role currentRole = roleDAO.getRoleByUID( RoleEnum.Doctor );
+        user.setRole( currentRole );
+
+        BCryptPasswordEncoderService bCryptPasswordEncoderService = new BCryptPasswordEncoderService();
+
+        user.setPassword(bCryptPasswordEncoderService.encode( user.getPassword()) );
 
         User currentUser = userDAO.saveOrUpdate( user );
 
@@ -52,5 +65,15 @@ public class DoctorService {
         }
 
         return true;
+    }
+
+    public List<Doctor> getAllDoctors() {
+
+        return doctorDAO.getAll();
+    }
+
+    public Doctor getDoctorByID( int doctorId ) {
+
+        return doctorDAO.findById( doctorId );
     }
 }

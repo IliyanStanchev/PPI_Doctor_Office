@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientMakeAnAppointmentController">
+   <children>
+      <TableView fx:id="doctorView" layoutX="19.0" layoutY="77.0" prefHeight="446.0" prefWidth="562.0">
+        <columns>
+          <TableColumn fx:id="cityColumn" prefWidth="172.79999923706055" text="City" />
+          <TableColumn fx:id="doctorNameColumn" minWidth="0.0" prefWidth="181.60000610351562" text="Doctor Name" />
+            <TableColumn fx:id="specialityColumn" prefWidth="206.39999999999998" text="Specialty" />
+        </columns>
+      </TableView>
+      <Text layoutX="213.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <TextField fx:id="doctorNameField" layoutX="213.0" layoutY="38.0" />
+      <Text layoutX="20.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" />
+      <TextField fx:id="cityField" layoutX="20.0" layoutY="38.0" />
+      <Text layoutX="407.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialty" />
+      <ComboBox fx:id="specializationCombo" layoutX="407.0" layoutY="38.0" prefHeight="25.0" prefWidth="173.0" />
+   </children>
+</AnchorPane>

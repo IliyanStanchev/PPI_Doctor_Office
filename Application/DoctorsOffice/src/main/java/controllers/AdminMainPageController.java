@@ -1,4 +1,4 @@
 package controllers;
 
-public class AdminMainPageController {
+public class AdminMainPageController extends MainPageController {
 }
