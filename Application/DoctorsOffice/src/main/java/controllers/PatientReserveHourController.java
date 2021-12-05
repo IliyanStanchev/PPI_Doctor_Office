@@ -6,6 +6,7 @@ import entities.ExaminationHour;
 import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -17,8 +18,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import services.ExaminationHourService;
+import utils.CloseForm;
+import utils.OpenForm;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -27,9 +31,9 @@ public class PatientReserveHourController implements Initializable  {
     private Doctor  currentDoctor;
     private User    currentUser;
 
-    private HBox hBox = new HBox();
+    private HBox    hBox = new HBox();
 
-    private List examinationHours;
+    private List    examinationHours;
 
     private ExaminationHour selectedExaminationHour;
 
@@ -48,14 +52,26 @@ public class PatientReserveHourController implements Initializable  {
     public void onMakeAnAppointment(ActionEvent actionEvent) {
 
 
+
     }
 
     public void onGoBack(MouseEvent mouseEvent) {
+
+        FXMLLoader fxmlLoader = OpenForm.openNewForm( "/PatientSelectAppointment.fxml", "Select an appointment");
+        PatientSelectAppointmentController controller = fxmlLoader.getController();
+        controller.loadCurrentDoctor( currentDoctor.getId() );
+        controller.setCurrentUser( currentUser );
+
+        CloseForm.closeForm( mouseEvent );
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        datePicker.valueProperty().addListener(( ov, oldValue, newValue ) -> {
+
+            initializeExaminationHours( newValue );
+        });
     }
 
     private void addExamination( int hourIndex, int columnIndex, int rowIndex ) {
@@ -63,7 +79,6 @@ public class PatientReserveHourController implements Initializable  {
         ExaminationHour examinationHour = ( ExaminationHour )examinationHours.get( hourIndex );
 
         ExaminationHourButton button = new ExaminationHourButton( examinationHour );
-        button.setStyle("examination-button");
 
         setOnClickEvent( button, columnIndex, rowIndex );
     }
@@ -103,7 +118,12 @@ public class PatientReserveHourController implements Initializable  {
     public void setCurrentDoctor(Doctor currentDoctor) {
 
         this.currentDoctor  = currentDoctor;
-        initializeExaminationHours();
+
+        LocalDate localDate = LocalDate.now();
+
+        datePicker.setValue( LocalDate.now() );
+
+        initializeExaminationHours( localDate );
 
     }
 
@@ -112,7 +132,10 @@ public class PatientReserveHourController implements Initializable  {
         this.currentUser = user;
     }
 
-    private void initializeExaminationHours(){
+    private void initializeExaminationHours( LocalDate localDate ){
+
+        hoursGrid.getChildren().clear();
+        selectedExaminationHour = null;
 
         hBox = new HBox();
 
@@ -122,7 +145,7 @@ public class PatientReserveHourController implements Initializable  {
 
         ExaminationHourService examinationHourService = new ExaminationHourService();
 
-        examinationHours = examinationHourService.getDoctorExaminationHours( currentDoctor.getId() );
+        examinationHours = examinationHourService.getDoctorExaminationHours( currentDoctor.getId(), localDate );
 
         final int columns   = 3;
         final int rows      = examinationHours.size() / columns;
