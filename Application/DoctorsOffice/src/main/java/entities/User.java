@@ -5,34 +5,36 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity(name = "Users")
+@Entity(name = "USERS")
 public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( name = "ID" )
     private int id;
 
-    @Column(unique = true)
+    @Column( name = "EMAIL", unique = true )
     private String email;
 
-    @Column(unique = true)
+    @Column( name = "USERNAME", unique = true )
     private String username;
 
+    @Column( name = "PASSWORD" )
     private String password;
 
-    @Column(name = "first_name")
+    @Column( name = "FIRST_NAME" )
     private String firstName;
 
-    @Column(name = "second_name")
+    @Column( name = "SECOND_NAME")
     private String secondName;
 
-    @Column(unique = true)
+    @Column( name = "IDENTIFIER", unique = true )
     private String identifier;
 
-    @Column(name = "phone_number", unique = true)
+    @Column(name = "PHONE_NUMBER", unique = true)
     private String phoneNumber;
 
-    @Column( name = "birth_date")
+    @Column( name = "BIRTH_DATE")
     private LocalDate birthDate;
 
     @ManyToOne

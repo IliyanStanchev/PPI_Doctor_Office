@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Address;
 import entities.Specialization;
 import entities.User;
 import javafx.application.Application;
@@ -133,13 +134,14 @@ public class DoctorApplyController implements Initializable {
 
         DoctorService doctorService = new DoctorService();
 
+        Address address = new Address( cityField.getText(), addressField.getText() );
+
         if ( !doctorService.addDoctorApply( currentUser
                                             , imageFile
                                             , documentaryFile
                                             , specialization
                                             , descriptionField.getText()
-                                            , cityField.getText()
-                                            , addressField.getText())) {
+                                            , address )) {
             resultLabel.setText( "Error processing doctor's apply. Please try again. ");
             return;
         }

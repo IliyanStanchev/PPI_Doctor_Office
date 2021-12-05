@@ -69,7 +69,7 @@ public class PatientMakeAnAppointmentController implements Initializable  {
         for( Doctor doctor: doctorService.getAllDoctors() ) {
 
 
-            DoctorView doctorView = new DoctorView( doctor.getId(), doctor.getUser().getFullName(), doctor.getCity(), doctor.getSpecialization().getName() );
+            DoctorView doctorView = new DoctorView( doctor.getId(), doctor.getUser().getFullName(), doctor.getAddress().getCity(), doctor.getSpecialization().getName() );
             doctorViews.add( doctorView );
         }
 

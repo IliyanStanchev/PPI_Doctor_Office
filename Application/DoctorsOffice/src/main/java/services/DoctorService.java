@@ -1,12 +1,10 @@
 package services;
 
+import dao.implementation.AddressDAO;
 import dao.implementation.DoctorDAO;
 import dao.implementation.RoleDAO;
 import dao.implementation.UserDAO;
-import entities.Doctor;
-import entities.Role;
-import entities.Specialization;
-import entities.User;
+import entities.*;
 import enums.RoleEnum;
 import security.BCryptPasswordEncoderService;
 import utils.FileManager;
@@ -18,11 +16,12 @@ import java.util.List;
 
 public class DoctorService {
 
-    private final DoctorDAO doctorDAO = new DoctorDAO();
-    private final UserDAO   userDAO   = new UserDAO();
-    private final RoleDAO   roleDAO   = new RoleDAO();
+    private final DoctorDAO     doctorDAO   = new DoctorDAO();
+    private final UserDAO       userDAO     = new UserDAO();
+    private final RoleDAO       roleDAO     = new RoleDAO();
+    private final AddressDAO    addressDAO  = new AddressDAO();
 
-    public boolean addDoctorApply( User user, File imageFile, File documentaryFile, Specialization specialization, String description, String city, String address) {
+    public boolean addDoctorApply( User user, File imageFile, File documentaryFile, Specialization specialization, String description, Address address ) {
 
         final String documentaryFileName    = FileNameGenerator.generateCurrentTimeStampName( FileManager.doctorDocumentaryFileNameStarter );
         final String pictureFileName        = FileNameGenerator.generateCurrentTimeStampName( FileManager.doctorPicturesFileNameStarter );
@@ -54,7 +53,9 @@ public class DoctorService {
             return false;
         }
 
-        Doctor doctor = new Doctor( user, specialization, documentaryPath, picturePath, description, city, address );
+        Address savedAddress = addressDAO.saveOrUpdate( address );
+
+        Doctor doctor = new Doctor( user, specialization, documentaryPath, picturePath, description, savedAddress );
 
         if( doctorDAO.saveOrUpdate( doctor ) == null ) {
 

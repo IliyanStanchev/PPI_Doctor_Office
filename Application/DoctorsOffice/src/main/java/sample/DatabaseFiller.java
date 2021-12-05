@@ -49,8 +49,10 @@ public class DatabaseFiller {
         doctorUser.setRole( doctor );
         doctorUser.setPassword(bCryptPasswordEncoderService.encode(doctorUser.getPassword()));
 
+        AddressDAO addressDAO = new AddressDAO();
+
         User user1 = userDAO.saveOrUpdate( doctorUser );
-        Doctor doctor1 = new Doctor( user1, ortoped, "src/main/resources/DoctorDocumentary/DoctorDocumentary_20211204_1339","src/main/resources/DoctorPicture/DoctorPicture_20211204_1339.jpg", "Mn dobur doktor", "Varna", "Goce delchev 9");
+        Doctor doctor1 = new Doctor( user1, ortoped, "src/main/resources/DoctorDocumentary/DoctorDocumentary_20211204_1339","src/main/resources/DoctorPicture/DoctorPicture_20211204_1339.jpg", "Mn dobur doktor", addressDAO.saveOrUpdate( new Address("Varna", "Goce Delchev")));
 
         user = userDAO.saveOrUpdate(user);
 
@@ -61,7 +63,7 @@ public class DatabaseFiller {
         doctorUser.setPassword(bCryptPasswordEncoderService.encode(doctorUser.getPassword()));
 
         User user2 = userDAO.saveOrUpdate( doctorUser1 );
-        Doctor doctor2 = new Doctor( user2, hirurg, "src/main/resources/DoctorDocumentary/DoctorDocumentary_20211204_1339","src/main/resources/DoctorPicture/DoctorPicture_20211204_1339.jpg", "Mn dobur doktor", "Kotel", "Goce delchev 9");
+        Doctor doctor2 = new Doctor( user2, hirurg, "src/main/resources/DoctorDocumentary/DoctorDocumentary_20211204_1339","src/main/resources/DoctorPicture/DoctorPicture_20211204_1339.jpg", "Mn dobur doktor", addressDAO.saveOrUpdate( new Address("Kotel", "Luda Kamchia")));
 
         user = userDAO.saveOrUpdate(user);
 
@@ -72,7 +74,7 @@ public class DatabaseFiller {
         doctorUser3.setPassword(bCryptPasswordEncoderService.encode(doctorUser.getPassword()));
 
         User user3 = userDAO.saveOrUpdate( doctorUser3 );
-        Doctor doctor3 = new Doctor( user3, ortoped, "src/main/resources/DoctorDocumentary/DoctorDocumentary_20211204_1339","src/main/resources/DoctorPicture/DoctorPicture_20211204_1339.jpg", "Mn dobur doktor", "Sliven", "Goce delchev 9");
+        Doctor doctor3 = new Doctor( user3, ortoped, "src/main/resources/DoctorDocumentary/DoctorDocumentary_20211204_1339","src/main/resources/DoctorPicture/DoctorPicture_20211204_1339.jpg", "Mn dobur doktor", addressDAO.saveOrUpdate( new Address("Sliven", "Stote Voivodi")));
 
         DoctorDAO doctorDAO = new DoctorDAO();
 
@@ -82,470 +84,27 @@ public class DatabaseFiller {
 
         ExaminationHourDAO examinationHourDAO = new ExaminationHourDAO();
 
-        LocalDate localDateExamination = LocalDate.of( 2021, 12, 12);
-
-        LocalTime startTime = LocalTime.of( 9, 20 );
-        LocalTime endTime   = LocalTime.of( 9, 40 );
-
-        ExaminationHour examinationHour = new ExaminationHour( localDateExamination, startTime, endTime, false, doctor1 );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 9, 40 );
-        endTime   = LocalTime.of( 10, 00 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-        startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );     startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );     startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );     startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );     startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );     startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );     startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );     startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );     startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );     startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );     startTime = LocalTime.of( 10, 00 );
-        endTime   = LocalTime.of( 10, 20 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
-        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );        startTime = LocalTime.of( 10, 20 );
-        endTime   = LocalTime.of( 10, 40 );
-
-        examinationHour.setId(0);
-        examinationHour.setStartTime( startTime );
-        examinationHour.setEndTime( endTime );
-
-        examinationHourDAO.saveOrUpdate( examinationHour );
+        for (int i = 0; i < 8 ; i++) {
+
+            examinationHourDAO.saveOrUpdate( new ExaminationHour( LocalDate.now()
+                    , LocalTime.of( i + 8, 20 )
+                    , LocalTime.of( i + 8, 40 )
+                    , false
+                    , doctor1 ));
+
+            examinationHourDAO.saveOrUpdate( new ExaminationHour( LocalDate.now()
+                    , LocalTime.of( i + 8, 00 )
+                    , LocalTime.of( i + 8, 20 )
+                    , false
+                    , doctor1 ));
+        }
+
+        VisitReasonDAO visitReasonDAO = new VisitReasonDAO();
+
+        visitReasonDAO.saveOrUpdate( new VisitReason("primary examination") );
+        visitReasonDAO.saveOrUpdate( new VisitReason("secondary examination") );
+        visitReasonDAO.saveOrUpdate( new VisitReason("prophylactic examination") );
+        visitReasonDAO.saveOrUpdate( new VisitReason("medical procedure") );
+        visitReasonDAO.saveOrUpdate( new VisitReason("other examination") );
     }
 }

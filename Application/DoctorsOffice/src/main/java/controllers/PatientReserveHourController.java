@@ -1,9 +1,10 @@
 package controllers;
 
 import controls.ExaminationHourButton;
-import entities.Doctor;
-import entities.ExaminationHour;
-import entities.User;
+import dao.implementation.VisitReasonDAO;
+import entities.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -18,6 +20,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import services.ExaminationHourService;
+import services.ReservedHourService;
+import services.VisitReasonService;
+import utils.AlertHelper;
 import utils.CloseForm;
 import utils.OpenForm;
 
@@ -37,6 +42,11 @@ public class PatientReserveHourController implements Initializable  {
 
     private ExaminationHour selectedExaminationHour;
 
+    private ObservableList< VisitReason > visitReasonList = FXCollections.observableArrayList();
+
+    @FXML
+    private ComboBox< VisitReason > visitReasonComboBox;
+
     @FXML
     private DatePicker  datePicker;
 
@@ -49,10 +59,44 @@ public class PatientReserveHourController implements Initializable  {
     @FXML
     private Label       resultLabel;
 
-    public void onMakeAnAppointment(ActionEvent actionEvent) {
 
+    public void onMakeAnAppointment( ActionEvent actionEvent ) {
 
+        if (!validateFields())
+            return;
 
+        VisitReason visitReason = visitReasonComboBox.getSelectionModel().getSelectedItem();
+
+        ReservedHour reservedHour = new ReservedHour(currentUser, selectedExaminationHour, visitReason);
+
+        ReservedHourService reservedHourService = new ReservedHourService();
+
+        if ( !reservedHourService.saveReservedHour(reservedHour) ){
+            resultLabel.setText( "There was a problem adding your examination hour. Please try again.");
+            return;
+        }
+
+        AlertHelper alertHelper = new AlertHelper();
+        alertHelper.show( "Hour reserved", "You have successfully reserved a hour. \n All reserved hours can be seen in tab View reserved hours.");
+
+        CloseForm.closeForm( actionEvent );
+    }
+
+    private boolean validateFields() {
+
+        if ( visitReasonComboBox.getSelectionModel().getSelectedItem() == null) {
+
+            resultLabel.setText("Pick a specialization.");
+            return false;
+        }
+
+        if( selectedExaminationHour == null ){
+
+            resultLabel.setText("Reserve hour for examination.");
+            return false;
+        }
+
+        return true;
     }
 
     public void onGoBack(MouseEvent mouseEvent) {
@@ -67,6 +111,14 @@ public class PatientReserveHourController implements Initializable  {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        VisitReasonService visitReasonService = new VisitReasonService();
+        for( VisitReason visitReason : visitReasonService.getAllVisitReasons()){
+
+            visitReasonList.add( visitReason );
+        }
+
+        visitReasonComboBox.setItems( visitReasonList );
 
         datePicker.valueProperty().addListener(( ov, oldValue, newValue ) -> {
 

@@ -4,11 +4,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity(name = "Doctors")
+@Entity( name = "DOCTORS" )
 public class Doctor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( name = "ID" )
     private int id;
 
     @OneToOne
@@ -17,34 +18,33 @@ public class Doctor implements Serializable {
     @ManyToOne
     private Specialization specialization;
 
-    @Column( name = "documentary_path")
-    private String documentaryPath;
+    @Column( name = "DOCUMENT_PATH" )
+    private String documentPath;
 
-    @Column( name = "photo_path")
+    @Column( name = "PHOTO_PATH" )
     private String photoPath;
 
+    @Column( name = "DESCRIPTION" )
     private String description;
 
-    private String city;
-
-    private String address;
-
+    @Column( name = "CONFIRMED" )
     private boolean confirmed;
+
+    @OneToOne
+    private Address address;
 
     public Doctor() {
 
     }
 
-    public Doctor(User user, Specialization specialization, String documentaryPath, String photoPath, String description, String city, String address ) {
-
-        this.user               = user;
-        this.specialization     = specialization;
-        this.documentaryPath    = documentaryPath;
-        this.photoPath          = photoPath;
-        this.description        = description;
-        this.city               = city;
-        this.address            = address;
-        this.confirmed          = false;
+    public Doctor(User user, Specialization specialization, String documentPath, String photoPath, String description, Address address) {
+        this.user = user;
+        this.specialization = specialization;
+        this.documentPath = documentPath;
+        this.photoPath = photoPath;
+        this.description = description;
+        this.address = address;
+        this.confirmed = false;
     }
 
     public int getId() {
@@ -71,12 +71,12 @@ public class Doctor implements Serializable {
         this.specialization = specialization;
     }
 
-    public String getDocumentaryPath() {
-        return documentaryPath;
+    public String getDocumentPath() {
+        return documentPath;
     }
 
-    public void setDocumentaryPath(String documentaryPath) {
-        this.documentaryPath = documentaryPath;
+    public void setDocumentPath(String documentPath) {
+        this.documentPath = documentPath;
     }
 
     public String getPhotoPath() {
@@ -103,12 +103,12 @@ public class Doctor implements Serializable {
         this.confirmed = confirmed;
     }
 
-    public String getCity() {
-        return city;
+    public Address getAddress() {
+        return address;
     }
 
-    public String getAddress() {
-        return address;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
@@ -116,11 +116,11 @@ public class Doctor implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return id == doctor.id && confirmed == doctor.confirmed && Objects.equals(user, doctor.user) && Objects.equals(specialization, doctor.specialization) && Objects.equals(documentaryPath, doctor.documentaryPath) && Objects.equals(photoPath, doctor.photoPath) && Objects.equals(description, doctor.description) && Objects.equals(city, doctor.city) && Objects.equals(address, doctor.address);
+        return id == doctor.id && confirmed == doctor.confirmed && Objects.equals(user, doctor.user) && Objects.equals(specialization, doctor.specialization) && Objects.equals(documentPath, doctor.documentPath) && Objects.equals(photoPath, doctor.photoPath) && Objects.equals(description, doctor.description) && Objects.equals(address, doctor.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, specialization, documentaryPath, photoPath, description, city, address, confirmed);
+        return Objects.hash(id, user, specialization, documentPath, photoPath, description, confirmed, address);
     }
 }

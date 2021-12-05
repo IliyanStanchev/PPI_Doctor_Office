@@ -19,7 +19,7 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 
         User user;
         try {
-            user = (User) MyEntityManager.getEntityManager().createQuery("FROM Users u WHERE  u.username=: username ")
+            user = (User) MyEntityManager.getEntityManager().createQuery("FROM USERS u WHERE  u.username=: username ")
                     .setParameter("username", username)
                     .getSingleResult();
 

@@ -6,17 +6,18 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity(name = "Roles")
+@Entity(name = "ROLES")
 public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( name = "ID" )
     private int id;
 
-    @Column( name = "role_name", unique = true )
+    @Column( name = "ROLE_NAME", unique = true )
     private String roleName;
 
-    @Column( name = "role_uid", unique = true )
+    @Column( name = "ROLE_UID", unique = true )
     private RoleEnum roleUid;
 
     public Role() {

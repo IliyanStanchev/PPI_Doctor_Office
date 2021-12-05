@@ -19,7 +19,7 @@ public class RoleDAO extends BaseDAO<Role> {
 
         Role role;
         try {
-            role = (Role) MyEntityManager.getEntityManager().createQuery("FROM Roles r WHERE  r.roleUid=: roleEnum ")
+            role = (Role) MyEntityManager.getEntityManager().createQuery("FROM ROLES r WHERE  r.roleUid=: roleEnum ")
                     .setParameter("roleEnum", roleEnum )
                     .getSingleResult();
 

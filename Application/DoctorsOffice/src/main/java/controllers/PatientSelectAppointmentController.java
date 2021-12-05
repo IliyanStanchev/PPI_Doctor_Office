@@ -52,10 +52,10 @@ public class PatientSelectAppointmentController {
         specializationField.setText( currentDoctor.getSpecialization().getName() );
         specializationField.setDisable( true );
 
-        cityField.setText( currentDoctor.getCity() );
+        cityField.setText( currentDoctor.getAddress().getCity() );
         cityField.setDisable( true );
 
-        addressField.setText( currentDoctor.getAddress() );
+        addressField.setText( currentDoctor.getAddress().getAddress() );
         addressField.setDisable( true );
 
         descriptionField.setText( currentDoctor.getDescription() );
