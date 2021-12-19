@@ -31,7 +31,7 @@ public class DoctorService {
 
         try {
             picturePath      = FileManager.copyFileToPicturesDirectory( imageFile, pictureFileName );
-            documentaryPath  = FileManager.copyFileToDocumentaryDirectory( documentaryFile, documentaryFileName );
+            documentaryPath  = FileManager.copyFileToDirectory( documentaryFile,FileManager.doctorDocumentaryDirectory, documentaryFileName );
         } catch (IOException e) {
             return false;
         }
@@ -76,5 +76,10 @@ public class DoctorService {
     public Doctor getDoctorByID( int doctorId ) {
 
         return doctorDAO.findById( doctorId );
+    }
+
+    public Doctor getDoctorByUserID(int userId ) {
+
+        return doctorDAO.getDoctorByUserID( userId );
     }
 }

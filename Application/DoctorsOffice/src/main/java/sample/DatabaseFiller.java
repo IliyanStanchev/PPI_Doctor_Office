@@ -59,8 +59,8 @@ public class DatabaseFiller {
         User doctorUser1 = new User("ench12r@gmail.com", "doctor1", "123", "Stanimir", "Stanchev", "0897875611"
                 , localDate );
 
-        doctorUser.setRole( doctor );
-        doctorUser.setPassword(bCryptPasswordEncoderService.encode(doctorUser.getPassword()));
+        doctorUser1.setRole( doctor );
+        doctorUser1.setPassword(bCryptPasswordEncoderService.encode(doctorUser.getPassword()));
 
         User user2 = userDAO.saveOrUpdate( doctorUser1 );
         Doctor doctor2 = new Doctor( user2, hirurg, "src/main/resources/DoctorDocumentary/DoctorDocumentary_20211204_1339","src/main/resources/DoctorPicture/DoctorPicture_20211204_1339.jpg", "Mn dobur doktor", addressDAO.saveOrUpdate( new Address("Kotel", "Luda Kamchia")));

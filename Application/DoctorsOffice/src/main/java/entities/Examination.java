@@ -21,6 +21,9 @@ public class Examination implements Serializable {
     @Column( name = "DESCRIPTION" )
     private String description;
 
+    @Column( name = "SHARED_WITH_PATIENT" )
+    private boolean sharedWithPatient;
+
     public Examination(){
 
     }
@@ -29,6 +32,14 @@ public class Examination implements Serializable {
         this.reservedHour = reservedHour;
         this.documentPath = documentPath;
         this.description = description;
+    }
+
+    public boolean isSharedWithPatient() {
+        return sharedWithPatient;
+    }
+
+    public void setSharedWithPatient(boolean sharedWithPatient) {
+        this.sharedWithPatient = sharedWithPatient;
     }
 
     public int getId() {

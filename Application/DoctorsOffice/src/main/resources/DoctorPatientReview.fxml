@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorPatientReviewController">
+   <children>
+      <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <TextField fx:id="patientNameField" layoutX="14.0" layoutY="51.0" />
+      <TableView fx:id="patientTableView" layoutY="114.0" prefHeight="379.0" prefWidth="620.0" style="-fx-background-color: #FFFF66;">
+         <columns>
+            <TableColumn fx:id="patientNameColumn" prefWidth="211.0" text="Patient Name" />
+            <TableColumn fx:id="patientIdentifierColumn" minWidth="8.7999267578125" prefWidth="213.0" text="Identifier" />
+            <TableColumn fx:id="totalVisitsColumn" prefWidth="195.0" text="Total Visits" />
+         </columns>
+      </TableView>
+      <Label fx:id="resultLabel" layoutX="296.0" layoutY="501.0" textFill="RED" />
+      <TextField fx:id="patientIdentifierField" layoutX="236.0" layoutY="51.0" />
+      <Text layoutX="236.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Identifier" />
+   </children>
+</AnchorPane>

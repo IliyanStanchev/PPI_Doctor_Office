@@ -6,13 +6,15 @@ public class DoctorView {
     private String city;
     private String doctorName;
     private String speciality;
+    private String imagePath;
 
-    public DoctorView( int id, String city, String doctorName, String speciality ) {
+    public DoctorView( int id, String city, String doctorName, String speciality, String imagePath ) {
 
         this.id         = id;
         this.city       = city;
         this.doctorName = doctorName;
         this.speciality = speciality;
+        this.imagePath  = imagePath;
     }
 
     public String getCity() {
@@ -41,5 +43,18 @@ public class DoctorView {
 
     public int getId() {
         return id;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    @Override
+    public String toString() {
+        return  "     Name: " + doctorName + "\n     Speciality: " + speciality + "\n     City: " + city;
     }
 }

@@ -9,7 +9,10 @@ public class AlertHelper extends Alert {
 
     public AlertHelper() {
         super( AlertType.INFORMATION );
+    }
 
+    public AlertHelper( AlertType alertType ){
+        super( alertType );
     }
 
     public boolean show( String title, String message ){
@@ -26,5 +29,4 @@ public class AlertHelper extends Alert {
 
         return isOkPressed.get();
     }
-
 }
