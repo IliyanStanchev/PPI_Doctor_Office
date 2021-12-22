@@ -16,7 +16,7 @@ public class ExaminationHourButton extends Button {
         setText( examinationHour.getStartTime().toString() + " - " + examinationHour.getEndTime().toString() );
 
         if( examinationHour.isTaken() )
-            setDisabled( true );
+            setDisable( true );
 
         setStyle(" -fx-padding: 8 10 10 10;\n" +
                 "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +

@@ -10,7 +10,7 @@
 
         <properties>
             <property name="hibernate.connection.url"
-                      value="jdbc:mysql://localhost:3306/doctor_office"/>
+                      value="jdbc:mysql://localhost:3306/doctor_office?serverTimezone=UTC"/>
             <property name="hibernate.connection.driver_class"
                       value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.user"
@@ -26,7 +26,7 @@
             <property name="hibernate.jdbc.time_zone"
                       value="UTC"/>
             <property name="javax.persistence.schema-generation.database.action"
-                      value="drop-and-create"/>
+                      value="none"/>
         </properties>
     </persistence-unit>
 </persistence>

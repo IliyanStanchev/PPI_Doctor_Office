@@ -1,5 +1,6 @@
 package dao;
 
+import entities.ReservedHour;
 import manager.MyEntityManager;
 
 import javax.persistence.EntityManager;
@@ -69,5 +70,4 @@ public abstract class BaseDAO< EntityClass extends Serializable > {
                         entityManager.contains(entityClass) ? entityClass : entityManager.merge(entityClass)));
 
     }
-
 }

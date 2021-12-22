@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="619.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tu_varna.project.courier_system.controllers.CourierWorkspaceFormController">
+<AnchorPane prefHeight="619.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorMainPageController">
    <children>
       <AnchorPane layoutY="-2.0" prefHeight="627.0" prefWidth="942.0" style="-fx-background-color: #EFFF7B;">
          <children>
@@ -27,9 +27,6 @@
                   <AnchorPane layoutX="31.0" layoutY="49.0" prefHeight="180.0" prefWidth="256.0" style="-fx-background-color: #ffffff;">
                      <children>
                         <ImageView fitHeight="148.0" fitWidth="207.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/courierLogo.jpg" />
-                           </image>
                         </ImageView>
                         <Label fx:id="welcomeUser" layoutX="28.0" layoutY="138.0" prefHeight="27.0" prefWidth="207.0">
                            <font>
@@ -41,26 +38,26 @@
                         <InnerShadow color="#292728" radius="26.0875" width="85.35" />
                      </effect>
                   </AnchorPane>
-                  <Button layoutX="8.0" layoutY="354.0" mnemonicParsing="false" onAction="#loadHomePage" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #ffffff;" text="View saved hours" textAlignment="RIGHT">
+                  <Button layoutX="8.0" layoutY="354.0" mnemonicParsing="false" onAction="#onPatientReview" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #ffffff;" text="Patient review" textAlignment="RIGHT">
                      <font>
                         <Font name="Arial Bold" size="19.0" />
                      </font>
                   </Button>
-                  <Button layoutX="7.0" layoutY="439.0" mnemonicParsing="false" onAction="#viewProfile" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #ffffff;" text="Your Profile" textAlignment="RIGHT">
+                  <Button layoutX="7.0" layoutY="439.0" mnemonicParsing="false" onAction="#onViewProfile" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #ffffff;" text="Your Profile" textAlignment="RIGHT">
                      <font>
                         <Font name="Arial Bold" size="19.0" />
                      </font>
                   </Button>
-                  <Button layoutX="7.0" layoutY="528.0" mnemonicParsing="false" onAction="#logOut" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #ffffff;" text="Log out" textAlignment="RIGHT">
-                     <font>
-                        <Font name="Arial Bold" size="19.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="7.0" layoutY="270.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #EDFABD;" text="Save an appointment for review" textAlignment="RIGHT">
+                  <Button layoutX="7.0" layoutY="270.0" mnemonicParsing="false" onAction="#onViewTodayReservations" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #EDFABD;" text="View today's reservations" textAlignment="RIGHT">
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
                   </Button>
+                  <ImageView fitHeight="88.0" fitWidth="109.0" layoutX="121.0" layoutY="529.0" onMouseClicked="#onLogout" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/Logout.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="544.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorAddNotesController">
+   <children>
+      <TextField fx:id="visitReasonField" layoutX="48.0" layoutY="106.0" prefHeight="44.0" prefWidth="212.0" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextArea fx:id="examinationNotesField" layoutX="39.0" layoutY="269.0" prefHeight="175.0" prefWidth="537.0" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="379.0" layoutY="472.0" mnemonicParsing="false" onAction="#onShareWithPatient" prefHeight="42.0" prefWidth="199.0" style="-fx-background-color: #58D68D;" text="Share with patient" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="patientNameField" layoutX="48.0" layoutY="39.0" prefHeight="44.0" prefWidth="212.0" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="dateField" layoutX="48.0" layoutY="172.0" prefHeight="44.0" prefWidth="212.0" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="379.0" layoutY="174.0" mnemonicParsing="false" onAction="#onAttachFile" prefHeight="42.0" prefWidth="199.0" style="-fx-background-color: #58D68D;" text="Attach file" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Hyperlink layoutX="379.0" layoutY="143.0" onAction="#onViewAttachedDocument" text="View attached document" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="472.0" mnemonicParsing="false" onAction="#onSaveNotes" prefHeight="42.0" prefWidth="199.0" style="-fx-background-color: #58D68D;" text="Save notes" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="attachLabel" layoutX="379.0" layoutY="225.0" textFill="RED" />
+      <Label fx:id="resultLabel" layoutX="296.0" layoutY="444.0" textFill="RED" />
+   </children>
+</AnchorPane>

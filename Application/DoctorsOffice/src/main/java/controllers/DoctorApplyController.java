@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import services.DoctorService;
 import services.SpecializationService;
 import utils.CloseForm;
+import utils.DocumentVisualizer;
 import utils.FileManager;
 import utils.OpenForm;
 import validators.DataValidator;
@@ -107,21 +108,7 @@ public class DoctorApplyController implements Initializable {
     @FXML
     private void onViewRegistrationFile() throws Exception {
 
-        if (documentaryFile == null) {
-            attachLabel.setText("No document attached.");
-            return;
-        }
-
-        Application application = new Application() {
-            @Override
-            public void start(Stage stage) throws Exception {
-
-                HostServices hostServices = getHostServices();
-                hostServices.showDocument(documentaryFile.getAbsolutePath());
-            }
-        };
-
-        application.start( new Stage() );
+        DocumentVisualizer.ShowDocument( documentaryFile, attachLabel );
     }
 
     @FXML
