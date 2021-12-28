@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity( name = "RESERVED_HOURS" )
+@Entity(name = "RESERVED_HOURS")
 public class ReservedHour implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "ID" )
+    @Column(name = "ID")
     private int id;
 
     @OneToOne
@@ -21,7 +21,7 @@ public class ReservedHour implements Serializable {
     @ManyToOne
     private VisitReason visitReason;
 
-    public ReservedHour(){
+    public ReservedHour() {
 
     }
 

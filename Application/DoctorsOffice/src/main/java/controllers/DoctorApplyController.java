@@ -3,20 +3,20 @@ package controllers;
 import entities.Address;
 import entities.Specialization;
 import entities.User;
-import javafx.application.Application;
-import javafx.application.HostServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import services.DoctorService;
 import services.SpecializationService;
 import utils.CloseForm;
@@ -25,6 +25,7 @@ import utils.FileManager;
 import utils.OpenForm;
 import validators.DataValidator;
 import validators.FieldValidator;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -77,11 +78,11 @@ public class DoctorApplyController implements Initializable {
     private User currentUser;
 
     @FXML
-    private void onUploadImage( ActionEvent event ) throws MalformedURLException {
+    private void onUploadImage(ActionEvent event) throws MalformedURLException {
 
         File tempFile = FileManager.choosePictureFile(uploadLabel);
 
-        if ( tempFile == null )
+        if (tempFile == null)
             return;
 
         imageFile = tempFile;
@@ -99,7 +100,7 @@ public class DoctorApplyController implements Initializable {
 
         File tempFile = FileManager.chooseDocumentaryFile(attachLabel);
 
-        if( tempFile == null )
+        if (tempFile == null)
             return;
 
         documentaryFile = tempFile;
@@ -108,34 +109,34 @@ public class DoctorApplyController implements Initializable {
     @FXML
     private void onViewRegistrationFile() throws Exception {
 
-        DocumentVisualizer.ShowDocument( documentaryFile, attachLabel );
+        DocumentVisualizer.ShowDocument(documentaryFile, attachLabel);
     }
 
     @FXML
-    private void onApplyForDoctor( ActionEvent event ) {
+    private void onApplyForDoctor(ActionEvent event) {
 
-        if( !validateFields() )
+        if (!validateFields())
             return;
 
         Specialization specialization = specializationCombo.getSelectionModel().getSelectedItem();
 
         DoctorService doctorService = new DoctorService();
 
-        Address address = new Address( cityField.getText(), addressField.getText() );
+        Address address = new Address(cityField.getText(), addressField.getText());
 
-        if ( !doctorService.addDoctorApply( currentUser
-                                            , imageFile
-                                            , documentaryFile
-                                            , specialization
-                                            , descriptionField.getText()
-                                            , address )) {
-            resultLabel.setText( "Error processing doctor's apply. Please try again. ");
+        if (!doctorService.addDoctorApply(currentUser
+                , imageFile
+                , documentaryFile
+                , specialization
+                , descriptionField.getText()
+                , address)) {
+            resultLabel.setText("Error processing doctor's apply. Please try again. ");
             return;
         }
 
         FXMLLoader loader = OpenForm.openNewForm("/Login.fxml", "Login page");
         LoginController loginController = loader.getController();
-        loginController.sendMessage( "Successful registration and doctor apply. You can login now. " );
+        loginController.sendMessage("Successful registration and doctor apply. You can login now. ");
 
         CloseForm.closeForm(event);
     }
@@ -144,31 +145,31 @@ public class DoctorApplyController implements Initializable {
 
         clearLabels();
 
-        if( documentaryFile == null ){
+        if (documentaryFile == null) {
 
-            attachLabel.setText( "No registration document attached");
+            attachLabel.setText("No registration document attached");
             return false;
         }
 
-        if( imageFile == null ){
+        if (imageFile == null) {
 
-            uploadLabel.setText( "Choose image" );
+            uploadLabel.setText("Choose image");
             return false;
         }
 
-        if ( specializationCombo.getSelectionModel().getSelectedItem() == null) {
+        if (specializationCombo.getSelectionModel().getSelectedItem() == null) {
 
             specializationLabel.setText("Pick a specialization.");
             return false;
         }
 
-        if( !DataValidator.isFieldEmpty( descriptionField, descriptionLabel ) )
+        if (!DataValidator.isFieldEmpty(descriptionField, descriptionLabel))
             return false;
 
-        if( !DataValidator.isFieldEmpty( cityField, cityLabel ) )
+        if (!DataValidator.isFieldEmpty(cityField, cityLabel))
             return false;
 
-        if( !DataValidator.isFieldEmpty( addressField, addressLabel ) )
+        if (!DataValidator.isFieldEmpty(addressField, addressLabel))
             return false;
 
         return true;
@@ -204,28 +205,28 @@ public class DoctorApplyController implements Initializable {
 
     public void onCityReleased(KeyEvent keyEvent) {
 
-        if( FieldValidator.validateAlphabetical( cityField, cityLabel ) )
+        if (FieldValidator.validateAlphabetical(cityField, cityLabel))
             cityLabel.setText("");
     }
 
     public void onAddressReleased(KeyEvent keyEvent) {
 
-        if( DataValidator.isFieldEmpty( addressField, addressLabel ) )
+        if (DataValidator.isFieldEmpty(addressField, addressLabel))
             addressLabel.setText("");
     }
 
     public void onDescriptionReleased(KeyEvent keyEvent) {
 
-        if( DataValidator.isFieldEmpty( descriptionField, descriptionLabel ) )
+        if (DataValidator.isFieldEmpty(descriptionField, descriptionLabel))
             descriptionLabel.setText("");
     }
 
     public void onGoBack(MouseEvent mouseEvent) {
 
-        CloseForm.closeForm( mouseEvent );
+        CloseForm.closeForm(mouseEvent);
 
-        FXMLLoader fxmlLoader = OpenForm.openNewForm("/RegisterPersonalInformation.fxml", "User information", true );
+        FXMLLoader fxmlLoader = OpenForm.openNewForm("/RegisterPersonalInformation.fxml", "User information", true);
         RegisterPersonalInformationController controller = fxmlLoader.getController();
-        controller.setCurrentUser( currentUser );
+        controller.setCurrentUser(currentUser);
     }
 }

@@ -40,18 +40,16 @@ public class OpenForm {
         return OpenForm.openNewForm(fxmlFileName, formTitle, false);
     }
 
-    public static FXMLLoader buildInForm(final String fxmlFileName, AnchorPane anchorPane ) {
+    public static FXMLLoader buildInForm(final String fxmlFileName, AnchorPane anchorPane) {
 
         FXMLLoader fxmlLoader = null;
-        try
-        {
+        try {
 
             fxmlLoader = new FXMLLoader(
-                    new OpenForm().getClass().getResource( fxmlFileName));
+                    new OpenForm().getClass().getResource(fxmlFileName));
             AnchorPane pane = fxmlLoader.load();
             anchorPane.getChildren().setAll(pane);
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Cant built-in form.");
         }
@@ -66,18 +64,18 @@ public class OpenForm {
         FXMLLoader fxmlLoader = null;
         MainPageController mainPageController = null;
 
-        switch ( roleUid ) {
+        switch (roleUid) {
 
             case Administrator:
-                fxmlLoader = openNewForm( "/AdminMainPage.fxml", "Administrator main page" );
+                fxmlLoader = openNewForm("/AdminMainPage.fxml", "Administrator main page");
                 break;
 
             case Patient:
-                fxmlLoader = openNewForm( "/PatientMainPage.fxml", "Patient main page" );
+                fxmlLoader = openNewForm("/PatientMainPage.fxml", "Patient main page");
                 break;
 
             case Doctor:
-                fxmlLoader = openNewForm( "/DoctorMainPage.fxml", "Doctor main page" );
+                fxmlLoader = openNewForm("/DoctorMainPage.fxml", "Doctor main page");
                 break;
 
             default:
@@ -86,6 +84,6 @@ public class OpenForm {
         }
 
         mainPageController = fxmlLoader.getController();
-        mainPageController.setCurrentUser( user );
+        mainPageController.setCurrentUser(user);
     }
 }

@@ -8,14 +8,15 @@ public class PatientView {
     private String  identifier;
     private long    totalVisits;
 
-    public PatientView(){
+    public PatientView() {
 
     }
+
     public PatientView(int id, String patientName, String identifier, long totalVisits) {
         this.id = id;
-        this.patientName    = patientName;
-        this.identifier     = identifier;
-        this.totalVisits    = totalVisits;
+        this.patientName = patientName;
+        this.identifier = identifier;
+        this.totalVisits = totalVisits;
     }
 
     public int getId() {

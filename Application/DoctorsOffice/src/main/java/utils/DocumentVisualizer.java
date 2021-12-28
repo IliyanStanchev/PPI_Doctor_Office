@@ -9,8 +9,8 @@ import java.io.File;
 
 public class DocumentVisualizer {
 
-    public static void ShowDocument(File file, Label attachLabel ) throws Exception {
-        if ( file == null ) {
+    public static void ShowDocument(File file, Label attachLabel) throws Exception {
+        if (file == null) {
             attachLabel.setText("No document attached.");
             return;
         }
@@ -19,10 +19,10 @@ public class DocumentVisualizer {
             @Override
             public void start(Stage stage) throws Exception {
                 HostServices hostServices = getHostServices();
-                hostServices.showDocument( file.getAbsolutePath());
+                hostServices.showDocument(file.getAbsolutePath());
             }
         };
 
-        application.start( new Stage() );
+        application.start(new Stage());
     }
 }

@@ -5,15 +5,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity( name = "SPECIALIZATIONS" )
+@Entity(name = "SPECIALIZATIONS")
 public class Specialization implements Serializable {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column( name = "ID" )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
 
-    @Column( name = "NAME", unique = true)
+    @Column(name = "NAME", unique = true)
     private String name;
 
     public Specialization() {

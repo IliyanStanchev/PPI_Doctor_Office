@@ -1,7 +1,6 @@
 package controllers;
 
 import controls.ExaminationHourButton;
-import dao.implementation.VisitReasonDAO;
 import entities.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,36 +30,36 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class PatientReserveHourController implements Initializable  {
+public class PatientReserveHourController implements Initializable {
 
-    private Doctor  currentDoctor;
-    private User    currentUser;
+    private Doctor currentDoctor;
+    private User currentUser;
 
-    private HBox    hBox = new HBox();
+    private HBox hBox = new HBox();
 
-    private List    examinationHours;
+    private List examinationHours;
 
     private ExaminationHour selectedExaminationHour;
 
-    private ObservableList< VisitReason > visitReasonList = FXCollections.observableArrayList();
+    private ObservableList<VisitReason> visitReasonList = FXCollections.observableArrayList();
 
     @FXML
-    private ComboBox< VisitReason > visitReasonComboBox;
+    private ComboBox<VisitReason> visitReasonComboBox;
 
     @FXML
-    private DatePicker  datePicker;
+    private DatePicker datePicker;
 
     @FXML
-    private GridPane    hoursGrid;
+    private GridPane hoursGrid;
 
     @FXML
-    private ScrollPane  scrollPane;
+    private ScrollPane scrollPane;
 
     @FXML
-    private Label       resultLabel;
+    private Label resultLabel;
 
 
-    public void onMakeAnAppointment( ActionEvent actionEvent ) {
+    public void onMakeAnAppointment(ActionEvent actionEvent) {
 
         if (!validateFields())
             return;
@@ -71,26 +70,26 @@ public class PatientReserveHourController implements Initializable  {
 
         ReservedHourService reservedHourService = new ReservedHourService();
 
-        if ( !reservedHourService.saveReservedHour(reservedHour) ){
-            resultLabel.setText( "There was a problem adding your examination hour. Please try again.");
+        if (!reservedHourService.saveReservedHour(reservedHour)) {
+            resultLabel.setText("There was a problem adding your examination hour. Please try again.");
             return;
         }
 
         AlertHelper alertHelper = new AlertHelper();
-        alertHelper.show( "Hour reserved", "You have successfully reserved a hour. \n All reserved hours can be seen in tab View reserved hours.");
+        alertHelper.show("Hour reserved", "You have successfully reserved a hour. \n All reserved hours can be seen in tab View reserved hours.");
 
-        CloseForm.closeForm( actionEvent );
+        CloseForm.closeForm(actionEvent);
     }
 
     private boolean validateFields() {
 
-        if ( visitReasonComboBox.getSelectionModel().getSelectedItem() == null) {
+        if (visitReasonComboBox.getSelectionModel().getSelectedItem() == null) {
 
             resultLabel.setText("Pick a specialization.");
             return false;
         }
 
-        if( selectedExaminationHour == null ){
+        if (selectedExaminationHour == null) {
 
             resultLabel.setText("Reserve hour for examination.");
             return false;
@@ -101,81 +100,81 @@ public class PatientReserveHourController implements Initializable  {
 
     public void onGoBack(MouseEvent mouseEvent) {
 
-        FXMLLoader fxmlLoader = OpenForm.openNewForm( "/PatientSelectAppointment.fxml", "Select an appointment");
+        FXMLLoader fxmlLoader = OpenForm.openNewForm("/PatientSelectAppointment.fxml", "Select an appointment");
         PatientSelectAppointmentController controller = fxmlLoader.getController();
-        controller.loadCurrentDoctor( currentDoctor.getId() );
-        controller.setCurrentUser( currentUser );
+        controller.loadCurrentDoctor(currentDoctor.getId());
+        controller.setCurrentUser(currentUser);
 
-        CloseForm.closeForm( mouseEvent );
+        CloseForm.closeForm(mouseEvent);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         VisitReasonService visitReasonService = new VisitReasonService();
-        for( VisitReason visitReason : visitReasonService.getAllVisitReasons()){
+        for (VisitReason visitReason : visitReasonService.getAllVisitReasons()) {
 
-            visitReasonList.add( visitReason );
+            visitReasonList.add(visitReason);
         }
 
-        visitReasonComboBox.setItems( visitReasonList );
+        visitReasonComboBox.setItems(visitReasonList);
 
-        datePicker.valueProperty().addListener(( ov, oldValue, newValue ) -> {
+        datePicker.valueProperty().addListener((ov, oldValue, newValue) -> {
 
-            initializeExaminationHours( newValue );
+            initializeExaminationHours(newValue);
         });
     }
 
-    private void addExamination( int hourIndex, int columnIndex, int rowIndex ) {
+    private void addExamination(int hourIndex, int columnIndex, int rowIndex) {
 
-        ExaminationHour examinationHour = ( ExaminationHour )examinationHours.get( hourIndex );
+        ExaminationHour examinationHour = (ExaminationHour) examinationHours.get(hourIndex);
 
-        ExaminationHourButton button = new ExaminationHourButton( examinationHour );
+        ExaminationHourButton button = new ExaminationHourButton(examinationHour);
 
-        setOnClickEvent( button, columnIndex, rowIndex );
+        setOnClickEvent(button, columnIndex, rowIndex);
     }
 
-    private void setOnClickEvent( ExaminationHourButton button, int columnIndex, int rowIndex ) {
+    private void setOnClickEvent(ExaminationHourButton button, int columnIndex, int rowIndex) {
 
-        hBox.getChildren().add( button );
+        hBox.getChildren().add(button);
 
-        GridPane.setConstraints( button, columnIndex, rowIndex, 1, 1, HPos.CENTER, VPos.CENTER );
-        hoursGrid.getChildren().addAll( button );
+        GridPane.setConstraints(button, columnIndex, rowIndex, 1, 1, HPos.CENTER, VPos.CENTER);
+        hoursGrid.getChildren().addAll(button);
 
-        button.setOnMouseClicked( mouseEvent -> {
+        button.setOnMouseClicked(mouseEvent -> {
 
-            if( button.isDisabled() )
+            if (button.isDisabled())
                 return;
 
             final boolean isChosenByCustomer = button.isChosenByCustomer();
 
-            if( selectedExaminationHour != null && !isChosenByCustomer ){
+            if (selectedExaminationHour != null && !isChosenByCustomer) {
 
-                resultLabel.setText( "You have already chosen a hour." );
+                resultLabel.setText("You have already chosen a hour.");
                 return;
             }
 
-            ExaminationHourButton newButton = new ExaminationHourButton( button.getExaminationHour() );
-            newButton.setChosenByCustomer( !isChosenByCustomer );
+            ExaminationHourButton newButton = new ExaminationHourButton(button.getExaminationHour());
+            newButton.setChosenByCustomer(!isChosenByCustomer);
 
-            selectedExaminationHour = isChosenByCustomer? null : newButton.getExaminationHour();
+            selectedExaminationHour = isChosenByCustomer ? null : newButton.getExaminationHour();
 
             resultLabel.setText("");
 
-            setOnClickEvent( newButton, columnIndex, rowIndex );
+            setOnClickEvent(newButton, columnIndex, rowIndex);
 
         });
     }
 
     public void setCurrentDoctor(Doctor currentDoctor) {
 
-        this.currentDoctor  = currentDoctor;
+        this.currentDoctor = currentDoctor;
 
         LocalDate localDate = LocalDate.now();
 
-        datePicker.setValue( LocalDate.now() );
+        datePicker.setValue(LocalDate.now());
 
-        initializeExaminationHours( localDate );
+        initializeExaminationHours(localDate);
 
     }
 
@@ -184,7 +183,7 @@ public class PatientReserveHourController implements Initializable  {
         this.currentUser = user;
     }
 
-    private void initializeExaminationHours( LocalDate localDate ){
+    private void initializeExaminationHours(LocalDate localDate) {
 
         hoursGrid.getChildren().clear();
         selectedExaminationHour = null;
@@ -197,23 +196,23 @@ public class PatientReserveHourController implements Initializable  {
 
         ExaminationHourService examinationHourService = new ExaminationHourService();
 
-        examinationHours = examinationHourService.getDoctorExaminationHours( currentDoctor.getId(), localDate );
+        examinationHours = examinationHourService.getDoctorExaminationHours(currentDoctor.getId(), localDate);
 
-        final int columns   = 3;
-        final int rows      = examinationHours.size() / columns;
+        final int columns = 3;
+        final int rows = examinationHours.size() / columns;
 
         int hourIndex = 0;
 
-        for( int i = 0; i < rows; i++ ){
-            for( int j = 0; j < columns; j++ ){
-                if( hourIndex < examinationHours.size() ){
-                    addExamination( hourIndex, j, i );
-                    hourIndex ++;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (hourIndex < examinationHours.size()) {
+                    addExamination(hourIndex, j, i);
+                    hourIndex++;
                 }
             }
         }
 
-        scrollPane.setContent( hoursGrid );
-        scrollPane.setFitToWidth( true );
+        scrollPane.setContent(hoursGrid);
+        scrollPane.setFitToWidth(true);
     }
 }

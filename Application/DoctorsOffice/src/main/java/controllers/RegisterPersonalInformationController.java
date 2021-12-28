@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.util.StringConverter;
 import services.UserService;
 import utils.CloseForm;
 import utils.DateHelper;
@@ -22,93 +21,93 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class RegisterPersonalInformationController implements Initializable{
+public class RegisterPersonalInformationController implements Initializable {
 
-    private static final int PERSONAL_IDENTIFIER_SIZE   = 10;
+    private static final int PERSONAL_IDENTIFIER_SIZE = 10;
 
     private User currentUser;
 
     @FXML
-    private Label       firstNameLabel;
+    private Label firstNameLabel;
 
     @FXML
-    private Label       lastNameLabel;
+    private Label lastNameLabel;
 
     @FXML
-    private Label       phoneNumberLabel;
+    private Label phoneNumberLabel;
 
     @FXML
-    private Label       personalIdentifierLabel;
+    private Label personalIdentifierLabel;
 
     @FXML
-    private Label       resultLabel;
+    private Label resultLabel;
 
     @FXML
-    private TextField   firstNameField;
+    private TextField firstNameField;
 
     @FXML
-    private TextField   lastNameField;
+    private TextField lastNameField;
 
     @FXML
-    private TextField   phoneNumberField;
+    private TextField phoneNumberField;
 
     @FXML
-    private TextField   personalIdentifierField;
+    private TextField personalIdentifierField;
 
     @FXML
-    private DatePicker  dateOfBirthField;
+    private DatePicker dateOfBirthField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ControlsCustomizer.customizeDatePicker( dateOfBirthField );
+        ControlsCustomizer.customizeDatePicker(dateOfBirthField);
     }
 
     @FXML
-    public void onApplyAsDoctor( ActionEvent actionEvent ) {
+    public void onApplyAsDoctor(ActionEvent actionEvent) {
 
-        if( !validateData() )
+        if (!validateData())
             return;
 
         fillCurrentUser();
 
         FXMLLoader loader = OpenForm.openNewForm("/DoctorApply.fxml", "Apply for Doctor");
         DoctorApplyController controller = loader.getController();
-        controller.setCurrentUser( currentUser );
+        controller.setCurrentUser(currentUser);
 
-        CloseForm.closeForm( actionEvent );
+        CloseForm.closeForm(actionEvent);
     }
 
     @FXML
-    public void onRegisterAsPatient( ActionEvent actionEvent ) {
-        
-        if( !validateData() )
+    public void onRegisterAsPatient(ActionEvent actionEvent) {
+
+        if (!validateData())
             return;
-        
+
         fillCurrentUser();
 
         UserService userService = new UserService();
 
-        if( !userService.registerUser( currentUser ) ){
+        if (!userService.registerUser(currentUser)) {
 
-            resultLabel.setText( "Something went wrong while registering patient. Please try again." );
+            resultLabel.setText("Something went wrong while registering patient. Please try again.");
             return;
         }
 
         FXMLLoader loader = OpenForm.openNewForm("/Login.fxml", "Login page");
         LoginController loginController = loader.getController();
-        loginController.sendMessage( "Successful registration as patient. You can login now. " );
+        loginController.sendMessage("Successful registration as patient. You can login now. ");
 
-        CloseForm.closeForm( actionEvent );
+        CloseForm.closeForm(actionEvent);
     }
 
     private void fillCurrentUser() {
 
-        currentUser.setFirstName( firstNameField.getText() );
-        currentUser.setSecondName( lastNameField.getText() );
-        currentUser.setPhoneNumber( phoneNumberField.getText() );
-        currentUser.setIdentifier( personalIdentifierField.getText() );
-        currentUser.setBirthDate( dateOfBirthField.getValue() );
+        currentUser.setFirstName(firstNameField.getText());
+        currentUser.setSecondName(lastNameField.getText());
+        currentUser.setPhoneNumber(phoneNumberField.getText());
+        currentUser.setIdentifier(personalIdentifierField.getText());
+        currentUser.setBirthDate(dateOfBirthField.getValue());
     }
 
     private boolean validateData() {
@@ -122,10 +121,10 @@ public class RegisterPersonalInformationController implements Initializable{
         if (!FieldValidator.validateNumericField(phoneNumberField, phoneNumberLabel))
             return false;
 
-        if (!FieldValidator.validateFieldLength( personalIdentifierField, personalIdentifierLabel, PERSONAL_IDENTIFIER_SIZE))
+        if (!FieldValidator.validateFieldLength(personalIdentifierField, personalIdentifierLabel, PERSONAL_IDENTIFIER_SIZE))
             return false;
 
-        if (!FieldValidator.validateNumericField( personalIdentifierField, personalIdentifierLabel ))
+        if (!FieldValidator.validateNumericField(personalIdentifierField, personalIdentifierLabel))
             return false;
 
         return true;
@@ -135,11 +134,11 @@ public class RegisterPersonalInformationController implements Initializable{
 
         this.currentUser = currentUser;
 
-        firstNameField.setText( currentUser.getFirstName() );
-        lastNameField.setText( currentUser.getSecondName() );
-        phoneNumberField.setText( currentUser.getPhoneNumber() );
-        personalIdentifierField.setText( currentUser.getIdentifier() );
-        dateOfBirthField.setValue( currentUser.getBirthDate());
+        firstNameField.setText(currentUser.getFirstName());
+        lastNameField.setText(currentUser.getSecondName());
+        phoneNumberField.setText(currentUser.getPhoneNumber());
+        personalIdentifierField.setText(currentUser.getIdentifier());
+        dateOfBirthField.setValue(currentUser.getBirthDate());
     }
 
     public void onFirstNameReleased(KeyEvent keyEvent) {
@@ -162,30 +161,30 @@ public class RegisterPersonalInformationController implements Initializable{
 
     public void onPersonalIdentifierReleased(KeyEvent keyEvent) {
 
-        if (!FieldValidator.validateFieldLength( personalIdentifierField, personalIdentifierLabel, PERSONAL_IDENTIFIER_SIZE))
+        if (!FieldValidator.validateFieldLength(personalIdentifierField, personalIdentifierLabel, PERSONAL_IDENTIFIER_SIZE))
             return;
 
-        if (!FieldValidator.validateNumericField( personalIdentifierField, personalIdentifierLabel ))
+        if (!FieldValidator.validateNumericField(personalIdentifierField, personalIdentifierLabel))
             return;
 
         personalIdentifierLabel.setText("");
 
         final String personalIdentifier = personalIdentifierField.getText();
-        if( personalIdentifier.length() < PERSONAL_IDENTIFIER_SIZE ) {
-            dateOfBirthField.setDisable( false );
+        if (personalIdentifier.length() < PERSONAL_IDENTIFIER_SIZE) {
+            dateOfBirthField.setDisable(false);
             return;
         }
 
-        if( DateHelper.SetDateFromIdentifier( personalIdentifier, personalIdentifierLabel, dateOfBirthField ) )
-            dateOfBirthField.setDisable( true );
+        if (DateHelper.SetDateFromIdentifier(personalIdentifier, personalIdentifierLabel, dateOfBirthField))
+            dateOfBirthField.setDisable(true);
     }
 
-    public void onGoBack( MouseEvent mouseEvent ) {
+    public void onGoBack(MouseEvent mouseEvent) {
 
-        CloseForm.closeForm( mouseEvent );
+        CloseForm.closeForm(mouseEvent);
 
-        FXMLLoader fxmlLoader = OpenForm.openNewForm("/RegisterUserInformation.fxml", "User information", true );
+        FXMLLoader fxmlLoader = OpenForm.openNewForm("/RegisterUserInformation.fxml", "User information", true);
         RegisterUserInformationController controller = fxmlLoader.getController();
-        controller.setCurrentUser( currentUser );
+        controller.setCurrentUser(currentUser);
     }
 }

@@ -4,21 +4,21 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity( name = "ADDRESSES" )
+@Entity(name = "ADDRESSES")
 public class Address implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "ID" )
+    @Column(name = "ID")
     private int id;
 
-    @Column( name = "CITY" )
+    @Column(name = "CITY")
     private String city;
 
-    @Column( name = "ADDRESS" )
+    @Column(name = "ADDRESS")
     private String address;
 
-    public Address(){
+    public Address() {
 
     }
 

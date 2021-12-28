@@ -1,15 +1,18 @@
 package entities;
 
+import net.bytebuddy.asm.Advice;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity( name = "DOCTORS" )
+@Entity(name = "DOCTORS")
 public class Doctor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "ID" )
+    @Column(name = "ID")
     private int id;
 
     @OneToOne
@@ -18,17 +21,20 @@ public class Doctor implements Serializable {
     @ManyToOne
     private Specialization specialization;
 
-    @Column( name = "DOCUMENT_PATH" )
+    @Column(name = "DOCUMENT_PATH")
     private String documentPath;
 
-    @Column( name = "PHOTO_PATH" )
+    @Column(name = "PHOTO_PATH")
     private String photoPath;
 
-    @Column( name = "DESCRIPTION" )
+    @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column( name = "CONFIRMED" )
+    @Column(name = "CONFIRMED")
     private boolean confirmed;
+
+    @Column(name = "REGISTRATION_DATE")
+    private LocalDate registrationDate;
 
     @OneToOne
     private Address address;
@@ -45,6 +51,16 @@ public class Doctor implements Serializable {
         this.description = description;
         this.address = address;
         this.confirmed = false;
+        this.registrationDate = LocalDate.now();
+    }
+
+    public LocalDate getRegistrationDate() {
+
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDate registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public int getId() {

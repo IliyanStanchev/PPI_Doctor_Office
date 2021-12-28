@@ -3,7 +3,6 @@ package services;
 import dao.implementation.SpecializationDAO;
 import entities.Specialization;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SpecializationService {

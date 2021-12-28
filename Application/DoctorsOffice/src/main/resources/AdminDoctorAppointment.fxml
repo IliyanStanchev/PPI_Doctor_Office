@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminDoctorAppointmentController">
+    <children>
+        <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+        <TextField fx:id="doctorNameField" layoutX="14.0" layoutY="51.0" />
+        <Text layoutX="236.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Identifier" />
+        <TextField fx:id="doctorIdentifierField" layoutX="236.0" layoutY="51.0" />
+        <Text layoutX="421.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" />
+        <TextField fx:id="cityField" layoutX="421.0" layoutY="51.0" />
+        <TableView fx:id="doctorTableView" layoutY="114.0" prefHeight="379.0" prefWidth="620.0" style="-fx-background-color: #FFFF66;">
+            <columns>
+                <TableColumn fx:id="doctorNameColumn" prefWidth="132.0" text="Doctor Name" />
+                <TableColumn fx:id="doctorIdentifierColumn" minWidth="8.7999267578125" prefWidth="123.0" text="Identifier" />
+                <TableColumn fx:id="cityColumn" minWidth="0.0" prefWidth="142.0" text="City" />
+                <TableColumn fx:id="registrationDate" prefWidth="222.0" text="Registration Date" />
+            </columns>
+        </TableView>
+        <Label fx:id="resultLabel" layoutX="296.0" layoutY="501.0" textFill="RED" />
+    </children>
+</AnchorPane>

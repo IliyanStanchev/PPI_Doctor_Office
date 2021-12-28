@@ -9,14 +9,14 @@ public class ExaminationHourButton extends Button {
 
     private boolean chosenByCustomer;
 
-    public ExaminationHourButton( ExaminationHour examinationHour ){
+    public ExaminationHourButton(ExaminationHour examinationHour) {
 
         this.examinationHour = examinationHour;
 
-        setText( examinationHour.getStartTime().toString() + " - " + examinationHour.getEndTime().toString() );
+        setText(examinationHour.getStartTime().toString() + " - " + examinationHour.getEndTime().toString());
 
-        if( examinationHour.isTaken() )
-            setDisable( true );
+        if (examinationHour.isTaken())
+            setDisable(true);
 
         setStyle(" -fx-padding: 8 10 10 10;\n" +
                 "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
@@ -32,11 +32,15 @@ public class ExaminationHourButton extends Button {
         );
     }
 
-    public void setChosenByCustomer( boolean chosenByCustomer ) {
+    public boolean isChosenByCustomer() {
+        return chosenByCustomer;
+    }
+
+    public void setChosenByCustomer(boolean chosenByCustomer) {
 
         this.chosenByCustomer = chosenByCustomer;
 
-        if( chosenByCustomer )
+        if (chosenByCustomer)
             setStyle(" -fx-padding: 8 10 10 10;\n" +
                     "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
                     "    -fx-background-radius: 8;\n" +
@@ -50,10 +54,6 @@ public class ExaminationHourButton extends Button {
                     "    -fx-font-size: 1.1em;"
             );
 
-    }
-
-    public boolean isChosenByCustomer() {
-        return chosenByCustomer;
     }
 
     public ExaminationHour getExaminationHour() {

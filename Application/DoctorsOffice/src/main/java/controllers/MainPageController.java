@@ -6,13 +6,13 @@ public abstract class MainPageController {
 
     private User currentUser;
 
-    public void setCurrentUser( User user ){
-
-        currentUser = user;
-    }
-
-    public User getCurrentUser(){
+    public User getCurrentUser() {
 
         return currentUser;
+    }
+
+    public void setCurrentUser(User user) {
+
+        currentUser = user;
     }
 }

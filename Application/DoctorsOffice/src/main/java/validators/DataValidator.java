@@ -12,7 +12,7 @@ public class DataValidator {
 
         final String value = inputTextField.getText();
 
-        if ( value == null || value.length() < requiredLength) {
+        if (value == null || value.length() < requiredLength) {
 
             inputLabel.setText(String.format("Text should be at least %d symbols", requiredLength));
             return false;
@@ -25,7 +25,7 @@ public class DataValidator {
 
         final String value = inputTextField.getText();
 
-        if ( value == null || !value.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.com")) {
+        if (value == null || !value.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.com")) {
 
             inputLabel.setText("Wrong email format");
             return false;
@@ -38,7 +38,7 @@ public class DataValidator {
 
         final String value = inputTextField.getText();
 
-        if ( value == null || !value.matches("^[a-zA-Z0-9_.-]*$")) {
+        if (value == null || !value.matches("^[a-zA-Z0-9_.-]*$")) {
 
             inputLabel.setText("Wrong username format");
             return false;
@@ -51,7 +51,7 @@ public class DataValidator {
 
         final String value = inputTextField.getText();
 
-        if ( value == null || !value.matches("^[a-zA-Z]*$")) {
+        if (value == null || !value.matches("^[a-zA-Z]*$")) {
 
             inputLabel.setText("Wrong name format");
             return false;
@@ -63,7 +63,7 @@ public class DataValidator {
     public static boolean checkPriceFormat(TextField inputTextField, Label inputLabel) {
 
         final String value = inputTextField.getText();
-        if ( value == null || !value.matches("[0-9]+([.][0-9]{1,2})?")) {
+        if (value == null || !value.matches("[0-9]+([.][0-9]{1,2})?")) {
 
             inputLabel.setText("Wrong price format");
             return false;
@@ -75,7 +75,7 @@ public class DataValidator {
     public static boolean isFieldEmpty(TextField inputTextField, Label inputLabel) {
 
         final String value = inputTextField.getText();
-        if ( value == null || value.isEmpty()) {
+        if (value == null || value.isEmpty()) {
 
             inputLabel.setText("The field is empty");
             return false;
@@ -86,7 +86,7 @@ public class DataValidator {
     public static boolean isFieldEmpty(TextArea textArea, Label inputLabel) {
 
         final String value = textArea.getText();
-        if ( value == null || value.isEmpty()) {
+        if (value == null || value.isEmpty()) {
 
             inputLabel.setText("The field is empty");
             return false;
@@ -98,7 +98,7 @@ public class DataValidator {
 
         final String value = inputTextField.getText();
 
-        if ( value == null || !value.matches("[0-9]+")) {
+        if (value == null || !value.matches("[0-9]+")) {
 
             inputLabel.setText("The field must contain only numbers");
             return false;
@@ -112,7 +112,7 @@ public class DataValidator {
 
         final String value = inputTextField.getText();
 
-        if ( value == null || !value.matches("[a-z A-Z]+")) {
+        if (value == null || !value.matches("[a-z A-Z]+")) {
 
             inputLabel.setText("The field must contain only alphabetical characters");
             return false;

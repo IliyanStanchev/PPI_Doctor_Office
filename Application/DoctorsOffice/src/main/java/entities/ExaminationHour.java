@@ -1,7 +1,6 @@
 package entities;
 
 import javax.persistence.*;
-import javax.print.Doc;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,22 +13,22 @@ public class ExaminationHour implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column( name = "DATE" )
+    @Column(name = "DATE")
     private LocalDate date;
 
-    @Column( name = "START_TIME" )
+    @Column(name = "START_TIME")
     private LocalTime startTime;
 
-    @Column( name = "END_TIME" )
+    @Column(name = "END_TIME")
     private LocalTime endTime;
 
-    @Column( name = "TAKEN" )
+    @Column(name = "TAKEN")
     private boolean taken;
 
     @ManyToOne
     private Doctor doctor;
 
-    public ExaminationHour( ) {
+    public ExaminationHour() {
     }
 
     public ExaminationHour(LocalDate date, LocalTime startTime, LocalTime endTime, boolean taken, Doctor doctor) {

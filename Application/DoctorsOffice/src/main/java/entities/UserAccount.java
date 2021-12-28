@@ -4,21 +4,21 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity( name = "USER_ACCOUNTS" )
+@Entity(name = "USER_ACCOUNTS")
 public class UserAccount implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "ID" )
+    @Column(name = "ID")
     private int id;
 
     @OneToOne
     private User user;
 
-    @Column( name = "BLOCKED" )
+    @Column(name = "BLOCKED")
     private boolean blocked;
 
-    public UserAccount(){
+    public UserAccount() {
 
     }
 

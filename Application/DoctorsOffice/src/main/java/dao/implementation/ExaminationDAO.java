@@ -2,28 +2,27 @@ package dao.implementation;
 
 import dao.BaseDAO;
 import entities.Examination;
-import entities.User;
 import manager.MyEntityManager;
 
 import javax.persistence.NoResultException;
 
-public class ExaminationDAO extends BaseDAO< Examination > {
+public class ExaminationDAO extends BaseDAO<Examination> {
 
-    public ExaminationDAO(){
+    public ExaminationDAO() {
 
-        super.setClass( Examination.class );
+        super.setClass(Examination.class);
     }
 
-    public Examination getExaminationByReservedHourID( int reservedHourId ) {
+    public Examination getExaminationByReservedHourID(int reservedHourId) {
 
         Examination examination;
         try {
             examination = (Examination) MyEntityManager.getEntityManager().createQuery(
-                    "FROM EXAMINATIONS examination WHERE examination.reservedHour.id =: reservedHourId ")
-                    .setParameter("reservedHourId",  reservedHourId )
+                            "FROM EXAMINATIONS examination WHERE examination.reservedHour.id =: reservedHourId ")
+                    .setParameter("reservedHourId", reservedHourId)
                     .getSingleResult();
 
-        } catch ( NoResultException e ) {
+        } catch (NoResultException e) {
             examination = null;
         }
         return examination;

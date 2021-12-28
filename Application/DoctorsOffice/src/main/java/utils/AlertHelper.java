@@ -8,22 +8,22 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class AlertHelper extends Alert {
 
     public AlertHelper() {
-        super( AlertType.INFORMATION );
+        super(AlertType.INFORMATION);
     }
 
-    public AlertHelper( AlertType alertType ){
-        super( alertType );
+    public AlertHelper(AlertType alertType) {
+        super(alertType);
     }
 
-    public boolean show( String title, String message ){
+    public boolean show(String title, String message) {
 
         AtomicBoolean isOkPressed = new AtomicBoolean(false);
 
-        setTitle( title );
-        setContentText( message );
-        showAndWait().ifPresent( consumer -> {
+        setTitle(title);
+        setContentText(message);
+        showAndWait().ifPresent(consumer -> {
 
-            if( consumer == ButtonType.OK )
+            if (consumer == ButtonType.OK)
                 isOkPressed.set(true);
         });
 

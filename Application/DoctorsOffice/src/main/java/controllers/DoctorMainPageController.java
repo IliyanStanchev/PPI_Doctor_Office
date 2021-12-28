@@ -14,41 +14,40 @@ import utils.OpenForm;
 public class DoctorMainPageController extends MainPageController {
 
     private Doctor currentDoctor;
+    @FXML
+    private AnchorPane workPane;
 
     @Override
-    public void setCurrentUser( User user ){
+    public void setCurrentUser(User user) {
 
-        super.setCurrentUser( user );
+        super.setCurrentUser(user);
 
         DoctorService doctorService = new DoctorService();
 
-        currentDoctor = doctorService.getDoctorByUserID( user.getId() );
+        currentDoctor = doctorService.getDoctorByUserID(user.getId());
     }
-
-    @FXML
-    private AnchorPane workPane;
 
     public void onViewProfile(ActionEvent actionEvent) {
         FXMLLoader loader = OpenForm.buildInForm("/DoctorProfile.fxml", workPane);
         DoctorProfileController controller = loader.getController();
-        controller.setCurrentDoctor( currentDoctor );
+        controller.setCurrentDoctor(currentDoctor);
     }
 
     public void onPatientReview(ActionEvent actionEvent) {
         FXMLLoader loader = OpenForm.buildInForm("/DoctorPatientReview.fxml", workPane);
         DoctorPatientReviewController controller = loader.getController();
-        controller.setCurrentDoctor( currentDoctor );
+        controller.setCurrentDoctor(currentDoctor);
     }
 
     public void onViewTodayReservations(ActionEvent actionEvent) {
         FXMLLoader loader = OpenForm.buildInForm("/DoctorViewTodayReservations.fxml", workPane);
         DoctorViewTodayReservationsController controller = loader.getController();
-        controller.setCurrentDoctor( currentDoctor );
+        controller.setCurrentDoctor(currentDoctor);
     }
 
     public void onLogout(MouseEvent mouseEvent) {
         OpenForm.openNewForm("/Login.fxml", "Login Page");
-        CloseForm.closeForm( mouseEvent );
+        CloseForm.closeForm(mouseEvent);
 
     }
 }

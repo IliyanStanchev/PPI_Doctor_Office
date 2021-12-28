@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import services.UserService;
 import utils.CloseForm;
 import utils.OpenForm;
 import validators.FieldValidator;
@@ -56,7 +55,7 @@ public class RegisterUserInformationController implements Initializable {
     @FXML
     public void onEmailReleased(KeyEvent keyEvent) {
 
-        if (FieldValidator.validateEmail( emailField, emailLabel ))
+        if (FieldValidator.validateEmail(emailField, emailLabel))
             emailLabel.setText("");
     }
 
@@ -82,32 +81,32 @@ public class RegisterUserInformationController implements Initializable {
     }
 
     @FXML
-    private void onNext( ActionEvent actionEvent ){
+    private void onNext(ActionEvent actionEvent) {
 
-        if( !validateData() )
+        if (!validateData())
             return;
 
         fillCurrentUser();
 
-        FXMLLoader fxmlLoader = OpenForm.openNewForm("/RegisterPersonalInformation.fxml", "Personal Information", true );
+        FXMLLoader fxmlLoader = OpenForm.openNewForm("/RegisterPersonalInformation.fxml", "Personal Information", true);
         RegisterPersonalInformationController controller = fxmlLoader.getController();
-        controller.setCurrentUser( currentUser );
+        controller.setCurrentUser(currentUser);
 
-        CloseForm.closeForm( actionEvent );
+        CloseForm.closeForm(actionEvent);
     }
 
     private void fillCurrentUser() {
 
-        final String email      = emailField.getText();
-        final String username   = usernameField.getText();
-        final String password   = passwordField.getText();
+        final String email = emailField.getText();
+        final String username = usernameField.getText();
+        final String password = passwordField.getText();
 
-        currentUser.setEmail( email );
-        currentUser.setUsername( username );
-        currentUser.setPassword( password );
+        currentUser.setEmail(email);
+        currentUser.setUsername(username);
+        currentUser.setPassword(password);
     }
 
-    private boolean validateData(){
+    private boolean validateData() {
 
         if (!FieldValidator.validateEmail(emailField, emailLabel))
             return false;
@@ -124,18 +123,18 @@ public class RegisterUserInformationController implements Initializable {
         return true;
     }
 
-    public void setCurrentUser(User user){
+    public void setCurrentUser(User user) {
 
         this.currentUser = user;
 
-        emailField.setText( user.getEmail() );
-        usernameField.setText( user.getUsername() );
+        emailField.setText(user.getEmail());
+        usernameField.setText(user.getUsername());
 
     }
 
-    public void onGoBack( MouseEvent mouseEvent ) {
+    public void onGoBack(MouseEvent mouseEvent) {
 
-        CloseForm.closeForm( mouseEvent );
+        CloseForm.closeForm(mouseEvent);
 
         OpenForm.openNewForm("/Login.fxml", "Login page");
     }

@@ -9,7 +9,7 @@ public class VisitReasonService {
 
     private final VisitReasonDAO visitReasonDAO = new VisitReasonDAO();
 
-    public List< VisitReason > getAllVisitReasons(){
+    public List<VisitReason> getAllVisitReasons() {
 
         return visitReasonDAO.getAll();
     }

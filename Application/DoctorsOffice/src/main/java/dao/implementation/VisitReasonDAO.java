@@ -3,10 +3,10 @@ package dao.implementation;
 import dao.BaseDAO;
 import entities.VisitReason;
 
-public class VisitReasonDAO extends BaseDAO< VisitReason > {
+public class VisitReasonDAO extends BaseDAO<VisitReason> {
 
-    public VisitReasonDAO(){
+    public VisitReasonDAO() {
 
-        super.setClass( VisitReason.class );
+        super.setClass(VisitReason.class);
     }
 }

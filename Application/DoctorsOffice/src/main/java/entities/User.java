@@ -10,31 +10,31 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "ID" )
+    @Column(name = "ID")
     private int id;
 
-    @Column( name = "EMAIL", unique = true )
+    @Column(name = "EMAIL", unique = true)
     private String email;
 
-    @Column( name = "USERNAME", unique = true )
+    @Column(name = "USERNAME", unique = true)
     private String username;
 
-    @Column( name = "PASSWORD" )
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Column( name = "FIRST_NAME" )
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column( name = "SECOND_NAME")
+    @Column(name = "SECOND_NAME")
     private String secondName;
 
-    @Column( name = "IDENTIFIER", unique = true )
+    @Column(name = "IDENTIFIER", unique = true)
     private String identifier;
 
     @Column(name = "PHONE_NUMBER", unique = true)
     private String phoneNumber;
 
-    @Column( name = "BIRTH_DATE")
+    @Column(name = "BIRTH_DATE")
     private LocalDate birthDate;
 
     @ManyToOne
@@ -52,7 +52,6 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
         this.birthDate = birthDate;
     }
-
 
     public int getId() {
         return id;

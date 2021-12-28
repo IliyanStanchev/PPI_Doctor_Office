@@ -10,8 +10,8 @@ public class ExaminationHourService {
 
     private final ExaminationHourDAO examinationHourDAO = new ExaminationHourDAO();
 
-    public List<ExaminationHour> getDoctorExaminationHours(final int doctorId, LocalDate localDate){
+    public List<ExaminationHour> getDoctorExaminationHours(final int doctorId, LocalDate localDate) {
 
-        return examinationHourDAO.getDoctorExaminationHours( doctorId, localDate );
+        return examinationHourDAO.getDoctorExaminationHours(doctorId, localDate);
     }
 }

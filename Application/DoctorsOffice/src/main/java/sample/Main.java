@@ -1,6 +1,5 @@
 package sample;
 
-import entities.User;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import utils.OpenForm;
@@ -14,8 +13,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-       // DatabaseFiller databaseFiller = new DatabaseFiller();
-       // databaseFiller.fillDatabase();
+        // DatabaseFiller databaseFiller = new DatabaseFiller();
+        // databaseFiller.fillDatabase();
 
         OpenForm.openNewForm("/Login.fxml", "Login page");
 

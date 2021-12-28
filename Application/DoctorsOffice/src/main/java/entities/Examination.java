@@ -4,27 +4,27 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity( name = "EXAMINATIONS" )
+@Entity(name = "EXAMINATIONS")
 public class Examination implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "ID" )
+    @Column(name = "ID")
     private int id;
 
     @OneToOne
     private ReservedHour reservedHour;
 
-    @Column( name = "DOCUMENT_PATH" )
+    @Column(name = "DOCUMENT_PATH")
     private String documentPath;
 
-    @Column( name = "DESCRIPTION" )
+    @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column( name = "SHARED_WITH_PATIENT" )
+    @Column(name = "SHARED_WITH_PATIENT")
     private boolean sharedWithPatient;
 
-    public Examination(){
+    public Examination() {
 
     }
 

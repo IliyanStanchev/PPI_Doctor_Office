@@ -30,7 +30,7 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class PatientMakeAnAppointmentController implements Initializable  {
+public class PatientMakeAnAppointmentController implements Initializable {
 
     private User currentUser;
 
@@ -51,8 +51,8 @@ public class PatientMakeAnAppointmentController implements Initializable  {
 
     private ObservableList<Specialization> specializationList = FXCollections.observableArrayList();
 
-    private ObservableList<DoctorView>  doctorViews     = FXCollections.observableArrayList();
-    private FilteredList<DoctorView>    filteredData    = new FilteredList<>( doctorViews, b -> true );
+    private ObservableList<DoctorView> doctorViews = FXCollections.observableArrayList();
+    private FilteredList<DoctorView> filteredData = new FilteredList<>(doctorViews, b -> true);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -62,7 +62,7 @@ public class PatientMakeAnAppointmentController implements Initializable  {
         initListView();
     }
 
-    private void initSpecializationCombo(){
+    private void initSpecializationCombo() {
 
         SpecializationService specializationService = new SpecializationService();
 
@@ -77,49 +77,49 @@ public class PatientMakeAnAppointmentController implements Initializable  {
     private void initListView() {
 
         DoctorService doctorService = new DoctorService();
-        for( Doctor doctor: doctorService.getAllDoctors() ) {
+        for (Doctor doctor : doctorService.getAllDoctors()) {
 
-            DoctorView doctorView = new DoctorView( doctor.getId(), doctor.getAddress().getCity(), doctor.getUser().getFullName(), doctor.getSpecialization().getName(), doctor.getPhotoPath() );
-            doctorViews.add( doctorView );
+            DoctorView doctorView = new DoctorView( doctor );
+            doctorViews.add(doctorView);
         }
 
-        SortedList< DoctorView > sortedData = new SortedList<>(filteredData);
+        SortedList<DoctorView> sortedData = new SortedList<>(filteredData);
 
-        cityField.textProperty().addListener( obs->{
+        cityField.textProperty().addListener(obs -> {
 
             String city = cityField.getText();
-            if( city == null || city.length() == 0 )
-                filteredData.setPredicate( s-> true );
+            if (city == null || city.length() == 0)
+                filteredData.setPredicate(s -> true);
             else
-                filteredData.setPredicate( s -> s.getCity().toLowerCase(Locale.ROOT).contains(city.toLowerCase(Locale.ROOT)) );
+                filteredData.setPredicate(s -> s.getCity().toLowerCase(Locale.ROOT).contains(city.toLowerCase(Locale.ROOT)));
         });
 
-        doctorNameField.textProperty().addListener( obs->{
+        doctorNameField.textProperty().addListener(obs -> {
 
             String doctorName = doctorNameField.getText();
-            if( doctorName == null || doctorName.length() == 0 )
-                filteredData.setPredicate( s-> true );
+            if (doctorName == null || doctorName.length() == 0)
+                filteredData.setPredicate(s -> true);
             else
-                filteredData.setPredicate( doctor -> doctor.getDoctorName().toLowerCase(Locale.ROOT).contains(doctorName.toLowerCase(Locale.ROOT)) );
+                filteredData.setPredicate(doctor -> doctor.getDoctorName().toLowerCase(Locale.ROOT).contains(doctorName.toLowerCase(Locale.ROOT)));
         });
 
-        specializationCombo.setOnAction( actionEvent -> {
+        specializationCombo.setOnAction(actionEvent -> {
 
             Specialization specialization = specializationCombo.getSelectionModel().getSelectedItem();
 
-            filteredData.setPredicate( doctorView ->
+            filteredData.setPredicate(doctorView ->
             {
-                if ( specialization == null )
+                if (specialization == null)
                     return true;
 
                 String lowerCaseFilter = specialization.getName().toLowerCase();
 
-                if (doctorView.getSpeciality().toLowerCase().indexOf(lowerCaseFilter) != -1 )
+                if (doctorView.getSpeciality().toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;
 
                 return false;
             });
-        } );
+        });
 
         doctorView.setItems(sortedData);
 
@@ -127,7 +127,7 @@ public class PatientMakeAnAppointmentController implements Initializable  {
             private ImageView imageView = new ImageView();
 
             @Override
-            public void updateItem( DoctorView doctorView, boolean empty) {
+            public void updateItem(DoctorView doctorView, boolean empty) {
 
                 super.updateItem(doctorView, empty);
 
@@ -137,7 +137,7 @@ public class PatientMakeAnAppointmentController implements Initializable  {
                 } else {
 
                     try {
-                        imageView.setImage(new Image(new FileInputStream(doctorView.getImagePath()),100, 150, false, false));
+                        imageView.setImage(new Image(new FileInputStream(doctorView.getImagePath()), 100, 150, false, false));
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -146,7 +146,7 @@ public class PatientMakeAnAppointmentController implements Initializable  {
                     rectangle.setArcWidth(30.0);
                     rectangle.setArcHeight(30.0);
 
-                    ImagePattern pattern = new ImagePattern( imageView.getImage() );
+                    ImagePattern pattern = new ImagePattern(imageView.getImage());
 
                     rectangle.setFill(pattern);
                     rectangle.setEffect(new DropShadow(20, Color.BLACK));  // Shadow
@@ -156,23 +156,23 @@ public class PatientMakeAnAppointmentController implements Initializable  {
             }
         });
 
-        doctorView.setOnMouseClicked( new EventHandler<MouseEvent>() {
+        doctorView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
 
-                if ( event.getClickCount() == 2 ) {
+                if (event.getClickCount() == 2) {
                     DoctorView currentDoctor = doctorView.getSelectionModel().getSelectedItem();
-                    FXMLLoader fxmlLoader = OpenForm.openNewForm( "/PatientSelectAppointment.fxml", "Select an appointment");
+                    FXMLLoader fxmlLoader = OpenForm.openNewForm("/PatientSelectAppointment.fxml", "Select an appointment");
                     PatientSelectAppointmentController controller = fxmlLoader.getController();
-                    controller.loadCurrentDoctor( currentDoctor.getId() );
-                    controller.setCurrentUser( currentUser );
+                    controller.loadCurrentDoctor(currentDoctor.getId());
+                    controller.setCurrentUser(currentUser);
                 }
             }
         });
 
-        scrollPane.setContent( doctorView );
-        scrollPane.setFitToWidth( true );
+        scrollPane.setContent(doctorView);
+        scrollPane.setFitToWidth(true);
     }
 
     public void setCurrentUser(User currentUser) {

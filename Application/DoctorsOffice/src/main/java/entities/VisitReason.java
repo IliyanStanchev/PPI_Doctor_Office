@@ -4,18 +4,18 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity( name = "VISIT_REASONS" )
+@Entity(name = "VISIT_REASONS")
 public class VisitReason implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "ID" )
+    @Column(name = "ID")
     private int id;
 
-    @Column( name = "REASON" )
+    @Column(name = "REASON")
     private String reason;
 
-    public VisitReason(){
+    public VisitReason() {
 
     }
 

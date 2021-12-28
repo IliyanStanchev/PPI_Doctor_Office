@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import services.RoleService;
 import services.UserService;
 import utils.CloseForm;
 import utils.OpenForm;
@@ -34,12 +33,12 @@ public class LoginController implements Initializable {
 
     public void sendMessage(String s) {
 
-        resultLabel.setText( s );
-        resultLabel.setTextFill( Color.GREEN );
+        resultLabel.setText(s);
+        resultLabel.setTextFill(Color.GREEN);
     }
 
     @FXML
-    public void onLogin( ActionEvent actionEvent ) {
+    public void onLogin(ActionEvent actionEvent) {
 
         resultLabel.setText("");
 
@@ -58,24 +57,24 @@ public class LoginController implements Initializable {
 
         UserService userService = new UserService();
 
-        User user = userService.authorizeUser( username, password );
+        User user = userService.authorizeUser(username, password);
 
-        if ( user == null ) {
+        if (user == null) {
             resultLabel.setText("Wrong username or password. Try again.");
             usernameField.requestFocus();
 
             return;
         }
 
-        CloseForm.closeForm( actionEvent );
+        CloseForm.closeForm(actionEvent);
 
-        OpenForm.openCurrentUserForm( user );
+        OpenForm.openCurrentUserForm(user);
     }
 
     @FXML
-    public void onRegister( ActionEvent actionEvent ) {
+    public void onRegister(ActionEvent actionEvent) {
 
-        OpenForm.openNewForm("/RegisterUserInformation.fxml", "User information", true );
-        CloseForm.closeForm( actionEvent );
+        OpenForm.openNewForm("/RegisterUserInformation.fxml", "User information", true);
+        CloseForm.closeForm(actionEvent);
     }
 }

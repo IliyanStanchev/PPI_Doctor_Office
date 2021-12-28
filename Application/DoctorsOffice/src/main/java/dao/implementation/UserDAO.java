@@ -23,7 +23,7 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
                     .setParameter("username", username)
                     .getSingleResult();
 
-        } catch ( NoResultException e ) {
+        } catch (NoResultException e) {
             user = null;
         }
         return user;

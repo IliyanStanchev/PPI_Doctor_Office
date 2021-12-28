@@ -11,13 +11,13 @@ public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "ID" )
+    @Column(name = "ID")
     private int id;
 
-    @Column( name = "ROLE_NAME", unique = true )
+    @Column(name = "ROLE_NAME", unique = true)
     private String roleName;
 
-    @Column( name = "ROLE_UID", unique = true )
+    @Column(name = "ROLE_UID", unique = true)
     private RoleEnum roleUid;
 
     public Role() {
@@ -59,5 +59,10 @@ public class Role implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getRoleName());
+    }
+
+    @Override
+    public String toString() {
+        return roleName;
     }
 }

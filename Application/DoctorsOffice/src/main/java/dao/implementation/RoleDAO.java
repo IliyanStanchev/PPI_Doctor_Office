@@ -2,7 +2,6 @@ package dao.implementation;
 
 import dao.BaseDAO;
 import entities.Role;
-import entities.User;
 import enums.RoleEnum;
 import manager.MyEntityManager;
 
@@ -15,15 +14,15 @@ public class RoleDAO extends BaseDAO<Role> {
         super.setClass(Role.class);
     }
 
-    public Role getRoleByUID( RoleEnum roleEnum ){
+    public Role getRoleByUID(RoleEnum roleEnum) {
 
         Role role;
         try {
             role = (Role) MyEntityManager.getEntityManager().createQuery("FROM ROLES r WHERE  r.roleUid=: roleEnum ")
-                    .setParameter("roleEnum", roleEnum )
+                    .setParameter("roleEnum", roleEnum)
                     .getSingleResult();
 
-        } catch ( NoResultException e ) {
+        } catch (NoResultException e) {
             role = null;
         }
 

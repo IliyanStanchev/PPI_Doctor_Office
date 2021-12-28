@@ -17,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import services.ReservedHourService;
 import utils.OpenForm;
 import view.PatientView;
-import view.ReservedHourView;
 
 import java.net.URL;
 import java.util.Locale;
@@ -25,19 +24,15 @@ import java.util.ResourceBundle;
 
 public class DoctorPatientReviewController implements Initializable {
 
-    public TableView< PatientView > patientTableView;
+    public TableView<PatientView> patientTableView;
 
-    public TableColumn< PatientView, String >  patientNameColumn;
-    public TableColumn< PatientView, String >  patientIdentifierColumn;
-    public TableColumn< PatientView, Integer > totalVisitsColumn;
-
-    private ObservableList<PatientView> patientsList    = FXCollections.observableArrayList();
-    private FilteredList<PatientView>   filteredData    = new FilteredList<>(patientsList, b -> true);
-
+    public TableColumn<PatientView, String> patientNameColumn;
+    public TableColumn<PatientView, String> patientIdentifierColumn;
+    public TableColumn<PatientView, Integer> totalVisitsColumn;
     public Label resultLabel;
-
     public TextField patientIdentifierField;
-
+    private ObservableList<PatientView> patientsList = FXCollections.observableArrayList();
+    private FilteredList<PatientView> filteredData = new FilteredList<>(patientsList, b -> true);
     @FXML
     private TextField patientNameField;
 
@@ -53,40 +48,40 @@ public class DoctorPatientReviewController implements Initializable {
 
         ReservedHourService reservedHourService = new ReservedHourService();
 
-        for( PatientView patientView : reservedHourService.getDoctorPatients( currentDoctor.getId() ) )
-            patientsList.add( patientView );
+        for (PatientView patientView : reservedHourService.getDoctorPatients(currentDoctor.getId()))
+            patientsList.add(patientView);
 
-        patientTableView.setItems( patientsList );
-        patientTableView.setItems( filteredData );
+        patientTableView.setItems(patientsList);
+        patientTableView.setItems(filteredData);
 
-        patientNameField.textProperty().addListener(obs->{
+        patientNameField.textProperty().addListener(obs -> {
 
             String patientName = patientNameField.getText();
-            if( patientName == null || patientName.length() == 0 )
-                filteredData.setPredicate(s -> true );
+            if (patientName == null || patientName.length() == 0)
+                filteredData.setPredicate(s -> true);
             else
-                filteredData.setPredicate(reservedHourView -> reservedHourView.getPatientName().toLowerCase(Locale.ROOT).contains( patientName.toLowerCase(Locale.ROOT)) );
+                filteredData.setPredicate(reservedHourView -> reservedHourView.getPatientName().toLowerCase(Locale.ROOT).contains(patientName.toLowerCase(Locale.ROOT)));
         });
 
-        patientIdentifierField.textProperty().addListener(obs->{
+        patientIdentifierField.textProperty().addListener(obs -> {
 
             String identifier = patientIdentifierField.getText();
-            if( identifier == null || identifier.length() == 0 )
-                filteredData.setPredicate(s -> true );
+            if (identifier == null || identifier.length() == 0)
+                filteredData.setPredicate(s -> true);
             else
-                filteredData.setPredicate( patientView -> patientView.getIdentifier().toLowerCase(Locale.ROOT).contains( identifier.toLowerCase(Locale.ROOT)) );
+                filteredData.setPredicate(patientView -> patientView.getIdentifier().toLowerCase(Locale.ROOT).contains(identifier.toLowerCase(Locale.ROOT)));
         });
 
-        patientTableView.setOnMouseClicked( new EventHandler<MouseEvent>() {
+        patientTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
 
-                if ( event.getClickCount() == 2 ) {
+                if (event.getClickCount() == 2) {
                     PatientView patientView = patientTableView.getSelectionModel().getSelectedItem();
-                    FXMLLoader fxmlLoader = OpenForm.openNewForm( "/DoctorViewPatientHistory.fxml", "Patient history");
+                    FXMLLoader fxmlLoader = OpenForm.openNewForm("/DoctorViewPatientHistory.fxml", "Patient history");
                     DoctorViewPatientHistoryController controller = fxmlLoader.getController();
-                    controller.setCurrentHistoryData( currentDoctor, patientView );
+                    controller.setCurrentHistoryData(currentDoctor, patientView);
                 }
             }
         });
@@ -95,9 +90,9 @@ public class DoctorPatientReviewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        patientNameColumn.setCellValueFactory( new PropertyValueFactory<>("patientName") );
-        patientIdentifierColumn.setCellValueFactory( new PropertyValueFactory<>("identifier") );
-        totalVisitsColumn.setCellValueFactory( new PropertyValueFactory<>("totalVisits") );
+        patientNameColumn.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+        patientIdentifierColumn.setCellValueFactory(new PropertyValueFactory<>("identifier"));
+        totalVisitsColumn.setCellValueFactory(new PropertyValueFactory<>("totalVisits"));
 
 
     }

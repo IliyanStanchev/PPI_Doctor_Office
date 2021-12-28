@@ -1,6 +1,5 @@
 package dao;
 
-import entities.ReservedHour;
 import manager.MyEntityManager;
 
 import javax.persistence.EntityManager;
@@ -8,7 +7,7 @@ import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class BaseDAO< EntityClass extends Serializable > {
+public abstract class BaseDAO<EntityClass extends Serializable> {
 
     //Members
     //------------------------------------

@@ -41,54 +41,58 @@ public class PatientSelectAppointmentController {
 
     private Doctor currentDoctor;
 
-    public void loadCurrentDoctor( int doctorId ) {
+    public void loadCurrentDoctor(int doctorId) {
 
         DoctorService doctorService = new DoctorService();
-        currentDoctor = doctorService.getDoctorByID( doctorId );
+        currentDoctor = doctorService.getDoctorByID(doctorId);
 
-        nameField.setText( currentDoctor.getUser().getFullName() );
-        nameField.setDisable( true );
+        nameField.setText(currentDoctor.getUser().getFullName());
+        nameField.setDisable(true);
 
-        specializationField.setText( currentDoctor.getSpecialization().getName() );
-        specializationField.setDisable( true );
+        specializationField.setText(currentDoctor.getSpecialization().getName());
+        specializationField.setDisable(true);
 
-        cityField.setText( currentDoctor.getAddress().getCity() );
-        cityField.setDisable( true );
+        cityField.setText(currentDoctor.getAddress().getCity());
+        cityField.setDisable(true);
 
-        addressField.setText( currentDoctor.getAddress().getAddress() );
-        addressField.setDisable( true );
+        addressField.setText(currentDoctor.getAddress().getAddress());
+        addressField.setDisable(true);
 
-        descriptionField.setText( currentDoctor.getDescription() );
-        descriptionField.setDisable( true );
+        descriptionField.setText(currentDoctor.getDescription());
+        descriptionField.setDisable(true);
 
         Image image = null;
 
         try {
-            image = new Image(new FileInputStream( currentDoctor.getPhotoPath() ));
+            image = new Image(new FileInputStream(currentDoctor.getPhotoPath()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        imageView.setImage( image );
+        imageView.setImage(image);
     }
 
     public void onMakeAnAppointment(ActionEvent actionEvent) {
 
-        FXMLLoader loader = OpenForm.openNewForm( "/PatientReserveHour.fxml", "Make an appointment" );
+        FXMLLoader loader = OpenForm.openNewForm("/PatientReserveHour.fxml", "Make an appointment");
         PatientReserveHourController controller = loader.getController();
-        controller.setCurrentDoctor( currentDoctor );
-        controller.setCurrentUser( currentUser );
+        controller.setCurrentDoctor(currentDoctor);
+        controller.setCurrentUser(currentUser);
 
-        CloseForm.closeForm( actionEvent );
+        CloseForm.closeForm(actionEvent);
     }
 
     public void onGoBack(MouseEvent mouseEvent) {
 
-        CloseForm.closeForm( mouseEvent );
+        CloseForm.closeForm(mouseEvent);
     }
 
     public void setCurrentUser(User user) {
 
         currentUser = user;
+    }
+
+    public Doctor getCurrentDoctor() {
+        return currentDoctor;
     }
 }

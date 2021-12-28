@@ -6,17 +6,19 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class FileManager {
 
-    public static final String doctorPicturesFileNameStarter       = "DoctorPicture_";
-    public static final String doctorDocumentaryFileNameStarter    = "DoctorDocumentary_";
-    public static final String examinationNoteFileNameStarter      = "ExaminationNote_";
-
-    private static final String doctorPicturesDirectory             = "src/main/resources/DoctorPicture/";
-    public  static final String doctorDocumentaryDirectory          = "src/main/resources/DoctorDocumentary/";
-    public  static final String examinationNoteDirectory            = "src/main/resources/ExaminationNote/";
+    public static final String doctorPicturesFileNameStarter = "DoctorPicture_";
+    public static final String doctorDocumentaryFileNameStarter = "DoctorDocumentary_";
+    public static final String examinationNoteFileNameStarter = "ExaminationNote_";
+    public static final String doctorDocumentaryDirectory = "src/main/resources/DoctorDocumentary/";
+    public static final String examinationNoteDirectory = "src/main/resources/ExaminationNote/";
+    private static final String doctorPicturesDirectory = "src/main/resources/DoctorPicture/";
 
     public static File choosePictureFile(Label errorLabel) {
 
@@ -49,11 +51,11 @@ public class FileManager {
         return file;
     }
 
-    public static String copyFileToDirectory( File file, final String fileDirectory, final String filename ) throws IOException {
+    public static String copyFileToDirectory(File file, final String fileDirectory, final String filename) throws IOException {
 
         final String fullPath = fileDirectory + filename;
 
-        Path path = Paths.get( fullPath );
+        Path path = Paths.get(fullPath);
         Files.copy(file.toPath(), path, StandardCopyOption.REPLACE_EXISTING);
 
         return fullPath;
@@ -70,9 +72,9 @@ public class FileManager {
     }
 
 
-    public static void deleteFile( String filePath ) {
+    public static void deleteFile(String filePath) {
 
-        File file = new File( filePath );
+        File file = new File(filePath);
         file.delete();
     }
 }

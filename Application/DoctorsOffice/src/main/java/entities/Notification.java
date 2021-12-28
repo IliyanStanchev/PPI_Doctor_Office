@@ -8,16 +8,16 @@ public class Notification implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "ID" )
+    @Column(name = "ID")
     private int id;
 
     @OneToOne
     private User user;
 
-    @Column( name = "DESCRIPTION" )
+    @Column(name = "DESCRIPTION")
     private String description;
 
-    public Notification(){
+    public Notification() {
 
     }
 
