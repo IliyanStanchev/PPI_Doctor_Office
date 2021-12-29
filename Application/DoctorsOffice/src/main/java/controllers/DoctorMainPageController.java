@@ -14,6 +14,7 @@ import utils.OpenForm;
 public class DoctorMainPageController extends MainPageController {
 
     private Doctor currentDoctor;
+
     @FXML
     private AnchorPane workPane;
 
@@ -49,5 +50,14 @@ public class DoctorMainPageController extends MainPageController {
         OpenForm.openNewForm("/Login.fxml", "Login Page");
         CloseForm.closeForm(mouseEvent);
 
+    }
+
+    public void onPatientProfile(ActionEvent actionEvent) {
+
+        FXMLLoader fxmlLoader = OpenForm.openNewForm("/PatientMainPage.fxml", "Patient main page" );
+        PatientMainPageController controller = fxmlLoader.getController();
+        controller.setCurrentUser( super.getCurrentUser() );
+
+        CloseForm.closeForm( actionEvent );
     }
 }

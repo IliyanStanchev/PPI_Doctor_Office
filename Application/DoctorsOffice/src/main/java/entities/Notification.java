@@ -1,9 +1,13 @@
 package entities;
 
+import javafx.scene.control.Alert;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity( name = "NOTIFICATIONS")
 public class Notification implements Serializable {
 
     @Id
@@ -17,13 +21,51 @@ public class Notification implements Serializable {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @Column(name = "NOTIFICATION_TIMESTAMP")
+    private LocalDateTime notificationTimestamp;
+
+    @Column(name = "NOTIFICATION_TYPE")
+    private Alert.AlertType notificationType;
+
+    @Column(name = "RESERVED_HOUR_ID")
+    private int reservedHourID;
+
     public Notification() {
 
     }
 
-    public Notification(User user, String description) {
-        this.user = user;
-        this.description = description;
+    public Notification(User user, String description, Alert.AlertType alertType, int reservedHourID ) {
+
+        this.user             = user;
+        this.description      = description;
+        notificationTimestamp = LocalDateTime.now();
+        this.notificationType = alertType;
+        this.reservedHourID   = reservedHourID;
+    }
+
+    public int getReservedHourID() {
+        return reservedHourID;
+    }
+
+    public void setReservedHourID(int reservedHourID) {
+        this.reservedHourID = reservedHourID;
+    }
+
+    public Alert.AlertType getNotificationType() {
+        return notificationType;
+    }
+
+    public void setNotificationType(Alert.AlertType notificationType) {
+        this.notificationType = notificationType;
+    }
+
+    public LocalDateTime getNotificationTimestamp() {
+
+        return notificationTimestamp;
+    }
+
+    public void setNotificationTimestamp(LocalDateTime notificationTimestamp) {
+        this.notificationTimestamp = notificationTimestamp;
     }
 
     public int getId() {

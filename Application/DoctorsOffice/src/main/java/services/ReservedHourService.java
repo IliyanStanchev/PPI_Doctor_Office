@@ -36,7 +36,7 @@ public class ReservedHourService {
 
     public List<ReservedHour> getPatientReservedHours(final int patientID) {
 
-        return reservedHourDAO.getPatientReservedHours(patientID);
+        return reservedHourDAO.getPatientReservedHours( patientID );
     }
 
     public boolean cancelReservedHour(int reservedHourID) {
@@ -58,8 +58,12 @@ public class ReservedHourService {
         return true;
     }
 
-    public List<ReservedHour> getDoctorReservedHours(int doctorId) {
-        return reservedHourDAO.getDoctorReservedHours(doctorId);
+    public List<ReservedHour> getDoctorTodayReservedHours(int doctorId) {
+        return reservedHourDAO.getDoctorTodayReservedHours(doctorId);
+    }
+
+    public List<ReservedHour> getDoctorReservedHours( int doctorId, int patientId ) {
+        return reservedHourDAO.getDoctorReservedHours( doctorId, patientId );
     }
 
     public ReservedHour getReservedHourByID(int reservedHourID) {

@@ -1,6 +1,7 @@
 package controllers;
 
 import entities.*;
+import enums.RoleEnum;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import services.RoleService;
 import services.UserAccountService;
+import utils.AlertHelper;
 import view.UserView;
 
 import java.net.URL;
@@ -47,6 +49,12 @@ public class AdminUserOverviewController implements Initializable {
 
         if( userView == null )
             return;
+
+        if( userView.getRoleEnum() == RoleEnum.Administrator ){
+
+            AlertHelper alertHelper = new AlertHelper( Alert.AlertType.INFORMATION );
+            alertHelper.show("Information", "Administrator account cannot be blocked");
+        }
 
         UserAccountService userAccountService = new UserAccountService();
 
@@ -133,6 +141,11 @@ public class AdminUserOverviewController implements Initializable {
 
                 if( userView == null )
                     return;
+
+                manageAccessButton.setDisable( false );
+
+                if( userView.getRoleEnum() == RoleEnum.Administrator )
+                    manageAccessButton.setDisable( true );
 
                 manageAccessButton.setText( userView.isBlocked() ? UNBLOCK_USER : BLOCK_USER );
             }

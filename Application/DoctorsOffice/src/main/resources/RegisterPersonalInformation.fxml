@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="681.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/11.0.2"
-            fx:controller="controllers.RegisterPersonalInformationController">
+            fx:controller="controllers.RegistrationPersonalInformationController">
     <top>
         <AnchorPane prefHeight="95.0" prefWidth="550.0" style="-fx-background-color: #58D68D;"
                     BorderPane.alignment="CENTER">

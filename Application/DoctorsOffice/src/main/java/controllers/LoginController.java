@@ -1,13 +1,18 @@
 package controllers;
 
 import entities.User;
+import entities.UserAccount;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import services.UserAccountService;
 import services.UserService;
+import utils.AlertHelper;
 import utils.CloseForm;
 import utils.OpenForm;
 
@@ -15,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class LoginController implements Initializable {
+public class LoginController {
 
     @FXML
     private TextField usernameField;
@@ -25,11 +30,6 @@ public class LoginController implements Initializable {
 
     @FXML
     private Label resultLabel;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 
     public void sendMessage(String s) {
 
@@ -66,6 +66,20 @@ public class LoginController implements Initializable {
             return;
         }
 
+        UserAccountService userAccountService = new UserAccountService();
+
+        UserAccount userAccount = userAccountService.getUserAccountByUserID( user.getId() );
+
+        if( userAccount == null )
+            return;
+
+        if( userAccount.isBlocked() ) {
+
+            AlertHelper alertHelper = new AlertHelper( Alert.AlertType.WARNING );
+            alertHelper.show( "Access restricted", "Your account is currently blocked. Please contact administrator for more information." );
+            return;
+        }
+
         CloseForm.closeForm(actionEvent);
 
         OpenForm.openCurrentUserForm(user);
@@ -76,5 +90,15 @@ public class LoginController implements Initializable {
 
         OpenForm.openNewForm("/RegisterUserInformation.fxml", "User information", true);
         CloseForm.closeForm(actionEvent);
+    }
+
+    public void onChangeUsername(KeyEvent keyEvent) {
+
+        resultLabel.setText("");
+    }
+
+    public void onChangePassword(KeyEvent keyEvent) {
+
+        resultLabel.setText("");
     }
 }

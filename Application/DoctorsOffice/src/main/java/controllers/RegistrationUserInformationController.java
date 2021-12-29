@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import services.UserService;
 import utils.CloseForm;
 import utils.OpenForm;
 import validators.FieldValidator;
@@ -16,7 +17,7 @@ import validators.FieldValidator;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RegisterUserInformationController implements Initializable {
+public class RegistrationUserInformationController implements Initializable {
 
     private static final int PASSWORD_FIELD_LENGTH = 8;
 
@@ -89,7 +90,7 @@ public class RegisterUserInformationController implements Initializable {
         fillCurrentUser();
 
         FXMLLoader fxmlLoader = OpenForm.openNewForm("/RegisterPersonalInformation.fxml", "Personal Information", true);
-        RegisterPersonalInformationController controller = fxmlLoader.getController();
+        RegistrationPersonalInformationController controller = fxmlLoader.getController();
         controller.setCurrentUser(currentUser);
 
         CloseForm.closeForm(actionEvent);
@@ -119,6 +120,13 @@ public class RegisterUserInformationController implements Initializable {
 
         if (!FieldValidator.comparePassword(passwordField, confirmPasswordField, confirmPasswordLabel))
             return false;
+
+        UserService userService = new UserService();
+
+        if( userService.getUserByEmail( emailField.getText( )) != null ){
+            emailLabel.setText("User with this email already exist.");
+            return false;
+        }
 
         return true;
     }

@@ -3,6 +3,7 @@ package controllers;
 import entities.Doctor;
 import entities.Specialization;
 import entities.User;
+import enums.RoleEnum;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -59,7 +60,6 @@ public class PatientMakeAnAppointmentController implements Initializable {
 
         initSpecializationCombo();
 
-        initListView();
     }
 
     private void initSpecializationCombo() {
@@ -77,10 +77,13 @@ public class PatientMakeAnAppointmentController implements Initializable {
     private void initListView() {
 
         DoctorService doctorService = new DoctorService();
-        for (Doctor doctor : doctorService.getAllDoctors()) {
+        for (Doctor doctor : doctorService.getAllConfirmedDoctors()) {
 
-            DoctorView doctorView = new DoctorView( doctor );
-            doctorViews.add(doctorView);
+            if( currentUser.getRole().getRoleUid() == RoleEnum.Doctor
+                && doctor.getUser().getId() == currentUser.getId() )
+                continue;
+
+            doctorViews.add( new DoctorView( doctor ) );
         }
 
         SortedList<DoctorView> sortedData = new SortedList<>(filteredData);
@@ -163,6 +166,9 @@ public class PatientMakeAnAppointmentController implements Initializable {
 
                 if (event.getClickCount() == 2) {
                     DoctorView currentDoctor = doctorView.getSelectionModel().getSelectedItem();
+                    if( currentDoctor == null )
+                        return;
+
                     FXMLLoader fxmlLoader = OpenForm.openNewForm("/PatientSelectAppointment.fxml", "Select an appointment");
                     PatientSelectAppointmentController controller = fxmlLoader.getController();
                     controller.loadCurrentDoctor(currentDoctor.getId());
@@ -178,5 +184,7 @@ public class PatientMakeAnAppointmentController implements Initializable {
     public void setCurrentUser(User currentUser) {
 
         this.currentUser = currentUser;
+
+        initListView();
     }
 }

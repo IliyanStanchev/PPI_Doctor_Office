@@ -10,6 +10,15 @@
 
 <AnchorPane prefHeight="476.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientViewNotesController">
     <children>
+      <AnchorPane layoutY="-1.0" prefHeight="97.0" prefWidth="615.0" style="-fx-background-color: #58D68D;">
+         <children>
+            <Text layoutX="185.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Examination Details" wrappingWidth="244.54996490478516">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
         <TextField fx:id="visitReasonField" layoutX="343.0" layoutY="109.0" prefHeight="44.0" prefWidth="212.0" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
@@ -31,15 +40,6 @@
             </font>
         </TextField>
         <Hyperlink layoutX="379.0" layoutY="204.0" onAction="#onViewAttachedDocument" text="View attached document" />
-        <Label fx:id="resultLabel" layoutX="340.0" layoutY="435.0" prefHeight="18.0" prefWidth="0.0" textFill="RED" />
-      <AnchorPane layoutY="-1.0" prefHeight="97.0" prefWidth="615.0" style="-fx-background-color: #58D68D;">
-         <children>
-            <Text layoutX="185.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Examination Details" wrappingWidth="244.54996490478516">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
+        <Label fx:id="resultLabel" layoutX="92.0" layoutY="435.0" prefHeight="18.0" prefWidth="431.0" textFill="RED" />
     </children>
 </AnchorPane>

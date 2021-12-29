@@ -31,7 +31,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DoctorApplyController implements Initializable {
+public class RegistrationDoctorApplyController implements Initializable {
 
     @FXML
     private Label uploadLabel;
@@ -91,8 +91,8 @@ public class DoctorApplyController implements Initializable {
 
         Image image = new Image(filePath);
         imageView.setImage(image);
-        imageView.setFitHeight(320);
-        imageView.setFitWidth(120);
+        imageView.setFitHeight(270);
+        imageView.setFitWidth(190);
     }
 
     @FXML
@@ -163,13 +163,13 @@ public class DoctorApplyController implements Initializable {
             return false;
         }
 
-        if (!DataValidator.isFieldEmpty(descriptionField, descriptionLabel))
-            return false;
-
         if (!DataValidator.isFieldEmpty(cityField, cityLabel))
             return false;
 
         if (!DataValidator.isFieldEmpty(addressField, addressLabel))
+            return false;
+
+        if (!DataValidator.isFieldEmpty(descriptionField, descriptionLabel))
             return false;
 
         return true;
@@ -226,7 +226,7 @@ public class DoctorApplyController implements Initializable {
         CloseForm.closeForm(mouseEvent);
 
         FXMLLoader fxmlLoader = OpenForm.openNewForm("/RegisterPersonalInformation.fxml", "User information", true);
-        RegisterPersonalInformationController controller = fxmlLoader.getController();
+        RegistrationPersonalInformationController controller = fxmlLoader.getController();
         controller.setCurrentUser(currentUser);
     }
 }

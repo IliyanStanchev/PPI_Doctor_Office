@@ -28,4 +28,19 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
         }
         return user;
     }
+
+    public User getUserByEmail(String email) {
+
+        User user;
+        try {
+            user = (User) MyEntityManager.getEntityManager().createQuery("FROM USERS u WHERE  u.email =: email ")
+                    .setParameter("email", email)
+                    .getSingleResult();
+
+        } catch (NoResultException e) {
+            user = null;
+        }
+
+        return user;
+    }
 }

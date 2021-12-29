@@ -58,4 +58,14 @@ public class UserService {
 
         return true;
     }
+
+    public User getUserByEmail( final String email ) {
+
+        return userDAO.getUserByEmail( email );
+    }
+
+    public void saveUser( User user ) {
+
+        userDAO.saveOrUpdate( user );
+    }
 }

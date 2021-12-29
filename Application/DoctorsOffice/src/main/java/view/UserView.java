@@ -1,6 +1,7 @@
 package view;
 
 import entities.UserAccount;
+import enums.RoleEnum;
 
 public class UserView {
 
@@ -11,6 +12,7 @@ public class UserView {
     private boolean blocked;
     private String  state;
     private String  role;
+    private RoleEnum roleEnum;
     private String  identifier;
     private String  name;
 
@@ -21,6 +23,15 @@ public class UserView {
         this.role       = userAccount.getUser().getRole().getRoleName();
         this.name       = userAccount.getUser().getFullName();
         this.identifier = userAccount.getUser().getIdentifier();
+        this.roleEnum   = userAccount.getUser().getRole().getRoleUid();
+    }
+
+    public RoleEnum getRoleEnum() {
+        return roleEnum;
+    }
+
+    public void setRoleEnum(RoleEnum roleEnum) {
+        this.roleEnum = roleEnum;
     }
 
     public boolean isBlocked() {

@@ -61,7 +61,7 @@ public class DoctorViewTodayReservationsController implements Initializable {
 
         ReservedHourService reservedHourService = new ReservedHourService();
 
-        for (ReservedHour reservedHour : reservedHourService.getDoctorReservedHours(currentDoctor.getId()))
+        for (ReservedHour reservedHour : reservedHourService.getDoctorTodayReservedHours(currentDoctor.getId()))
             reservationsList.add(new ReservedHourView(reservedHour));
 
         reservationsTableView.setItems(reservationsList);

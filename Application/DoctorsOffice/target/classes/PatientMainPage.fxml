@@ -1,79 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="619.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/17"
-            fx:controller="controllers.PatientMainPageController">
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="619.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientMainPageController">
     <children>
         <AnchorPane layoutY="-2.0" prefHeight="627.0" prefWidth="942.0" style="-fx-background-color: #EFFF7B;">
             <children>
-                <AnchorPane fx:id="workPane" layoutX="328.0" layoutY="18.0" prefHeight="600.0" prefWidth="600.0"
-                            style="-fx-background-color: #ffffff;"/>
-                <AnchorPane layoutY="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                            minWidth="-Infinity" prefHeight="641.0" prefWidth="322.0"
-                            style="-fx-background-color: #EFFF7B;">
+                <AnchorPane fx:id="workPane" layoutX="328.0" layoutY="18.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" />
+                <AnchorPane layoutY="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="322.0" style="-fx-background-color: #EFFF7B;">
                     <effect>
                         <DropShadow height="12.82" radius="9.1125" spread="0.16" width="25.63">
                             <color>
-                                <Color red="0.940500020980835" green="1.0" blue="0.49000000953674316"/>
+                                <Color red="0.940500020980835" green="1.0" blue="0.49000000953674316" />
                             </color>
                         </DropShadow>
                     </effect>
                     <children>
-                        <AnchorPane layoutX="31.0" layoutY="49.0" prefHeight="180.0" prefWidth="256.0"
-                                    style="-fx-background-color: #ffffff;">
+                          <ImageView fx:id="notificationsImage" fitHeight="81.0" fitWidth="86.0" layoutX="113.0" layoutY="221.0" onMouseClicked="#onOpenNotifications" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@icons/NotificationsEmpty.png" />
+                              </image>
+                          </ImageView>
+                          <Label fx:id="welcomeUser" layoutX="58.0" layoutY="194.0" prefHeight="27.0" prefWidth="207.0">
+                              <font>
+                                  <Font name="System Bold Italic" size="17.0" />
+                              </font>
+                          </Label>
+                        <AnchorPane layoutX="30.0" layoutY="14.0" prefHeight="158.0" prefWidth="256.0" style="-fx-background-color: #ffffff;">
                             <children>
-                                <ImageView fitHeight="148.0" fitWidth="207.0" layoutX="38.0" layoutY="16.0"
-                                           pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="148.0" fitWidth="207.0" layoutX="54.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@icons/Doctor.png"/>
+                                        <Image url="@icons/Client.png" />
                                     </image>
                                 </ImageView>
-                                <Label fx:id="welcomeUser" layoutX="28.0" layoutY="138.0" prefHeight="27.0"
-                                       prefWidth="207.0">
-                                    <font>
-                                        <Font name="System Bold Italic" size="17.0"/>
-                                    </font>
-                                </Label>
                             </children>
                             <effect>
-                                <InnerShadow color="#292728" radius="26.0875" width="85.35"/>
+                                <InnerShadow color="#292728" radius="26.0875" width="85.35" />
                             </effect>
                         </AnchorPane>
-                        <Button layoutX="8.0" layoutY="354.0" mnemonicParsing="false" onAction="#onViewSavedHours"
-                                prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #ffffff;"
-                                text="View saved hours" textAlignment="RIGHT">
+                        <Button layoutX="5.0" layoutY="387.0" mnemonicParsing="false" onAction="#onViewSavedHours" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #EDFABD;" text="View saved hours" textAlignment="RIGHT">
                             <font>
-                                <Font name="Arial Bold" size="19.0"/>
+                                <Font name="Arial Bold" size="19.0" />
                             </font>
                         </Button>
-                        <Button layoutX="7.0" layoutY="439.0" mnemonicParsing="false" onAction="#onViewProfile"
-                                prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #ffffff;"
-                                text="Your Profile" textAlignment="RIGHT">
+                        <Button fx:id="yourProfileButton" layoutX="5.0" layoutY="473.0" mnemonicParsing="false" onAction="#onViewProfile" prefHeight="66.0" prefWidth="148.0" style="-fx-background-color: #EDFABD;" text="Your profile" textAlignment="RIGHT">
                             <font>
-                                <Font name="Arial Bold" size="19.0"/>
+                                <Font name="Arial Bold" size="19.0" />
                             </font>
                         </Button>
-                        <Button layoutX="7.0" layoutY="270.0" mnemonicParsing="false" onAction="#onMakeAppointment"
-                                prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #EDFABD;"
-                                text="Мake an appointment" textAlignment="RIGHT">
+                        <Button layoutX="5.0" layoutY="301.0" mnemonicParsing="false" onAction="#onMakeAppointment" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #EDFABD;" text="Мake an appointment" textAlignment="RIGHT">
                             <font>
-                                <Font name="System Bold" size="19.0"/>
+                                <Font name="System Bold" size="19.0" />
                             </font>
                         </Button>
-                        <ImageView fitHeight="88.0" fitWidth="109.0" layoutX="105.0" layoutY="540.0"
-                                   onMouseClicked="#onLogout" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="88.0" fitWidth="109.0" layoutX="121.0" layoutY="554.0" onMouseClicked="#onLogout" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/Logout.png"/>
+                                <Image url="@icons/Logout.png" />
                             </image>
                         </ImageView>
+                  <Button fx:id="doctorProfileButton" layoutX="158.0" layoutY="473.0" mnemonicParsing="false" onAction="#onDoctorProfile" prefHeight="66.0" prefWidth="158.0" style="-fx-background-color: #EDFABD;" text="Doctor profile" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Arial Bold" size="19.0" />
+                     </font>
+                  </Button>
                     </children>
                 </AnchorPane>
             </children>

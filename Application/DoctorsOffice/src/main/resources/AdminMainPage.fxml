@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="583.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminMainPageController">
+<AnchorPane prefHeight="604.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminMainPageController">
     <children>
         <AnchorPane layoutX="-4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="335.0" style="-fx-background-color: #27C4F2;">
             <effect>
@@ -54,6 +54,6 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="workPane" layoutX="344.0" layoutY="13.0" prefHeight="572.0" prefWidth="554.0" />
+        <AnchorPane fx:id="workPane" layoutX="341.0" layoutY="2.0" prefHeight="600.0" prefWidth="600.0" />
     </children>
 </AnchorPane>

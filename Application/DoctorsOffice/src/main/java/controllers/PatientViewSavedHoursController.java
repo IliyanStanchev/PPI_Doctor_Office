@@ -129,7 +129,7 @@ public class PatientViewSavedHoursController implements Initializable {
 
                     FXMLLoader fxmlLoader = OpenForm.openNewForm("/PatientViewNotes.fxml", "Examination details");
                     PatientViewNotesController controller = fxmlLoader.getController();
-                    controller.setCurrentReservedHour( reservedHourView );
+                    controller.setCurrentReservedHour( reservedHourView.getId() );
                 }
             }
         });

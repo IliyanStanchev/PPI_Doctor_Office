@@ -2,6 +2,7 @@ package utils;
 
 
 import controllers.MainPageController;
+import entities.Doctor;
 import entities.User;
 import enums.RoleEnum;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import services.DoctorService;
 
 import java.io.IOException;
 
@@ -61,6 +63,16 @@ public class OpenForm {
 
         final RoleEnum roleUid = user.getRole().getRoleUid();
 
+        boolean isDoctorConfirmed = false;
+
+        if( roleUid == RoleEnum.Doctor ) {
+
+            DoctorService doctorService = new DoctorService();
+            Doctor doctor = doctorService.getDoctorByUserID( user.getId() );
+
+            isDoctorConfirmed = doctor.isConfirmed();
+        }
+
         FXMLLoader fxmlLoader = null;
         MainPageController mainPageController = null;
 
@@ -75,7 +87,10 @@ public class OpenForm {
                 break;
 
             case Doctor:
-                fxmlLoader = openNewForm("/DoctorMainPage.fxml", "Doctor main page");
+                if( isDoctorConfirmed )
+                    fxmlLoader = openNewForm("/DoctorMainPage.fxml", "Doctor main page");
+                else
+                    fxmlLoader = openNewForm("/PatientMainPage.fxml", "Patient main page");
                 break;
 
             default:

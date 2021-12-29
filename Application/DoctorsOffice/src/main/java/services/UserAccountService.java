@@ -21,4 +21,9 @@ public class UserAccountService {
 
         return userAccountDAO.saveOrUpdate( userAccount );
     }
+
+    public UserAccount getUserAccountByUserID( int userID ) {
+
+        return userAccountDAO.getUserAccountByUserID( userID );
+    }
 }

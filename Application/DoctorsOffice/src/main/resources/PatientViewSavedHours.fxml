@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="600.0"
-            style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/11.0.2"
-            fx:controller="controllers.PatientViewSavedHoursController">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientViewSavedHoursController">
     <children>
-        <Text fx:id="specialityCombo" layoutX="213.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0"
-              text="Name"/>
-        <TextField fx:id="doctorNameField" layoutX="213.0" layoutY="38.0"/>
-        <Text layoutX="20.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date"/>
-        <DatePicker fx:id="dateField" layoutX="20.0" layoutY="38.0"/>
-        <Text layoutX="407.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialty"/>
-        <ComboBox fx:id="specializationCombo" layoutX="407.0" layoutY="38.0" prefHeight="25.0" prefWidth="173.0"/>
-        <TableView fx:id="reservedHoursView" layoutY="114.0" prefHeight="379.0" prefWidth="620.0"
-                   style="-fx-background-color: #FFFF66;">
+        <Text fx:id="specialityCombo" layoutX="213.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+        <TextField fx:id="doctorNameField" layoutX="213.0" layoutY="38.0" />
+        <Text layoutX="20.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+        <DatePicker fx:id="dateField" layoutX="20.0" layoutY="38.0" />
+        <Text layoutX="407.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialty" />
+        <ComboBox fx:id="specializationCombo" layoutX="407.0" layoutY="38.0" prefHeight="25.0" prefWidth="173.0" />
+        <TableView fx:id="reservedHoursView" layoutY="114.0" prefHeight="379.0" prefWidth="600.0" style="-fx-background-color: #FFFF66;">
             <columns>
-                <TableColumn fx:id="dateColumn" prefWidth="136.00000607967377" text="Date:"/>
-                <TableColumn fx:id="doctorNameColumn" minWidth="8.7999267578125" prefWidth="100.79998779296875"
-                             text="Doctor Name:"/>
-                <TableColumn fx:id="specialityColumn" prefWidth="200.0" text="Speciality:"/>
-                <TableColumn fx:id="viewReasonColumn" prefWidth="181.0" text="View Reason:"/>
+                <TableColumn fx:id="dateColumn" prefWidth="136.00000607967377" text="Date:" />
+                <TableColumn fx:id="doctorNameColumn" minWidth="8.7999267578125" prefWidth="124.0" text="Doctor Name:" />
+                <TableColumn fx:id="specialityColumn" prefWidth="148.0" text="Speciality:" />
+                <TableColumn fx:id="viewReasonColumn" prefWidth="210.0" text="View Reason:" />
             </columns>
         </TableView>
-        <Button layoutX="229.0" layoutY="529.0" mnemonicParsing="false" onAction="#onCancelHour" prefHeight="48.0"
-                prefWidth="161.0" style="-fx-background-color: #58D68D;" text="Cancel hour">
+        <Button layoutX="229.0" layoutY="529.0" mnemonicParsing="false" onAction="#onCancelHour" prefHeight="48.0" prefWidth="161.0" style="-fx-background-color: #58D68D;" text="Cancel hour">
             <font>
-                <Font name="Tw Cen MT" size="26.0"/>
+                <Font name="Tw Cen MT" size="26.0" />
             </font>
         </Button>
-        <Label fx:id="resultLabel" layoutX="296.0" layoutY="501.0" textFill="RED"/>
+        <Label fx:id="resultLabel" layoutX="296.0" layoutY="501.0" textFill="RED" />
     </children>
 </AnchorPane>

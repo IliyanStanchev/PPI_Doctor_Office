@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import services.NotificationService;
 import services.ReservedHourService;
 import utils.AlertHelper;
 import view.ReservedHourView;
@@ -36,12 +37,12 @@ public class AdminViewSavedHoursController implements Initializable {
 
     public void onCancelHour(ActionEvent actionEvent) {
 
-        ReservedHourView reservedHour = hoursView.getSelectionModel().getSelectedItem();
+        ReservedHourView reservedHourView = hoursView.getSelectionModel().getSelectedItem();
 
-        if (reservedHour == null)
+        if (reservedHourView == null)
             return;
 
-        if( reservedHour.getDate().isBefore( LocalDate.now() ) || reservedHour.getDate().isEqual( LocalDate.now() ) ) {
+        if( reservedHourView.getDate().isBefore( LocalDate.now() ) || reservedHourView.getDate().isEqual( LocalDate.now() ) ) {
 
             AlertHelper alertHelper = new AlertHelper( Alert.AlertType.INFORMATION );
             alertHelper.show("Information", "Past reserved hours or reserved hours for today cannot be canceled.");
@@ -53,12 +54,16 @@ public class AdminViewSavedHoursController implements Initializable {
         if (!alertHelper.show("Confirmation", "Are you sure you want to cancel the examination hour?"))
             return;
 
+        NotificationService notificationService = new NotificationService();
+
+        notificationService.addCanceledReservedHourNotification( reservedHourView );
+
         ReservedHourService reservedHourService = new ReservedHourService();
 
-        if (!reservedHourService.cancelReservedHour(reservedHour.getId()))
+        if (!reservedHourService.cancelReservedHour(reservedHourView.getId()))
             resultLabel.setText("Error occurred while canceling reserved hour.");
 
-        reservedHoursList.remove(reservedHour);
+        reservedHoursList.remove(reservedHourView);
         hoursView.setItems(filteredData);
     }
 

@@ -35,4 +35,10 @@ public class DoctorDAO extends BaseDAO<Doctor> {
         return MyEntityManager.getEntityManager().createQuery("FROM DOCTORS doctor WHERE doctor.confirmed = false order by doctor.registrationDate desc ")
                 .getResultList();
     }
+
+    public List<Doctor> getAllConfirmedDoctors() {
+
+        return MyEntityManager.getEntityManager().createQuery("FROM DOCTORS doctor WHERE doctor.confirmed = true")
+                .getResultList();
+    }
 }

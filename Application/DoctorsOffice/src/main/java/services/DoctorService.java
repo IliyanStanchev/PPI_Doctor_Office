@@ -1,9 +1,6 @@
 package services;
 
-import dao.implementation.AddressDAO;
-import dao.implementation.DoctorDAO;
-import dao.implementation.RoleDAO;
-import dao.implementation.UserDAO;
+import dao.implementation.*;
 import entities.*;
 import enums.RoleEnum;
 import security.BCryptPasswordEncoderService;
@@ -16,10 +13,11 @@ import java.util.List;
 
 public class DoctorService {
 
-    private final DoctorDAO doctorDAO = new DoctorDAO();
-    private final UserDAO userDAO = new UserDAO();
-    private final RoleDAO roleDAO = new RoleDAO();
-    private final AddressDAO addressDAO = new AddressDAO();
+    private final DoctorDAO         doctorDAO       = new DoctorDAO();
+    private final UserDAO           userDAO         = new UserDAO();
+    private final RoleDAO           roleDAO         = new RoleDAO();
+    private final AddressDAO        addressDAO      = new AddressDAO();
+    private final UserAccountDAO    userAccountDAO  = new UserAccountDAO();
 
     public boolean addDoctorApply(User user, File imageFile, File documentaryFile, Specialization specialization, String description, Address address) {
 
@@ -53,6 +51,17 @@ public class DoctorService {
             return false;
         }
 
+        if( userAccountDAO.saveOrUpdate( new UserAccount( user, false ) ) == null ){
+
+            if (currentUser == null) {
+
+                FileManager.deleteFile(picturePath);
+                FileManager.deleteFile(documentaryPath);
+
+                return false;
+            }
+        }
+
         Address savedAddress = addressDAO.saveOrUpdate(address);
 
         Doctor doctor = new Doctor(user, specialization, documentaryPath, picturePath, description, savedAddress);
@@ -68,9 +77,9 @@ public class DoctorService {
         return true;
     }
 
-    public List<Doctor> getAllDoctors() {
+    public List<Doctor> getAllConfirmedDoctors() {
 
-        return doctorDAO.getAll();
+        return doctorDAO.getAllConfirmedDoctors();
     }
 
     public Doctor getDoctorByID(int doctorId) {

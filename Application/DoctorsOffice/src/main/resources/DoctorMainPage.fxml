@@ -6,72 +6,68 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="619.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/17"
-            fx:controller="controllers.DoctorMainPageController">
+
+<AnchorPane prefHeight="619.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorMainPageController">
     <children>
         <AnchorPane layoutY="-2.0" prefHeight="627.0" prefWidth="942.0" style="-fx-background-color: #EFFF7B;">
             <children>
-                <AnchorPane fx:id="workPane" layoutX="322.0" layoutY="23.0" prefHeight="569.0" prefWidth="607.0"
-                            style="-fx-background-color: #ffffff;"/>
-                <AnchorPane layoutY="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                            minWidth="-Infinity" prefHeight="641.0" prefWidth="322.0"
-                            style="-fx-background-color: #EFFF7B;">
+                <AnchorPane fx:id="workPane" layoutX="334.0" layoutY="14.0" prefHeight="608.0" prefWidth="608.0" style="-fx-background-color: #ffffff;" />
+                <AnchorPane layoutY="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="322.0" style="-fx-background-color: #EFFF7B;">
                     <effect>
                         <DropShadow height="12.82" radius="9.1125" spread="0.16" width="25.63">
                             <color>
-                                <Color red="0.940500020980835" green="1.0" blue="0.49000000953674316"/>
+                                <Color red="0.940500020980835" green="1.0" blue="0.49000000953674316" />
                             </color>
                         </DropShadow>
                     </effect>
                     <children>
-                        <AnchorPane layoutX="31.0" layoutY="49.0" prefHeight="180.0" prefWidth="256.0"
-                                    style="-fx-background-color: #ffffff;">
+                        <AnchorPane layoutX="46.0" layoutY="30.0" prefHeight="100.0" prefWidth="178.0" style="-fx-background-color: #ffffff;">
                             <children>
-                                <ImageView fitHeight="148.0" fitWidth="207.0" layoutX="24.0" layoutY="14.0"
-                                           pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="129.0" fitWidth="188.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                 </ImageView>
-                                <Label fx:id="welcomeUser" layoutX="28.0" layoutY="138.0" prefHeight="27.0"
-                                       prefWidth="207.0">
+                                <Label fx:id="welcomeUser" layoutX="28.0" layoutY="138.0" prefHeight="27.0" prefWidth="207.0">
                                     <font>
-                                        <Font name="System Bold Italic" size="17.0"/>
+                                        <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Label>
+                        <ImageView fitHeight="152.0" fitWidth="226.0" layoutX="26.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/Doctor.png" />
+                           </image>
+                        </ImageView>
                             </children>
                             <effect>
-                                <InnerShadow color="#292728" radius="26.0875" width="85.35"/>
+                                <InnerShadow color="#292728" radius="26.0875" width="85.35" />
                             </effect>
                         </AnchorPane>
-                        <Button layoutX="8.0" layoutY="354.0" mnemonicParsing="false" onAction="#onPatientReview"
-                                prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #ffffff;"
-                                text="Patient review" textAlignment="RIGHT">
+                        <Button layoutX="8.0" layoutY="300.0" mnemonicParsing="false" onAction="#onPatientReview" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #EDFABD;" text="Patient review" textAlignment="RIGHT">
                             <font>
-                                <Font name="Arial Bold" size="19.0"/>
+                                <Font name="Arial Bold" size="19.0" />
                             </font>
                         </Button>
-                        <Button layoutX="7.0" layoutY="439.0" mnemonicParsing="false" onAction="#onViewProfile"
-                                prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #ffffff;"
-                                text="Your Profile" textAlignment="RIGHT">
+                        <Button layoutX="8.0" layoutY="384.0" mnemonicParsing="false" onAction="#onViewProfile" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #EDFABD;" text="Your profile" textAlignment="RIGHT">
                             <font>
-                                <Font name="Arial Bold" size="19.0"/>
+                                <Font name="Arial Bold" size="19.0" />
                             </font>
                         </Button>
-                        <Button layoutX="7.0" layoutY="270.0" mnemonicParsing="false"
-                                onAction="#onViewTodayReservations" prefHeight="66.0" prefWidth="312.0"
-                                style="-fx-background-color: #EDFABD;" text="View today's reservations"
-                                textAlignment="RIGHT">
+                        <Button layoutX="5.0" layoutY="215.0" mnemonicParsing="false" onAction="#onViewTodayReservations" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #EDFABD;" text="View today's reservations" textAlignment="RIGHT" AnchorPane.topAnchor="215.0">
                             <font>
-                                <Font name="System Bold" size="19.0"/>
+                                <Font name="System Bold" size="19.0" />
                             </font>
                         </Button>
-                        <ImageView fitHeight="88.0" fitWidth="109.0" layoutX="121.0" layoutY="529.0"
-                                   onMouseClicked="#onLogout" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="88.0" fitWidth="109.0" layoutX="112.0" layoutY="553.0" onMouseClicked="#onLogout" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/Logout.png"/>
+                                <Image url="@icons/Logout.png" />
                             </image>
                         </ImageView>
+                  <Button layoutX="8.0" layoutY="470.0" mnemonicParsing="false" onAction="#onPatientProfile" prefHeight="66.0" prefWidth="312.0" style="-fx-background-color: #EDFABD;" text="Patient profile" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Arial Bold" size="19.0" />
+                     </font>
+                  </Button>
                     </children>
                 </AnchorPane>
             </children>

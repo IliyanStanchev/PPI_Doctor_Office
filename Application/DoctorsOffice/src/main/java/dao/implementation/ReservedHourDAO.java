@@ -21,11 +21,19 @@ public class ReservedHourDAO extends BaseDAO<ReservedHour> {
                 .getResultList();
     }
 
-    public List<ReservedHour> getDoctorReservedHours(int doctorID) {
+    public List<ReservedHour> getDoctorTodayReservedHours(int doctorID) {
 
         return MyEntityManager.getEntityManager().createQuery("FROM RESERVED_HOURS reservedHours WHERE reservedHours.examinationHour.doctor.id =: doctorID and reservedHours.examinationHour.date =: date ")
                 .setParameter("doctorID", doctorID)
                 .setParameter("date", LocalDate.now())
+                .getResultList();
+    }
+
+    public List<ReservedHour> getDoctorReservedHours( int doctorID, int patientID) {
+
+        return MyEntityManager.getEntityManager().createQuery("FROM RESERVED_HOURS reservedHours WHERE reservedHours.examinationHour.doctor.id =: doctorID and reservedHours.patient.id =: patientID order by examinationHour.date desc ")
+                .setParameter("doctorID", doctorID)
+                .setParameter("patientID", patientID)
                 .getResultList();
     }
 

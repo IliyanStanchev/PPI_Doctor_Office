@@ -3,6 +3,9 @@ package controls;
 import entities.ExaminationHour;
 import javafx.scene.control.Button;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class ExaminationHourButton extends Button {
 
     private ExaminationHour examinationHour;
@@ -14,6 +17,12 @@ public class ExaminationHourButton extends Button {
         this.examinationHour = examinationHour;
 
         setText(examinationHour.getStartTime().toString() + " - " + examinationHour.getEndTime().toString());
+
+        if( examinationHour.getDate().isBefore( LocalDate.now() ))
+            setDisable(true);
+
+        if( examinationHour.getDate().isEqual( LocalDate.now() ) && examinationHour.getStartTime().isBefore( LocalTime.now() ))
+            setDisable(true);
 
         if (examinationHour.isTaken())
             setDisable(true);
@@ -28,7 +37,7 @@ public class ExaminationHourButton extends Button {
                 "            radial-gradient(center 50% 50%, radius 100%, #ffffff, #ffffff);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.1em;"
+                "    -fx-font-size: 1em;"
         );
     }
 
@@ -51,7 +60,7 @@ public class ExaminationHourButton extends Button {
                     "            radial-gradient(center 50% 50%, radius 100%,  #58D68D,  #58D68D);\n" +
                     "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                     "    -fx-font-weight: bold;\n" +
-                    "    -fx-font-size: 1.1em;"
+                    "    -fx-font-size: 1em;"
             );
 
     }

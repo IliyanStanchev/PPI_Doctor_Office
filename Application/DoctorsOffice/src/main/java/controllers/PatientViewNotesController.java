@@ -1,11 +1,13 @@
 package controllers;
 
 import entities.Examination;
+import entities.ReservedHour;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import services.ExaminationService;
+import services.ReservedHourService;
 import utils.DocumentVisualizer;
 import view.ReservedHourView;
 
@@ -21,7 +23,6 @@ public class PatientViewNotesController {
     public TextField    dateField;
     public Label resultLabel;
 
-    private ReservedHourView  reservedHourView;
     private Examination       examination;
 
     public void onViewAttachedDocument( ActionEvent actionEvent ) throws Exception {
@@ -34,19 +35,22 @@ public class PatientViewNotesController {
         DocumentVisualizer.ShowDocument( notesFile, resultLabel );
     }
 
-    public void setCurrentReservedHour( ReservedHourView reservedHourView ) {
+    public void setCurrentReservedHour( int reservedHourID ) {
 
-        this.reservedHourView = reservedHourView;
+        ReservedHourService reservedHourService = new ReservedHourService();
 
-        dateField.setText(reservedHourView.getDate().toString());
-        doctorNameField.setText(reservedHourView.getDoctorName());
-        visitReasonField.setText(reservedHourView.getVisitReason());
+        ReservedHour reservedHour = reservedHourService.getReservedHourByID( reservedHourID );
+
+        dateField.setText(reservedHour.getExaminationHour().getDate().toString());
+        doctorNameField.setText(reservedHour.getExaminationHour().getDoctor().getUser().getFullName());
+        visitReasonField.setText(reservedHour.getVisitReason().toString());
 
         dateField.setDisable(true);
         doctorNameField.setDisable(true);
         visitReasonField.setDisable(true);
+        examinationNotesField.setDisable(true);
 
-        examination = examinationService.getExaminationByReservedHourID(reservedHourView.getId());
+        examination = examinationService.getExaminationByReservedHourID( reservedHour.getId() );
 
         if (examination == null) {
             resultLabel.setText("No doctor notes added yet.");

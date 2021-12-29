@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import services.ExaminationService;
+import services.NotificationService;
 import services.ReservedHourService;
 import utils.DocumentVisualizer;
 import utils.FileManager;
@@ -18,7 +19,8 @@ import java.io.File;
 
 public class DoctorAddNotesController {
 
-    private final ExaminationService examinationService = new ExaminationService();
+    private final ExaminationService    examinationService  = new ExaminationService();
+    private final NotificationService   notificationService = new NotificationService();
 
     public TextField    visitReasonField;
     public TextArea     examinationNotesField;
@@ -74,14 +76,18 @@ public class DoctorAddNotesController {
         if (!validateData())
             return;
 
-        if (examinationService.saveExamination(reservedHourView.getId(), notesFile, examinationNotesField.getText(), true) == null) {
+        Examination examination = examinationService.saveExamination(reservedHourView.getId(), notesFile, examinationNotesField.getText(), true);
+
+        if( examination == null ){
+
             resultLabel.setText("Error sharing examination. Please try again.");
             return;
         }
 
+        notificationService.addExaminationNotification( examination );
+
         resultLabel.setTextFill(Color.GREEN);
         resultLabel.setText("Examination notes shared successfully.");
-
     }
 
     public void onSaveNotes(ActionEvent actionEvent) {

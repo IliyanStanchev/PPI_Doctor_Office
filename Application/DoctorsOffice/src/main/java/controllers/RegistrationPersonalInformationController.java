@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class RegisterPersonalInformationController implements Initializable {
+public class RegistrationPersonalInformationController implements Initializable {
 
     private static final int PERSONAL_IDENTIFIER_SIZE = 10;
 
@@ -72,7 +72,7 @@ public class RegisterPersonalInformationController implements Initializable {
         fillCurrentUser();
 
         FXMLLoader loader = OpenForm.openNewForm("/DoctorApply.fxml", "Apply for Doctor");
-        DoctorApplyController controller = loader.getController();
+        RegistrationDoctorApplyController controller = loader.getController();
         controller.setCurrentUser(currentUser);
 
         CloseForm.closeForm(actionEvent);
@@ -184,7 +184,7 @@ public class RegisterPersonalInformationController implements Initializable {
         CloseForm.closeForm(mouseEvent);
 
         FXMLLoader fxmlLoader = OpenForm.openNewForm("/RegisterUserInformation.fxml", "User information", true);
-        RegisterUserInformationController controller = fxmlLoader.getController();
+        RegistrationUserInformationController controller = fxmlLoader.getController();
         controller.setCurrentUser(currentUser);
     }
 }
