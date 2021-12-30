@@ -62,8 +62,12 @@ public class ReservedHourService {
         return reservedHourDAO.getDoctorTodayReservedHours(doctorId);
     }
 
-    public List<ReservedHour> getDoctorReservedHours( int doctorId, int patientId ) {
-        return reservedHourDAO.getDoctorReservedHours( doctorId, patientId );
+    public List<ReservedHour> getDoctorReservedHours( int doctorId ) {
+        return reservedHourDAO.getDoctorReservedHours( doctorId );
+    }
+
+    public List<ReservedHour> getPatientReservedHoursForCurrentDoctor( int doctorId, int patientId ) {
+        return reservedHourDAO.getPatientReservedHoursForCurrentDoctor( doctorId, patientId );
     }
 
     public ReservedHour getReservedHourByID(int reservedHourID) {

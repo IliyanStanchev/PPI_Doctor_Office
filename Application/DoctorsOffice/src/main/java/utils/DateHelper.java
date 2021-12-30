@@ -18,9 +18,9 @@ public class DateHelper {
         final String monthString = personalIdentifier.substring(MONTH_VALUE_POSITION, MONTH_VALUE_POSITION + 2);
         final String dayString = personalIdentifier.substring(DAY_VALUE_POSITION, DAY_VALUE_POSITION + 2);
 
-        int decadesValue = Integer.parseInt(yearString);
-        int monthValue = Integer.parseInt(monthString);
-        int dayValue = Integer.parseInt(dayString);
+        int decadesValue    = Integer.parseInt(yearString);
+        int monthValue      = Integer.parseInt(monthString);
+        int dayValue        = Integer.parseInt(dayString);
 
         int yearValue = 1900;
 

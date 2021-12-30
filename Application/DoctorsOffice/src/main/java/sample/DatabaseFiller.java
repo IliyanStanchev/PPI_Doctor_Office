@@ -13,7 +13,7 @@ public class DatabaseFiller {
 
     public void fillDatabase() {
 
-       SpecializationDAO specializationDAO = new SpecializationDAO();
+       /* SpecializationDAO specializationDAO = new SpecializationDAO();
         specializationDAO.saveOrUpdate( new Specialization("Anesthesiology") );
         specializationDAO.saveOrUpdate( new Specialization("Dermatology") );
         specializationDAO.saveOrUpdate( new Specialization("Ophthalmology") );
@@ -44,9 +44,7 @@ public class DatabaseFiller {
         visitReasonDAO.saveOrUpdate(new VisitReason("Prophylactic examination"));
         visitReasonDAO.saveOrUpdate(new VisitReason("Medical procedure"));
         visitReasonDAO.saveOrUpdate(new VisitReason("Other examination"));
-
-
-
+*/
         ExaminationHourDAO examinationHourDAO = new ExaminationHourDAO();
 
         DoctorDAO doctorDAO = new DoctorDAO();

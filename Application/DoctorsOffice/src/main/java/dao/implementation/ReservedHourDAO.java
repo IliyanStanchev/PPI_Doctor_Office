@@ -29,7 +29,7 @@ public class ReservedHourDAO extends BaseDAO<ReservedHour> {
                 .getResultList();
     }
 
-    public List<ReservedHour> getDoctorReservedHours( int doctorID, int patientID) {
+    public List<ReservedHour> getPatientReservedHoursForCurrentDoctor(int doctorID, int patientID) {
 
         return MyEntityManager.getEntityManager().createQuery("FROM RESERVED_HOURS reservedHours WHERE reservedHours.examinationHour.doctor.id =: doctorID and reservedHours.patient.id =: patientID order by examinationHour.date desc ")
                 .setParameter("doctorID", doctorID)
@@ -41,6 +41,12 @@ public class ReservedHourDAO extends BaseDAO<ReservedHour> {
 
         return MyEntityManager.getEntityManager().createQuery(
                         "SELECT reservedHours.patient.id, reservedHours.patient.firstName, reservedHours.patient.secondName, reservedHours.patient.identifier, count( reservedHours.patient.id ) FROM RESERVED_HOURS reservedHours WHERE reservedHours.examinationHour.doctor.id =: doctorID group by reservedHours.patient.id ")
+                .setParameter("doctorID", doctorID)
+                .getResultList();
+    }
+
+    public List<ReservedHour> getDoctorReservedHours(int doctorID) {
+        return MyEntityManager.getEntityManager().createQuery("FROM RESERVED_HOURS reservedHours WHERE reservedHours.examinationHour.doctor.id =: doctorID order by examinationHour.date desc ")
                 .setParameter("doctorID", doctorID)
                 .getResultList();
     }

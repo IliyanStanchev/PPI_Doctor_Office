@@ -41,12 +41,12 @@
                 <Font size="14.0" />
             </font>
         </Button>
-        <TextField fx:id="cityField" layoutX="157.0" layoutY="343.0" onKeyReleased="#onAddressReleased" prefHeight="44.0" prefWidth="212.0" promptText="City" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+        <TextField fx:id="cityField" layoutX="157.0" layoutY="343.0" onKeyReleased="#onCityReleased" prefHeight="44.0" prefWidth="212.0" promptText="City" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
             </font>
         </TextField>
-        <TextField fx:id="addressField" layoutX="41.0" layoutY="413.0" onKeyReleased="#onCityReleased" prefHeight="44.0" prefWidth="438.0" promptText="Office address" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+        <TextField fx:id="addressField" layoutX="41.0" layoutY="413.0" onKeyReleased="#onAddressReleased" prefHeight="44.0" prefWidth="438.0" promptText="Office address" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
             </font>
@@ -56,13 +56,13 @@
                 <Font size="14.0" />
             </font>
         </TextArea>
-        <Label fx:id="uploadLabel" layoutX="39.0" layoutY="282.0" textFill="RED" />
-        <Label fx:id="specializationLabel" layoutX="291.0" layoutY="176.0" textFill="RED" />
-        <Label fx:id="attachLabel" layoutX="291.0" layoutY="282.0" textFill="RED" />
-        <Label fx:id="cityLabel" layoutX="157.0" layoutY="366.0" textFill="RED" />
-        <Label fx:id="addressLabel" layoutX="44.0" layoutY="440.0" textFill="RED" />
-        <Label fx:id="descriptionLabel" layoutX="44.0" layoutY="564.0" textFill="RED" />
-        <Label fx:id="resultLabel" layoutX="246.0" layoutY="573.0" textFill="RED" />
+        <Label fx:id="uploadLabel" layoutX="36.0" layoutY="314.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" />
+        <Label fx:id="specializationLabel" layoutX="291.0" layoutY="176.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" />
+        <Label fx:id="attachLabel" layoutX="291.0" layoutY="314.0" prefHeight="17.0" prefWidth="218.0" textFill="RED" />
+        <Label fx:id="cityLabel" layoutX="157.0" layoutY="387.0" prefHeight="17.0" prefWidth="279.0" textFill="RED" />
+        <Label fx:id="addressLabel" layoutX="44.0" layoutY="457.0" prefHeight="17.0" prefWidth="318.0" textFill="RED" />
+        <Label fx:id="descriptionLabel" layoutX="44.0" layoutY="564.0" prefHeight="17.0" prefWidth="438.0" textFill="RED" />
+        <Label fx:id="resultLabel" layoutX="43.0" layoutY="573.0" prefHeight="17.0" prefWidth="438.0" textFill="RED" />
         <ImageView fitHeight="48.0" fitWidth="52.0" layoutX="38.0" layoutY="593.0" onMouseClicked="#onGoBack" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@icons/Back.png" />

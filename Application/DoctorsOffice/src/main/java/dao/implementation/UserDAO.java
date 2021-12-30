@@ -1,20 +1,18 @@
 package dao.implementation;
 
 import dao.BaseDAO;
-import dao.IUserDAO;
 import entities.User;
 import manager.MyEntityManager;
 
 import javax.persistence.NoResultException;
 
-public class UserDAO extends BaseDAO<User> implements IUserDAO {
+public class UserDAO extends BaseDAO< User > {
 
     public UserDAO() {
 
         super.setClass(User.class);
     }
 
-    @Override
     public User getUserByUsername(String username) {
 
         User user;
@@ -35,6 +33,36 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
         try {
             user = (User) MyEntityManager.getEntityManager().createQuery("FROM USERS u WHERE  u.email =: email ")
                     .setParameter("email", email)
+                    .getSingleResult();
+
+        } catch (NoResultException e) {
+            user = null;
+        }
+
+        return user;
+    }
+
+    public User getUserByPhoneNumber(String phoneNumber) {
+
+        User user;
+        try {
+            user = (User) MyEntityManager.getEntityManager().createQuery("FROM USERS u WHERE  u.phoneNumber =: phoneNumber ")
+                    .setParameter("phoneNumber", phoneNumber)
+                    .getSingleResult();
+
+        } catch (NoResultException e) {
+            user = null;
+        }
+
+        return user;
+    }
+
+    public User getUserByIdentifier( String identifier ) {
+
+        User user;
+        try {
+            user = (User) MyEntityManager.getEntityManager().createQuery("FROM USERS u WHERE  u.identifier =: identifier ")
+                    .setParameter("identifier", identifier)
                     .getSingleResult();
 
         } catch (NoResultException e) {

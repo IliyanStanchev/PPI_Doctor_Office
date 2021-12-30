@@ -26,6 +26,10 @@ public class DoctorMainPageController extends MainPageController {
         DoctorService doctorService = new DoctorService();
 
         currentDoctor = doctorService.getDoctorByUserID(user.getId());
+
+        FXMLLoader loader = OpenForm.buildInForm("/DoctorViewTodayReservations.fxml", workPane);
+        DoctorViewTodayReservationsController controller = loader.getController();
+        controller.setCurrentDoctor(currentDoctor);
     }
 
     public void onViewProfile(ActionEvent actionEvent) {
@@ -59,5 +63,11 @@ public class DoctorMainPageController extends MainPageController {
         controller.setCurrentUser( super.getCurrentUser() );
 
         CloseForm.closeForm( actionEvent );
+    }
+
+    public void onViewSavedHours(ActionEvent actionEvent) {
+        FXMLLoader loader = OpenForm.buildInForm("/DoctorViewSavedHours.fxml", workPane);
+        DoctorViewSavedHoursController controller = loader.getController();
+        controller.setCurrentDoctor( currentDoctor );
     }
 }

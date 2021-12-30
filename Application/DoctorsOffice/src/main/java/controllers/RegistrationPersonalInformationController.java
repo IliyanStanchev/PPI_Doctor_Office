@@ -127,6 +127,18 @@ public class RegistrationPersonalInformationController implements Initializable 
         if (!FieldValidator.validateNumericField(personalIdentifierField, personalIdentifierLabel))
             return false;
 
+        UserService userService = new UserService();
+
+        if( userService.getUserByPhoneNumber( phoneNumberField.getText( )) != null ){
+            phoneNumberLabel.setText("User with this phone number already exists.");
+            return false;
+        }
+
+        if( userService.getUserByIdentifier( personalIdentifierField.getText() ) != null ){
+            personalIdentifierLabel.setText("User with this personal identifier already exists.");
+            return false;
+        }
+
         return true;
     }
 

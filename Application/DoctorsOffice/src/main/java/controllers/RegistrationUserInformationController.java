@@ -70,7 +70,7 @@ public class RegistrationUserInformationController implements Initializable {
     @FXML
     public void onPasswordReleased(KeyEvent keyEvent) {
 
-        if (FieldValidator.validateFieldLength(passwordField, passwordLabel, 8))
+        if (FieldValidator.validateFieldLength(passwordField, passwordLabel, PASSWORD_FIELD_LENGTH))
             passwordLabel.setText("");
     }
 
@@ -125,7 +125,12 @@ public class RegistrationUserInformationController implements Initializable {
         UserService userService = new UserService();
 
         if( userService.getUserByEmail( emailField.getText( )) != null ){
-            emailLabel.setText("User with this email already exist.");
+            emailLabel.setText("User with this email already exists.");
+            return false;
+        }
+
+        if( userService.getUserByUsername( usernameField.getText() ) != null ){
+            usernameLabel.setText("User with this username already exists.");
             return false;
         }
 

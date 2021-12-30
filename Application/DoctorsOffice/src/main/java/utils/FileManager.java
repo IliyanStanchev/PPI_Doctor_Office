@@ -13,12 +13,13 @@ import java.nio.file.StandardCopyOption;
 
 public class FileManager {
 
-    public static final String doctorPicturesFileNameStarter = "DoctorPicture_";
+    public static final String doctorPicturesFileNameStarter    = "DoctorPicture_";
     public static final String doctorDocumentaryFileNameStarter = "DoctorDocumentary_";
-    public static final String examinationNoteFileNameStarter = "ExaminationNote_";
-    public static final String doctorDocumentaryDirectory = "src/main/resources/DoctorDocumentary/";
-    public static final String examinationNoteDirectory = "src/main/resources/ExaminationNote/";
-    private static final String doctorPicturesDirectory = "src/main/resources/DoctorPicture/";
+    public static final String examinationNoteFileNameStarter   = "ExaminationNote_";
+
+    public static final String doctorDocumentaryDirectory   = "src/main/resources/DoctorDocumentary/";
+    public static final String examinationNoteDirectory     = "src/main/resources/ExaminationNote/";
+    private static final String doctorPicturesDirectory     = "src/main/resources/DoctorPicture/";
 
     public static File choosePictureFile(Label errorLabel) {
 

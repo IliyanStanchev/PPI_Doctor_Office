@@ -12,18 +12,22 @@ public class MyEntityManager {
     private static final EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     public static void executeInsideTransaction(Consumer<EntityManager> action) {
-        EntityTransaction tx = entityManager.getTransaction();
+
+        EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
-            tx.begin();
+            entityTransaction.begin();
+
             action.accept(entityManager);
-            tx.commit();
+
+            entityTransaction.commit();
         } catch (RuntimeException e) {
-            tx.rollback();
+            entityTransaction.rollback();
             throw e;
         }
     }
 
     public static EntityManager getEntityManager() {
+
         return entityManager;
     }
 

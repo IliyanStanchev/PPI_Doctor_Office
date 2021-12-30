@@ -15,12 +15,6 @@ public class UserService {
     private final RoleDAO           roleDAO         = new RoleDAO();
     private final UserAccountDAO    userAccountDAO  = new UserAccountDAO();
 
-    public User findById(int userId) {
-
-        return userDAO.findById(userId);
-
-    }
-
     public User authorizeUser(String username, String password) {
 
         User user = userDAO.getUserByUsername(username);
@@ -67,5 +61,20 @@ public class UserService {
     public void saveUser( User user ) {
 
         userDAO.saveOrUpdate( user );
+    }
+
+    public User getUserByUsername( final String username ) {
+        
+        return userDAO.getUserByUsername( username );
+    }
+
+    public User getUserByPhoneNumber( final String phoneNumber ) {
+
+        return userDAO.getUserByPhoneNumber( phoneNumber );
+    }
+
+    public User getUserByIdentifier( final String identifier ) {
+
+        return userDAO.getUserByIdentifier( identifier );
     }
 }

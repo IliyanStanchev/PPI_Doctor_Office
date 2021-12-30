@@ -30,17 +30,29 @@ public class Notification implements Serializable {
     @Column(name = "RESERVED_HOUR_ID")
     private int reservedHourID;
 
+    @Column(name = "SEEN")
+    private boolean seen;
+
     public Notification() {
 
     }
 
     public Notification(User user, String description, Alert.AlertType alertType, int reservedHourID ) {
 
-        this.user             = user;
-        this.description      = description;
-        notificationTimestamp = LocalDateTime.now();
-        this.notificationType = alertType;
-        this.reservedHourID   = reservedHourID;
+        this.user                   = user;
+        this.description            = description;
+        this.notificationTimestamp  = LocalDateTime.now();
+        this.notificationType       = alertType;
+        this.reservedHourID         = reservedHourID;
+        this.seen                   = false;
+    }
+
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
 
     public int getReservedHourID() {

@@ -9,15 +9,11 @@ import java.util.List;
 
 public abstract class BaseDAO<EntityClass extends Serializable> {
 
-    //Members
-    //------------------------------------
     private final EntityManager entityManager = MyEntityManager.getEntityManager();
 
     private Class<EntityClass> entityClass;
 
-    //Methods
-    //--------------------------------------------------------------------------------------------
-    public final void setClass(Class<EntityClass> entityClass) {
+    public final void setClass( Class<EntityClass> entityClass) {
         this.entityClass = entityClass;
     }
 
@@ -28,15 +24,16 @@ public abstract class BaseDAO<EntityClass extends Serializable> {
 
     public EntityClass findById(int id) {
 
+
         return MyEntityManager.getEntityManager().find(entityClass, id);
     }
 
     public EntityClass saveOrUpdate(EntityClass entityObject) {
 
-        EntityTransaction tx = entityManager.getTransaction();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
 
-            tx.begin();
+            entityTransaction.begin();
 
             if (entityManager.contains(entityObject))
                 entityManager.merge(entityObject);
@@ -44,11 +41,11 @@ public abstract class BaseDAO<EntityClass extends Serializable> {
             entityManager.persist(entityObject);
             entityManager.flush();
 
-            tx.commit();
+            entityTransaction.commit();
 
         } catch (RuntimeException e) {
 
-            tx.rollback();
+            entityTransaction.rollback();
             return null;
         }
 

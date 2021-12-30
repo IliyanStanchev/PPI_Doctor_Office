@@ -21,8 +21,8 @@ public class DoctorService {
 
     public boolean addDoctorApply(User user, File imageFile, File documentaryFile, Specialization specialization, String description, Address address) {
 
-        final String documentaryFileName = FileNameGenerator.generateCurrentTimeStampName(FileManager.doctorDocumentaryFileNameStarter);
-        final String pictureFileName = FileNameGenerator.generateCurrentTimeStampName(FileManager.doctorPicturesFileNameStarter);
+        final String documentaryFileName    = FileNameGenerator.generateCurrentTimeStampName(FileManager.doctorDocumentaryFileNameStarter);
+        final String pictureFileName        = FileNameGenerator.generateCurrentTimeStampName(FileManager.doctorPicturesFileNameStarter);
 
         String documentaryPath = "";
         String picturePath = "";
@@ -34,32 +34,21 @@ public class DoctorService {
             return false;
         }
 
-        Role currentRole = roleDAO.getRoleByUID(RoleEnum.Doctor);
-        user.setRole(currentRole);
+        User currentUser = saveCurrentUser( user );
 
-        BCryptPasswordEncoderService bCryptPasswordEncoderService = new BCryptPasswordEncoderService();
-
-        user.setPassword(bCryptPasswordEncoderService.encode(user.getPassword()));
-
-        User currentUser = userDAO.saveOrUpdate(user);
-
-        if (currentUser == null) {
-
+        if( currentUser == null ) {
             FileManager.deleteFile(picturePath);
             FileManager.deleteFile(documentaryPath);
 
             return false;
         }
 
-        if( userAccountDAO.saveOrUpdate( new UserAccount( user, false ) ) == null ){
+        if( userAccountDAO.saveOrUpdate( new UserAccount( currentUser, false ) ) == null ){
 
-            if (currentUser == null) {
+            FileManager.deleteFile(picturePath);
+            FileManager.deleteFile(documentaryPath);
 
-                FileManager.deleteFile(picturePath);
-                FileManager.deleteFile(documentaryPath);
-
-                return false;
-            }
+            return false;
         }
 
         Address savedAddress = addressDAO.saveOrUpdate(address);
@@ -75,6 +64,20 @@ public class DoctorService {
         }
 
         return true;
+    }
+
+    private User saveCurrentUser( User user ) {
+
+        Role currentRole = roleDAO.getRoleByUID(RoleEnum.Doctor);
+        user.setRole(currentRole);
+
+        BCryptPasswordEncoderService bCryptPasswordEncoderService = new BCryptPasswordEncoderService();
+
+        user.setPassword(bCryptPasswordEncoderService.encode(user.getPassword()));
+
+        User currentUser = userDAO.saveOrUpdate(user);
+
+        return currentUser;
     }
 
     public List<Doctor> getAllConfirmedDoctors() {

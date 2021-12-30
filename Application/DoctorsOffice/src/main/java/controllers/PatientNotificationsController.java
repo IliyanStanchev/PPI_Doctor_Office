@@ -48,6 +48,8 @@ public class PatientNotificationsController implements Initializable {
             PatientViewNotesController controller = fxmlLoader.getController();
             controller.setCurrentReservedHour( notificationView.getReservedHourID() );
         }
+
+        notificationService.setSeenNotification( notificationView.getId() );
     }
 
     public void setCurrentUser( User user ){

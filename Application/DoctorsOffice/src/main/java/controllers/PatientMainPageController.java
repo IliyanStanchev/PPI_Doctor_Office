@@ -26,6 +26,8 @@ public class PatientMainPageController extends MainPageController {
     private final static String notificationsEmptyIcon  = "src/main/resources/icons/NotificationsEmpty.png";
     private final static String notificationsFullIcon   = "src/main/resources/icons/NotificationsFull.png";
 
+    private NotificationService notificationService = new NotificationService();
+
     public Button       doctorProfileButton;
     public Button       yourProfileButton;
 
@@ -54,14 +56,23 @@ public class PatientMainPageController extends MainPageController {
 
         welcomeUser.setText("Welcome " + user.getFullName() + "!");
 
+        updateUserNotifications();
+
         setNotificationIcon();
+
+        FXMLLoader loader = OpenForm.buildInForm("/PatientMakeAnAppointment.fxml", workPane);
+        PatientMakeAnAppointmentController controller = loader.getController();
+        controller.setCurrentUser(super.getCurrentUser());
+    }
+
+    private void updateUserNotifications() {
+
+        notificationService.updateUserNotifications( super.getCurrentUser().getId() );
     }
 
     private void setNotificationIcon() {
 
-        NotificationService notificationService = new NotificationService();
-
-        List<Notification> notificationList = notificationService.getUserNotifications( super.getCurrentUser().getId() );
+        List<Notification> notificationList = notificationService.getNewUserNotifications( super.getCurrentUser().getId() );
 
         Image image = null;
 

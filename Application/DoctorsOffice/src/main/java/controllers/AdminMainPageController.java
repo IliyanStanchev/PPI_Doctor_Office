@@ -2,12 +2,16 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import utils.CloseForm;
 import utils.OpenForm;
 
-public class AdminMainPageController extends MainPageController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AdminMainPageController extends MainPageController implements Initializable {
 
     public AnchorPane workPane;
 
@@ -29,5 +33,10 @@ public class AdminMainPageController extends MainPageController {
     public void onLogout(MouseEvent mouseEvent) {
         OpenForm.openNewForm("/Login.fxml", "Login Page");
         CloseForm.closeForm(mouseEvent);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        OpenForm.buildInForm("/AdminUsersOverview.fxml", workPane);
     }
 }

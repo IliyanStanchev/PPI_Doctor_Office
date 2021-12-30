@@ -2,8 +2,11 @@ package dao.implementation;
 
 import dao.BaseDAO;
 import entities.Notification;
+import entities.User;
+import javafx.scene.control.Alert;
 import manager.MyEntityManager;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 public class NotificationDAO extends BaseDAO<Notification> {
@@ -15,8 +18,30 @@ public class NotificationDAO extends BaseDAO<Notification> {
 
     public List<Notification> getUserNotifications(int userID) {
 
-        return MyEntityManager.getEntityManager().createQuery("FROM NOTIFICATIONS notifications WHERE notifications.user.id =: userID order by notifications.notificationTimestamp desc ")
+        return MyEntityManager.getEntityManager().createQuery("FROM NOTIFICATIONS notifications WHERE notifications.user.id =: userID order by notifications.seen, notifications.notificationTimestamp desc ")
                 .setParameter("userID", userID )
                 .getResultList();
+    }
+
+    public List<Notification> getNewUserNotifications(int userID) {
+        return MyEntityManager.getEntityManager().createQuery("FROM NOTIFICATIONS notifications WHERE notifications.user.id =: userID and notifications.seen = false order by notifications.notificationTimestamp desc ")
+                .setParameter("userID", userID )
+                .getResultList();
+    }
+
+    public Notification getNotificationByReservedHourID( int reservedHourID ) {
+
+        Notification notification;
+        try {
+            notification = (Notification) MyEntityManager.getEntityManager().createQuery("FROM NOTIFICATIONS notification WHERE notification.reservedHourID =: reservedHourID and notification.notificationType =: alertType")
+                    .setParameter("reservedHourID", reservedHourID )
+                    .setParameter("alertType", Alert.AlertType.INFORMATION )
+                    .getSingleResult();
+
+        } catch (NoResultException e) {
+            notification = null;
+        }
+
+        return notification;
     }
 }

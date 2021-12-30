@@ -7,6 +7,8 @@ public class FieldValidator {
 
     public static boolean validateAlphabetical(TextField field, Label validationLabel) {
 
+        validationLabel.setText("");
+
         if (!DataValidator.isFieldEmpty(field, validationLabel))
             return false;
 
@@ -18,6 +20,8 @@ public class FieldValidator {
 
     public static boolean validateEmail(TextField field, Label validationLabel) {
 
+        validationLabel.setText("");
+
         if (!DataValidator.isFieldEmpty(field, validationLabel))
             return false;
 
@@ -28,6 +32,8 @@ public class FieldValidator {
     }
 
     public static boolean comparePassword(TextField password, TextField confirmPassword, Label validationLabel) {
+
+        validationLabel.setText("");
 
         final String passwordValue = password.getText();
         final String confirmPasswordValue = confirmPassword.getText();
@@ -43,6 +49,8 @@ public class FieldValidator {
 
     public static boolean validateNumericField(TextField field, Label validationLabel) {
 
+        validationLabel.setText("");
+
         if (!DataValidator.isFieldEmpty(field, validationLabel))
             return false;
 
@@ -54,6 +62,8 @@ public class FieldValidator {
 
     public static boolean validateFieldLength(TextField field, Label validationLabel, int length) {
 
+        validationLabel.setText("");
+
         if (!DataValidator.isFieldEmpty(field, validationLabel))
             return false;
 
@@ -63,18 +73,9 @@ public class FieldValidator {
         return true;
     }
 
-    public static boolean validatePrice(TextField field, Label validationLabel) {
-
-        if (!DataValidator.isFieldEmpty(field, validationLabel))
-            return false;
-
-        if (!DataValidator.checkPriceFormat(field, validationLabel))
-            return false;
-
-        return true;
-    }
-
     public static boolean validateUsername(TextField field, Label validationLabel) {
+
+        validationLabel.setText("");
 
         if (!DataValidator.isFieldEmpty(field, validationLabel))
             return false;
@@ -86,6 +87,8 @@ public class FieldValidator {
     }
 
     public static boolean validatePersonName(TextField field, Label validationLabel) {
+
+        validationLabel.setText("");
 
         if (!DataValidator.isFieldEmpty(field, validationLabel))
             return false;

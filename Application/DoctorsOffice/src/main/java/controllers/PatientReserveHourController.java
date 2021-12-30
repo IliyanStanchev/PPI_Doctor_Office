@@ -85,7 +85,7 @@ public class PatientReserveHourController implements Initializable {
 
         if (visitReasonComboBox.getSelectionModel().getSelectedItem() == null) {
 
-            resultLabel.setText("Pick a specialization.");
+            resultLabel.setText("Pick visit reason.");
             return false;
         }
 

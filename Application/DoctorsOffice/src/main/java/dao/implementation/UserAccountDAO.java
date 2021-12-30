@@ -1,8 +1,6 @@
 package dao.implementation;
 
 import dao.BaseDAO;
-import dao.IUserDAO;
-import entities.User;
 import entities.UserAccount;
 import manager.MyEntityManager;
 
