@@ -94,7 +94,7 @@ public class PatientMainPageController extends MainPageController {
 
         FXMLLoader loader = OpenForm.buildInForm("/PatientProfile.fxml", workPane);
         PatientProfileController controller = loader.getController();
-        controller.setCurrentUser( super.getCurrentUser() );
+        controller.setCurrentUser(super.getCurrentUser());
     }
 
     public void onLogout(MouseEvent mouseEvent) {

@@ -102,6 +102,7 @@ public class RegistrationUserInformationController implements Initializable {
         final String username = usernameField.getText();
         final String password = passwordField.getText();
 
+
         currentUser.setEmail(email);
         currentUser.setUsername(username);
         currentUser.setPassword(password);
