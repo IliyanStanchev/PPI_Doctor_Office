@@ -2,6 +2,7 @@ package validators;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import security.BCryptPasswordEncoderService;
 
 public class FieldValidator {
 
@@ -41,6 +42,21 @@ public class FieldValidator {
         if (!passwordValue.equals(confirmPasswordValue)) {
 
             validationLabel.setText("Passwords are not the same");
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean compareOldPassword( String password, String userPassword, Label validationLabel) {
+
+        validationLabel.setText("");
+
+        BCryptPasswordEncoderService bCryptPasswordEncoderService = new BCryptPasswordEncoderService();
+
+        if (!bCryptPasswordEncoderService.matches( password, userPassword ) ){
+
+            validationLabel.setText("The old password you have entered is incorrect");
             return false;
         }
 

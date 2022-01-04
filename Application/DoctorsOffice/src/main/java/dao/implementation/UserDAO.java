@@ -2,7 +2,7 @@ package dao.implementation;
 
 import dao.BaseDAO;
 import entities.User;
-import manager.MyEntityManager;
+import manager.EntityManagerExtender;
 
 import javax.persistence.NoResultException;
 
@@ -17,7 +17,7 @@ public class UserDAO extends BaseDAO< User > {
 
         User user;
         try {
-            user = (User) MyEntityManager.getEntityManager().createQuery("FROM USERS u WHERE  u.username=: username ")
+            user = (User) EntityManagerExtender.getEntityManager().createQuery("FROM USERS u WHERE  u.username=: username ")
                     .setParameter("username", username)
                     .getSingleResult();
 
@@ -31,7 +31,7 @@ public class UserDAO extends BaseDAO< User > {
 
         User user;
         try {
-            user = (User) MyEntityManager.getEntityManager().createQuery("FROM USERS u WHERE  u.email =: email ")
+            user = (User) EntityManagerExtender.getEntityManager().createQuery("FROM USERS u WHERE  u.email =: email ")
                     .setParameter("email", email)
                     .getSingleResult();
 
@@ -46,7 +46,7 @@ public class UserDAO extends BaseDAO< User > {
 
         User user;
         try {
-            user = (User) MyEntityManager.getEntityManager().createQuery("FROM USERS u WHERE  u.phoneNumber =: phoneNumber ")
+            user = (User) EntityManagerExtender.getEntityManager().createQuery("FROM USERS u WHERE  u.phoneNumber =: phoneNumber ")
                     .setParameter("phoneNumber", phoneNumber)
                     .getSingleResult();
 
@@ -61,7 +61,7 @@ public class UserDAO extends BaseDAO< User > {
 
         User user;
         try {
-            user = (User) MyEntityManager.getEntityManager().createQuery("FROM USERS u WHERE  u.identifier =: identifier ")
+            user = (User) EntityManagerExtender.getEntityManager().createQuery("FROM USERS u WHERE  u.identifier =: identifier ")
                     .setParameter("identifier", identifier)
                     .getSingleResult();
 

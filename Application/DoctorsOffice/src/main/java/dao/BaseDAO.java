@@ -1,6 +1,6 @@
 package dao;
 
-import manager.MyEntityManager;
+import manager.EntityManagerExtender;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class BaseDAO<EntityClass extends Serializable> {
 
-    private final EntityManager entityManager = MyEntityManager.getEntityManager();
+    private final EntityManager entityManager = EntityManagerExtender.getEntityManager();
 
     private Class<EntityClass> entityClass;
 
@@ -25,7 +25,7 @@ public abstract class BaseDAO<EntityClass extends Serializable> {
     public EntityClass findById(int id) {
 
 
-        return MyEntityManager.getEntityManager().find(entityClass, id);
+        return EntityManagerExtender.getEntityManager().find(entityClass, id);
     }
 
     public EntityClass saveOrUpdate(EntityClass entityObject) {
@@ -61,7 +61,7 @@ public abstract class BaseDAO<EntityClass extends Serializable> {
 
         EntityClass entityClass = findById(id);
 
-        MyEntityManager.executeInsideTransaction(
+        EntityManagerExtender.executeInsideTransaction(
                 entityManager -> entityManager.remove(
                         entityManager.contains(entityClass) ? entityClass : entityManager.merge(entityClass)));
 

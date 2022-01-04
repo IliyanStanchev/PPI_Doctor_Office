@@ -19,16 +19,6 @@
             </Text>
          </children>
       </AnchorPane>
-        <TextField fx:id="visitReasonField" layoutX="343.0" layoutY="109.0" prefHeight="44.0" prefWidth="212.0" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </TextField>
-        <TextArea fx:id="examinationNotesField" layoutX="39.0" layoutY="253.0" prefHeight="175.0" prefWidth="537.0" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </TextArea>
         <TextField fx:id="doctorNameField" layoutX="48.0" layoutY="109.0" prefHeight="44.0" prefWidth="212.0" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
@@ -39,7 +29,17 @@
                 <Font size="14.0" />
             </font>
         </TextField>
-        <Hyperlink layoutX="379.0" layoutY="204.0" onAction="#onViewAttachedDocument" text="View attached document" />
+        <TextField fx:id="visitReasonField" layoutX="343.0" layoutY="109.0" prefHeight="44.0" prefWidth="212.0" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </TextField>
+        <Hyperlink layoutX="343.0" layoutY="204.0" onAction="#onViewAttachedDocument" prefHeight="24.0" prefWidth="212.0" text="View attached document" />
+        <TextArea fx:id="examinationNotesField" layoutX="39.0" layoutY="253.0" prefHeight="175.0" prefWidth="537.0" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </TextArea>
         <Label fx:id="resultLabel" layoutX="92.0" layoutY="435.0" prefHeight="18.0" prefWidth="431.0" textFill="RED" />
     </children>
 </AnchorPane>

@@ -60,18 +60,6 @@ public class DataValidator {
         return true;
     }
 
-    public static boolean checkPriceFormat(TextField inputTextField, Label inputLabel) {
-
-        final String value = inputTextField.getText();
-        if (value == null || !value.matches("[0-9]+([.][0-9]{1,2})?")) {
-
-            inputLabel.setText("Wrong price format");
-            return false;
-        }
-
-        return true;
-    }
-
     public static boolean isFieldEmpty(TextField inputTextField, Label inputLabel) {
 
         final String value = inputTextField.getText();

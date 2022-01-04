@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="600.0"
-            style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/17"
-            fx:controller="controllers.PatientMakeAnAppointmentController">
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientMakeAnAppointmentController">
     <children>
-        <Text layoutX="213.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name"/>
-        <TextField fx:id="doctorNameField" layoutX="213.0" layoutY="38.0"/>
-        <Text layoutX="20.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City"/>
-        <TextField fx:id="cityField" layoutX="20.0" layoutY="38.0"/>
-        <Text layoutX="407.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialty"/>
-        <ComboBox fx:id="specializationCombo" layoutX="407.0" layoutY="38.0" prefHeight="25.0" prefWidth="173.0"/>
+        <Text layoutX="20.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" />
+        <TextField fx:id="cityField" layoutX="20.0" layoutY="38.0" />
+        <Text layoutX="213.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+        <TextField fx:id="doctorNameField" layoutX="213.0" layoutY="38.0" />
+        <Text layoutX="407.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialty" />
+        <ComboBox fx:id="specializationCombo" layoutX="407.0" layoutY="38.0" prefHeight="25.0" prefWidth="173.0" />
         <AnchorPane layoutX="24.0" layoutY="96.0" prefHeight="450.0" prefWidth="555.0">
             <children>
                 <ScrollPane fx:id="scrollPane" layoutX="23.0" layoutY="28.0" prefHeight="406.0" prefWidth="506.0">
                     <content>
-                        <ListView fx:id="doctorView" prefHeight="407.0" prefWidth="503.0"/>
+                        <ListView fx:id="doctorView" prefHeight="407.0" prefWidth="503.0" />
                     </content>
                 </ScrollPane>
             </children>

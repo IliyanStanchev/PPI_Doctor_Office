@@ -1,41 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorProfileController">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorProfileController">
     <children>
+      <ImageView fx:id="imageView" fitHeight="173.0" fitWidth="229.0" layoutX="182.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="203.0" layoutY="208.0" mnemonicParsing="false" onAction="#onUploadImage" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: #58D68D;" text="Select a profile picture" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="cityField" layoutX="186.0" layoutY="268.0" onKeyReleased="#onCityReleased" prefHeight="44.0" prefWidth="229.0" promptText="City" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="cityLabel" layoutX="186.0" layoutY="312.0" prefHeight="20.0" prefWidth="391.0" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="addressField" layoutX="67.0" layoutY="329.0" onKeyReleased="#onAddressReleased" prefHeight="44.0" prefWidth="483.0" promptText="Office address" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="addressLabel" layoutX="66.0" layoutY="373.0" prefHeight="17.0" prefWidth="489.0" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="descriptionField" layoutX="64.0" layoutY="403.0" onKeyReleased="#onDescriptionReleased" prefHeight="88.0" prefWidth="489.0" promptText="Enter description" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+        <Label fx:id="descriptionLabel" layoutX="66.0" layoutY="491.0" prefHeight="17.0" prefWidth="489.0" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
         <Button layoutX="200.0" layoutY="530.0" mnemonicParsing="false" onAction="#onUpdateProfile" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #58D68D;" text="Update Profile">
             <font>
                 <Font name="Tw Cen MT" size="26.0" />
             </font>
         </Button>
-        <Label fx:id="resultLabel" layoutX="296.0" layoutY="501.0" textFill="RED" />
-      <ImageView fx:id="imageView" fitHeight="173.0" fitWidth="229.0" layoutX="182.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="199.0" layoutY="215.0" mnemonicParsing="false" onAction="#onUploadImage" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: #58D68D;" text="Select a profile picture" textAlignment="CENTER">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <TextField fx:id="cityField" layoutX="185.0" layoutY="280.0" onKeyReleased="#onCityReleased" prefHeight="44.0" prefWidth="229.0" promptText="City" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="addressField" layoutX="65.0" layoutY="350.0" onKeyReleased="#onAddressReleased" prefHeight="44.0" prefWidth="483.0" promptText="Office address" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
-      <TextArea fx:id="descriptionField" layoutX="63.0" layoutY="413.0" onKeyReleased="#onDescriptionReleased" prefHeight="88.0" prefWidth="489.0" promptText="Enter description" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextArea>
     </children>
 </AnchorPane>

@@ -12,8 +12,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import listeners.PostFormActionListener;
 import services.DoctorService;
 import services.NotificationService;
+import services.UserService;
 import utils.CloseForm;
 import utils.OpenForm;
 
@@ -21,7 +23,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-public class PatientMainPageController extends MainPageController {
+public class PatientMainPageController extends MainPageController implements PostFormActionListener {
 
     private final static String notificationsEmptyIcon  = "src/main/resources/icons/NotificationsEmpty.png";
     private final static String notificationsFullIcon   = "src/main/resources/icons/NotificationsFull.png";
@@ -38,7 +40,7 @@ public class PatientMainPageController extends MainPageController {
     private Doctor      currentDoctor;
 
     @FXML
-    private AnchorPane workPane;
+    private AnchorPane  workPane;
 
     @Override
     public void setCurrentUser( User user ){
@@ -105,7 +107,7 @@ public class PatientMainPageController extends MainPageController {
 
         FXMLLoader loader = OpenForm.buildInForm("/PatientProfile.fxml", workPane);
         PatientProfileController controller = loader.getController();
-        controller.setCurrentUser(super.getCurrentUser());
+        controller.setCurrentUser( super.getCurrentUser(), this );
     }
 
     public void onLogout(MouseEvent mouseEvent) {
@@ -133,5 +135,19 @@ public class PatientMainPageController extends MainPageController {
         FXMLLoader fxmlLoader = OpenForm.openNewForm("/PatientNotifications.fxml", "Notifications" );
         PatientNotificationsController controller = fxmlLoader.getController();
         controller.setCurrentUser( super.getCurrentUser() );
+    }
+
+    @Override
+    public void handlePostFormActionListener() {
+
+        UserService userService = new UserService();
+        User currentUser = userService.getUserByUsername( super.getCurrentUser().getUsername() );
+
+        if( currentUser == null )
+            return;
+
+        super.setCurrentUser( currentUser );
+
+        this.welcomeUser.setText( "Welcome " + super.getCurrentUser().getFullName() );
     }
 }

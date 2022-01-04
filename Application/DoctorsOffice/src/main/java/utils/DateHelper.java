@@ -7,10 +7,10 @@ import java.time.LocalDate;
 
 public class DateHelper {
 
-    private static final int NEW_UCN_MONTH_FORMAT = 40;
-    private static final int YEAR_VALUE_POSITION = 0;
-    private static final int MONTH_VALUE_POSITION = 2;
-    private static final int DAY_VALUE_POSITION = 4;
+    private static final int NEW_UCN_MONTH_FORMAT   = 40;
+    private static final int YEAR_VALUE_POSITION    = 0;
+    private static final int MONTH_VALUE_POSITION   = 2;
+    private static final int DAY_VALUE_POSITION     = 4;
 
     public static boolean SetDateFromIdentifier(String personalIdentifier, Label resultLabel, DatePicker datePicker) {
 

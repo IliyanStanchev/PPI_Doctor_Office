@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="664.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistrationDoctorApplyController">
+<AnchorPane prefHeight="664.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistrationDoctorApplyController">
     <children>
         <AnchorPane layoutY="-6.0" prefHeight="102.0" prefWidth="525.0" style="-fx-background-color: #58D68D;">
             <children>
@@ -29,38 +22,38 @@
             </font>
         </Label>
         <ComboBox fx:id="specializationCombo" layoutX="291.0" layoutY="146.0" prefHeight="30.0" prefWidth="187.0" promptText="Choose a specialty" style="-fx-border-color: #58D68D;" />
-        <ImageView fx:id="imageView" fitHeight="173.0" fitWidth="229.0" layoutX="21.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="106.0" />
+        <Label fx:id="specializationLabel" layoutX="291.0" layoutY="176.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" />
+        <ImageView fx:id="imageView" fitHeight="173.0" fitWidth="229.0" layoutX="36.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="107.0" />
         <Button layoutX="38.0" layoutY="284.0" mnemonicParsing="false" onAction="#onUploadImage" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: #58D68D;" text="Select a profile picture" textAlignment="CENTER">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
+        <Label fx:id="uploadLabel" layoutX="36.0" layoutY="314.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" />
         <Hyperlink layoutX="291.0" layoutY="258.0" onAction="#onViewRegistrationFile" text="View attached file" />
         <Button layoutX="291.0" layoutY="281.0" mnemonicParsing="false" onAction="#onAttachRegistrationFile" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: #58D68D;" text="Attach registration file" textAlignment="CENTER">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
+        <Label fx:id="attachLabel" layoutX="291.0" layoutY="314.0" prefHeight="17.0" prefWidth="218.0" textFill="RED" />
         <TextField fx:id="cityField" layoutX="157.0" layoutY="343.0" onKeyReleased="#onCityReleased" prefHeight="44.0" prefWidth="212.0" promptText="City" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
             </font>
         </TextField>
+        <Label fx:id="cityLabel" layoutX="157.0" layoutY="387.0" prefHeight="17.0" prefWidth="279.0" textFill="RED" />
         <TextField fx:id="addressField" layoutX="41.0" layoutY="413.0" onKeyReleased="#onAddressReleased" prefHeight="44.0" prefWidth="438.0" promptText="Office address" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
             </font>
         </TextField>
+        <Label fx:id="addressLabel" layoutX="44.0" layoutY="457.0" prefHeight="17.0" prefWidth="318.0" textFill="RED" />
         <TextArea fx:id="descriptionField" layoutX="44.0" layoutY="476.0" onKeyReleased="#onDescriptionReleased" prefHeight="88.0" prefWidth="438.0" promptText="Enter description" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
             </font>
         </TextArea>
-        <Label fx:id="uploadLabel" layoutX="36.0" layoutY="314.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" />
-        <Label fx:id="specializationLabel" layoutX="291.0" layoutY="176.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" />
-        <Label fx:id="attachLabel" layoutX="291.0" layoutY="314.0" prefHeight="17.0" prefWidth="218.0" textFill="RED" />
-        <Label fx:id="cityLabel" layoutX="157.0" layoutY="387.0" prefHeight="17.0" prefWidth="279.0" textFill="RED" />
-        <Label fx:id="addressLabel" layoutX="44.0" layoutY="457.0" prefHeight="17.0" prefWidth="318.0" textFill="RED" />
         <Label fx:id="descriptionLabel" layoutX="44.0" layoutY="564.0" prefHeight="17.0" prefWidth="438.0" textFill="RED" />
         <Label fx:id="resultLabel" layoutX="43.0" layoutY="573.0" prefHeight="17.0" prefWidth="438.0" textFill="RED" />
         <ImageView fitHeight="48.0" fitWidth="52.0" layoutX="38.0" layoutY="593.0" onMouseClicked="#onGoBack" pickOnBounds="true" preserveRatio="true">

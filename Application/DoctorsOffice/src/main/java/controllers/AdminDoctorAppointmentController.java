@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import listeners.PostFormActionListener;
 import services.DoctorService;
 import utils.OpenForm;
 import view.DoctorView;
@@ -20,7 +21,7 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class AdminDoctorAppointmentController implements Initializable {
+public class AdminDoctorAppointmentController implements Initializable, PostFormActionListener {
 
     public TextField    doctorNameField;
     public TextField    doctorIdentifierField;
@@ -49,7 +50,11 @@ public class AdminDoctorAppointmentController implements Initializable {
     }
 
     private void InitTableView() {
-        
+
+        doctorsList.clear();
+        filteredData.clear();
+        doctorTableView.getItems().clear();
+
         DoctorService doctorService = new DoctorService();
 
         for ( Doctor doctor : doctorService.getDoctorAppointments())
@@ -85,6 +90,8 @@ public class AdminDoctorAppointmentController implements Initializable {
                 filteredData.setPredicate( doctorView -> doctorView.getCity().toLowerCase(Locale.ROOT).contains( city.toLowerCase(Locale.ROOT)));
         });
 
+        AdminDoctorAppointmentController adminDoctorApproveController = this;
+
         doctorTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
@@ -95,9 +102,15 @@ public class AdminDoctorAppointmentController implements Initializable {
                     DoctorView doctorView = doctorTableView.getSelectionModel().getSelectedItem();
                     FXMLLoader fxmlLoader = OpenForm.openNewForm("/AdminDoctorApprove.fxml", "Approve doctor");
                     AdminDoctorApproveController controller = fxmlLoader.getController();
-                    controller.setCurrentDoctor( doctorView.getId() );
+                    controller.setCurrentDoctor( doctorView.getId(), adminDoctorApproveController );
                 }
             }
         });
+    }
+
+    @Override
+    public void handlePostFormActionListener() {
+
+        InitTableView();
     }
 }

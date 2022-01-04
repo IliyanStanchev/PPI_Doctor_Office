@@ -91,8 +91,7 @@ public class RegistrationDoctorApplyController implements Initializable {
 
         Image image = new Image(filePath);
         imageView.setImage(image);
-        imageView.setFitHeight(270);
-        imageView.setFitWidth(190);
+
     }
 
     @FXML

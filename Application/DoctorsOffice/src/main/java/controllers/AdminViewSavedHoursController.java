@@ -35,7 +35,7 @@ public class AdminViewSavedHoursController implements Initializable {
     private ObservableList<ReservedHourView>    reservedHoursList = FXCollections.observableArrayList();
     private FilteredList<ReservedHourView>      filteredData = new FilteredList<>(reservedHoursList, b -> true);
 
-    public void onCancelHour(ActionEvent actionEvent) {
+    public void onCancelHour( ActionEvent actionEvent ) {
 
         ReservedHourView reservedHourView = hoursView.getSelectionModel().getSelectedItem();
 
@@ -69,6 +69,7 @@ public class AdminViewSavedHoursController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("formattedDate"));
         doctorIdentifierColumn.setCellValueFactory(new PropertyValueFactory<>("doctorIdentifier"));
         patientIdentifierColumn.setCellValueFactory(new PropertyValueFactory<>("patientIdentifier"));

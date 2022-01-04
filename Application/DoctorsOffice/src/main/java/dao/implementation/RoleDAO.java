@@ -3,7 +3,7 @@ package dao.implementation;
 import dao.BaseDAO;
 import entities.Role;
 import enums.RoleEnum;
-import manager.MyEntityManager;
+import manager.EntityManagerExtender;
 
 import javax.persistence.NoResultException;
 
@@ -18,7 +18,7 @@ public class RoleDAO extends BaseDAO<Role> {
 
         Role role;
         try {
-            role = (Role) MyEntityManager.getEntityManager().createQuery("FROM ROLES r WHERE  r.roleUid=: roleEnum ")
+            role = (Role) EntityManagerExtender.getEntityManager().createQuery("FROM ROLES r WHERE  r.roleUid=: roleEnum ")
                     .setParameter("roleEnum", roleEnum)
                     .getSingleResult();
 

@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorViewPatientHistoryController">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #EFFF7B;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorViewPatientHistoryController">
     <children>
-        <Text layoutX="365.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visit Reason" />
+        <Text layoutX="68.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient name:">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+        <Text fx:id="patientNameLabel" layoutX="156.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+        <Text layoutX="68.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Identifier:">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+        <Text fx:id="patientIdentifierLabel" layoutX="156.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+        <Text layoutX="68.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+        <DatePicker fx:id="datePicker" layoutX="68.0" layoutY="122.0" />
+        <Text layoutX="365.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visit Reason">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
         <ComboBox fx:id="visitReasonCombo" layoutX="365.0" layoutY="122.0" prefHeight="25.0" prefWidth="173.0" />
         <TableView fx:id="reservationsTableView" layoutY="176.0" prefHeight="416.0" prefWidth="620.0" style="-fx-background-color: #EFFF7B;">
             <columns>
@@ -14,11 +42,5 @@
                 <TableColumn fx:id="visitReasonColumn" prefWidth="310.3999328613281" text="Visit Reason" />
             </columns>
         </TableView>
-        <DatePicker fx:id="datePicker" layoutX="68.0" layoutY="122.0" />
-        <Text layoutX="68.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-        <Text layoutX="68.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient name:" />
-        <Text layoutX="68.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Identifier:" />
-        <Text fx:id="patientIdentifierLabel" layoutX="156.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-        <Text fx:id="patientNameLabel" layoutX="156.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" />
     </children>
 </AnchorPane>

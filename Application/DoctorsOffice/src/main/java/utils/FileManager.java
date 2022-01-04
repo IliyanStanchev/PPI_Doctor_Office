@@ -23,6 +23,8 @@ public class FileManager {
 
     public static File choosePictureFile(Label errorLabel) {
 
+        errorLabel.setText("");
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Image File");
         fileChooser.getExtensionFilters().addAll(
@@ -38,6 +40,8 @@ public class FileManager {
     }
 
     public static File chooseDocumentaryFile(Label errorLabel) {
+
+        errorLabel.setText("");
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Registration File");

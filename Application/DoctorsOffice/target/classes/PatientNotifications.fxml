@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="660.0" prefWidth="636.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientNotificationsController">
+<AnchorPane prefHeight="720.0" prefWidth="636.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientNotificationsController">
    <children>
-      <TableView fx:id="notificationsTableView" layoutX="5.0" layoutY="3.0" onMouseClicked="#onOpenNotification" prefHeight="640.0" prefWidth="627.0" stylesheets="@tableView.css">
+      <TableView fx:id="notificationsTableView" layoutX="5.0" layoutY="82.0" onMouseClicked="#onOpenNotification" prefHeight="638.0" prefWidth="627.0" stylesheets="@tableView.css">
          <columns>
             <TableColumn fx:id="notificationTimestampColumn" minWidth="0.0" prefWidth="171.0" text="Timestamp" />
             <TableColumn fx:id="notificationColumn" minWidth="0.0" prefWidth="465.0" text="Message" />
          </columns>
       </TableView>
+      <CheckBox fx:id="showSeenNotificationsCheckBox" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#onShowSeenMessages" prefHeight="38.0" prefWidth="317.0" text="Show seen messages">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </CheckBox>
    </children>
 </AnchorPane>

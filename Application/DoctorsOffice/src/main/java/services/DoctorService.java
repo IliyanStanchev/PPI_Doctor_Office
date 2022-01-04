@@ -105,4 +105,9 @@ public class DoctorService {
         currentDoctor.setConfirmed( true );
         doctorDAO.saveOrUpdate( currentDoctor );
     }
+
+    public void updateDoctor(Doctor currentDoctor) {
+
+        doctorDAO.saveOrUpdate( currentDoctor );
+    }
 }

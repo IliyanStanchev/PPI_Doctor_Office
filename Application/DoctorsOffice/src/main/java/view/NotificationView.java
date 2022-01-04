@@ -12,16 +12,18 @@ public class NotificationView {
     private String          message;
     private Alert.AlertType notificationType;
     private int             reservedHourID;
+    private boolean         seen;
 
     public NotificationView( Notification notification ) {
 
-        final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-yyyy-MM HH:mm:ss");
+        final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
         this.id                             = notification.getId();
         this.formattedNotificationTimestamp = notification.getNotificationTimestamp().format( dateTimeFormatter );
         this.message                        = notification.getDescription();
         this.notificationType               = notification.getNotificationType();
         this.reservedHourID                 = notification.getReservedHourID();
+        this.seen                           = notification.isSeen();
     }
 
     public int getReservedHourID() {
@@ -62,5 +64,9 @@ public class NotificationView {
 
     public void setNotificationType(Alert.AlertType notificationType) {
         this.notificationType = notificationType;
+    }
+
+    public boolean isSeen() {
+        return seen;
     }
 }

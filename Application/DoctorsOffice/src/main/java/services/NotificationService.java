@@ -43,9 +43,12 @@ public class NotificationService {
         notificationDAO.saveOrUpdate( notification );
     }
 
-    public List<Notification> getUserNotifications( int userID ) {
+    public List<Notification> getUserNotifications( int userID, boolean showSeenNotifications ) {
 
-        return notificationDAO.getUserNotifications( userID );
+        if( showSeenNotifications )
+            return notificationDAO.getUserNotifications( userID );
+
+        return notificationDAO.getNewUserNotifications( userID );
     }
 
     public List<Notification> getNewUserNotifications( int userID ) {

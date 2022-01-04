@@ -2,7 +2,7 @@ package dao.implementation;
 
 import dao.BaseDAO;
 import entities.UserAccount;
-import manager.MyEntityManager;
+import manager.EntityManagerExtender;
 
 import javax.persistence.NoResultException;
 
@@ -17,7 +17,7 @@ public class UserAccountDAO extends BaseDAO<UserAccount> {
 
         UserAccount userAccount;
         try {
-            userAccount = ( UserAccount ) MyEntityManager.getEntityManager().createQuery("FROM USER_ACCOUNTS u WHERE  u.user.id =: userID ")
+            userAccount = ( UserAccount ) EntityManagerExtender.getEntityManager().createQuery("FROM USER_ACCOUNTS u WHERE  u.user.id =: userID ")
                     .setParameter("userID", userID )
                     .getSingleResult();
 

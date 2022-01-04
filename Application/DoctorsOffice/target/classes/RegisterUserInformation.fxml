@@ -31,45 +31,45 @@
     <center>
         <AnchorPane prefHeight="536.0" prefWidth="563.0" BorderPane.alignment="CENTER">
             <children>
-                <TextField fx:id="emailField" layoutX="176.0" layoutY="87.0" onKeyReleased="#onEmailReleased" prefHeight="44.0" prefWidth="212.0" promptText="E-mail" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </TextField>
-                <TextField fx:id="usernameField" layoutX="174.0" layoutY="172.0" onKeyReleased="#onUsernameReleased" prefHeight="42.0" prefWidth="216.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </TextField>
-                <PasswordField fx:id="passwordField" layoutX="174.0" layoutY="254.0" onKeyReleased="#onPasswordReleased" prefHeight="41.0" prefWidth="215.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </PasswordField>
-                <PasswordField fx:id="confirmPasswordField" layoutX="172.0" layoutY="340.0" onKeyReleased="#onConfirmPasswordReleased" prefHeight="39.0" prefWidth="220.0" promptText="Confirm password" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </PasswordField>
-                <Button layoutX="199.0" layoutY="440.0" mnemonicParsing="false" onAction="#onNext" prefHeight="45.0" prefWidth="165.0" style="-fx-background-color: #58D68D;" text="Next">
-                    <font>
-                        <Font name="Tw Cen MT" size="26.0" />
-                    </font>
-                </Button>
-                <Label layoutX="203.0" layoutY="14.0" prefHeight="44.0" prefWidth="158.0" text="User information">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
                 <ImageView fitHeight="48.0" fitWidth="52.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#onGoBack" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@icons/Back.png" />
                     </image>
                 </ImageView>
+                <Label layoutX="203.0" layoutY="14.0" prefHeight="44.0" prefWidth="158.0" text="User information">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="emailField" layoutX="176.0" layoutY="87.0" onKeyReleased="#onEmailReleased" prefHeight="44.0" prefWidth="212.0" promptText="E-mail" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </TextField>
                 <Label fx:id="emailLabel" layoutX="176.0" layoutY="131.0" prefHeight="17.0" prefWidth="302.0" textFill="RED" />
+                <TextField fx:id="usernameField" layoutX="174.0" layoutY="172.0" onKeyReleased="#onUsernameReleased" prefHeight="42.0" prefWidth="216.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </TextField>
                 <Label fx:id="usernameLabel" layoutX="175.0" layoutY="214.0" prefHeight="17.0" prefWidth="285.0" textFill="RED" />
+                <PasswordField fx:id="passwordField" layoutX="174.0" layoutY="254.0" onKeyReleased="#onPasswordReleased" prefHeight="41.0" prefWidth="215.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </PasswordField>
                 <Label fx:id="passwordLabel" layoutX="175.0" layoutY="295.0" prefHeight="17.0" prefWidth="291.0" textFill="RED" />
+                <PasswordField fx:id="confirmPasswordField" layoutX="172.0" layoutY="340.0" onKeyReleased="#onConfirmPasswordReleased" prefHeight="39.0" prefWidth="220.0" promptText="Confirm password" style="-fx-background-color: transparent; -fx-border-color: #58D68D; -fx-border-width: 0px 0px 2px 0px;">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </PasswordField>
                 <Label fx:id="confirmPasswordLabel" layoutX="172.0" layoutY="381.0" prefHeight="17.0" prefWidth="291.0" textFill="RED" />
+                <Button layoutX="199.0" layoutY="440.0" mnemonicParsing="false" onAction="#onNext" prefHeight="45.0" prefWidth="165.0" style="-fx-background-color: #58D68D;" text="Next">
+                    <font>
+                        <Font name="Tw Cen MT" size="26.0" />
+                    </font>
+                </Button>
                 <Label fx:id="resultLabel" layoutX="66.0" layoutY="415.0" prefHeight="17.0" prefWidth="428.0" />
             </children>
         </AnchorPane>
